@@ -1,0 +1,83 @@
+<div class="div">
+    <div class="div1">
+            <h1>
+                <em>LMS - APP</em>
+            </h1>
+        <div class="row">
+            <div class="col-sm-12" style="padding-left : 180px; padding-top : 10px;">
+                <h2 style="padding-left : 60px;">Sign In..</h2>
+                <form (ngSubmit)="login()">
+                    <label for="username">Username</label>
+                    <br />
+                    <input style=" width : 50%;" [(ngModel)]="username" name = "loginForm" type="text" class="box-style" required>
+                    <br />
+                    <br />
+                    <label for="password">Password</label>
+                    <br />
+                    <input style=" width : 50%;" [(ngModel)]="password" name = "loginForm" type="password" class="box-style" required>
+                    <br />
+                    <br />
+                    <label>User Role</label>
+                    <br />
+                    <select class="box-style" style="width:50%;" [(ngModel)]="role" name = "loginForm" required>
+                        <option value="">--select--</option>
+                        <option value="Employee">Employee</option>
+                        <option value="HR">HR</option>
+                    </select>
+                    <br />
+                    <br />
+                    <div style="padding-left : 70px;">
+                        <input style=" width : 25%;" type="submit" class="btn btn-style">
+                        <br />
+                    </div>
+                    <br />
+                    <a routerLink="/register" style="padding-left : 35px;">New User - Register here!</a>
+                </form>
+                <script>
+                    function login() {
+                        event.preventDefault();
+                        const userName = document.querySelector("#userName").value;
+                        const password = document.querySelector("#password").value;
+                        const role = document.querySelector("#role").value;
+                        const loginObj = {
+                            "userName": userName,
+                            "password": password,
+                            "role": role
+                        }
+                        console.log(loginObj);
+                        let allFielsAreOk = 0;
+                        if (userName == null || userName == "" || userName.trim() == "") {
+                            alert("Enter valid username");
+                        }
+                        else if (password == null || password == "" || password.trim() == "" || password.length > 8 || password.length < 8) {
+                            alert("Password Must be 8 letters");
+                        }
+
+                        else if (role == null || role == "" || role.trim() == "") {
+                            alert("Role is Invalid");
+                        }
+                        else {
+                            allFielsAreOk = 1;
+                        }
+                        if (allFielsAreOk == 1) {
+                            if (role === "Employee") {
+                                if (userName == "renis@mail.com" && password == "Tomjson1") {
+                                    window.location.href = "home.html";
+                                } else {
+                                    alert("Invalid username or password");
+                                }
+                            }
+                            else if (role === "HR") {
+                                if (userName == "casi@mail.com" && password == "Tomjson1") {
+                                    window.location.href = "hrpage.html";
+                                } else {
+                                    alert("Invalid username or password");
+                                }
+                            }
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

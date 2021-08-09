@@ -1,0 +1,42 @@
+.leave-title{
+    width:91%;
+    margin-top: 10px;
+    padding-left: 10px;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 10px 10px;
+}
+
+.leave-content{
+    width:90%;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 10px 10px;
+    font-size: 14px;
+}
+
+.box-style{
+    width: 350px;
+}
+
+.pre-scrollable1 {
+    max-height: 550px;
+    overflow-y: scroll;
+}
+
+.box-control{
+    font-size : 16px;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 5px 5px;
+    margin-bottom : 8px;
+    width : 300px;
+}
+.btn1-style{
+    border-radius: 20px 20px;
+    border : 1px solid rgb(53, 47, 47);
+    background-color: rgb(43, 146, 43);
+    color : whitesmoke;
+
+}

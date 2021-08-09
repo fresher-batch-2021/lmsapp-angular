@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-sm-2">
+        <app-header></app-header>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-box">
+            <br/>
+            <h2>History</h2>
+            <br/>
+        </div>
+        <div class="history-table pre-scrollable1">
+            <table aria-describedby="mydesc">
+                <tr>
+                    <th scope="col">###</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Options</th>
+                </tr>
+                <tbody id = "history-details">
+                    <tr *ngFor="let history of historyDetails">
+                        <td>{{history.sno}}</td>
+                        <td>{{history.date}}</td>
+                        <td>{{history.type}}</td>
+                        <td>{{history.reason}}</td>
+                        <td>{{history.status}}</td>
+                        <td><a>Edit</a><a>Delete</a></td>
+                    </tr>
+                </tbody>
+                <!-- <tr>
+                    <td>1</td>
+                    <td>2021-08-03</td>
+                    <td>Casual Leave</td>
+                    <td>Function</td>
+                    <td>Pending</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2021-08-03</td>
+                    <td>Casual Leave</td>
+                    <td>Personal</td>
+                    <td>Approved</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>2020-11-21</td>
+                    <td>Sick Leave</td>
+                    <td>Fever</td>
+                    <td>Approved</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>2020-11-11</td>
+                    <td>Casual Leave</td>
+                    <td>Function</td>
+                    <td>Declined</td>
+                </tr> -->
+            </table>
+        </div>
+
+    </div>
+    <div class = "col-sm-2">
+        <app-footer></app-footer>
+    </div>
+</div>

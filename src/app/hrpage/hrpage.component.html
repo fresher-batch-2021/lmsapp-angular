@@ -1,0 +1,27 @@
+<div class="hrpage-title">
+    <h2>Leave Applications</h2>
+</div>
+<div class="hrpage-content">
+    <main>
+        <div id="application-forms">
+            <div class="application-form" *ngFor="let form of leaveForms">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Name : {{form.name}}</label><br />
+                        <label>Employee {{form.employeeId}}</label><br />
+                        <label>Team : {{form.team}}</label><br />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Leave days : {{form.leaveDays}}</label><br />
+                        <label>Leave Type : {{form.leaveType}}</label><br />
+                        <label>Reason : {{form.reason}}</label><br />
+                    </div>
+                    <div class="col-sm-4" style="text-align: center;">
+                        <input type="submit" class="btn1-style" value="Approve"><br />
+                        <input type="submit" class="btn2-style" value="Decline">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,52 @@
+.span-group{
+    display : flex;
+    flex-wrap: wrap;
+    width :100%;
+}
+.span-group2{
+    display : flex;
+    height: 45px;
+}
+.span-group3{
+    display: flex;
+    text-align: center;
+    padding : 2px 2px;
+    border: 1px solid #ced4da;
+}
+.box1-style{
+    width : 250px;
+    height: 41px;
+    border: 1px solid #ced4da;
+    font-size: 15px;
+}
+.div-register{
+    background-image: url(/assets/images/register.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 35px;
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-bottom: 55px;
+    width: 95%;    
+}
+
+.div1{
+    background-color:rgb(75,141,174);
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    border : 2px grey;
+    border-radius : 80px 80px;
+    width: 40%;
+    opacity: 0.9;    
+}
+
+.btn-style{
+    width : 150px;
+    height : 30px;
+    font-size: 15px;
+    border-radius: 15px 15px;
+    background-color: rgb(205, 225, 236);
+    color: rgb(20, 20, 20);
+}

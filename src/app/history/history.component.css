@@ -1,0 +1,39 @@
+.title-box{
+    margin-top: 10px;
+    padding-left: 15px;
+    width : 92.7%;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 10px 10px;
+}
+
+.history-table{
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    width : 90%;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 10px 10px;
+}
+table{
+    width : 100%;
+    font-size: 18px;
+    border: 1px solid rgb(195,195,195);
+    border-radius: 5px 5px;
+}
+tr{
+    height: 50px;
+    border: 1px solid rgb(195,195,195);
+}
+th{
+    background-color: rgb(198, 198, 245);
+    color: rgb(24, 23, 23);
+}
+tr:nth-child(odd){
+    background-color: rgb(190, 188, 188);
+}
+a{
+    color: whitesmoke;
+    text-decoration: none;
+}
