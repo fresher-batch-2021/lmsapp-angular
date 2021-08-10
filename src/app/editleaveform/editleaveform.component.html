@@ -1,0 +1,113 @@
+<div class="row">
+    <div class="col-sm-2">
+        <app-header></app-header>
+    </div>
+    <div class="col-sm-8">
+        <div class="editleave-title">
+            <br />
+            <h2>
+                <strong>Edit Leave Form</strong>
+            </h2>
+            <br />
+        </div>
+        <div *ngFor="let history of historyDetails">
+            <div *ngIf="this.sno === history.sno">
+                <div class="editleave-content pre-scrollable1">
+                    <br />
+
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <label>Employee ID : </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" value="{{history.sno}}" required name="empID" id="employeeId" class="box-control">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <label>From Date : </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="date" value="{{history.fromDate}}" required id="fromDate" class="box-control">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <label>To Date : </label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="date" required id="toDate" class="box-control">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <label>Leave Type : </label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select required id="type" class="box-control">
+                                    <option value="">--select--</option>
+                                    <option value="sickLeave">Sick Leave</option>
+                                    <option value="casualLeave">Casual Leave</option>
+                                </select>
+
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <label>Reason : </label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" required id="reason" class="box-control">
+                                <br />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">
+                                    <input type="submit" style="width : 100%; height : 40px; font-size : 16px;"
+                                        value="Apply" class="btn1-style">
+                                    <div class="col-sm-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            function leaveForm() {
+                event.preventDefault();
+                const employeeId = document.querySelector("#employeeId").value;
+                const fromDate = document.querySelector("#fromDate").value;
+                const toDate = document.querySelector("#toDate").value;
+                const leaveType = document.querySelector("#type").value;
+                const reason = document.querySelector("#reason").value;
+                const leaveFormObj = {
+                    "employeeId": employeeId,
+                    "fromDate": fromDate,
+                    "toDate": toDate,
+                    "leaveType": leaveType,
+                    "reason": reason
+                }
+                console.log(leaveFormObj);
+                window.location.href = "history.html";
+            }
+
+        </script>
+
+    </div>
+    <div class="col-sm-2">
+        <app-footer></app-footer>
+    </div>
+</div>

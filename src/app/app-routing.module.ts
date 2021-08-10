@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
+import { EditleaveformComponent } from './editleaveform/editleaveform.component';
 import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
 import { HrpageComponent } from './hrpage/hrpage.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:"register", component: RegisterComponent},
   {path:"status", component:StatusComponent},
   {path:"history", component: HistoryComponent},
+  {path:"history/editleaveform", component : EditleaveformComponent},
   {path:"upcoming", component: UpcomingLeaveComponent},
   {path:"hrpage", component: HrpageComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}

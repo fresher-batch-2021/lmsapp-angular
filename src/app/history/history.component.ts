@@ -42,5 +42,10 @@ export class HistoryComponent implements OnInit {
         status : "Declined"
     },
 ];
+leaveform(sno : number)
+{
+    console.log("sno", sno);
+    window.location.href = "history/editleaveform?val= "+sno;
+}
 
 }

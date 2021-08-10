@@ -33,50 +33,6 @@
                     <br />
                     <a routerLink="/register" style="padding-left : 35px;">New User - Register here!</a>
                 </form>
-                <script>
-                    function login() {
-                        event.preventDefault();
-                        const userName = document.querySelector("#userName").value;
-                        const password = document.querySelector("#password").value;
-                        const role = document.querySelector("#role").value;
-                        const loginObj = {
-                            "userName": userName,
-                            "password": password,
-                            "role": role
-                        }
-                        console.log(loginObj);
-                        let allFielsAreOk = 0;
-                        if (userName == null || userName == "" || userName.trim() == "") {
-                            alert("Enter valid username");
-                        }
-                        else if (password == null || password == "" || password.trim() == "" || password.length > 8 || password.length < 8) {
-                            alert("Password Must be 8 letters");
-                        }
-
-                        else if (role == null || role == "" || role.trim() == "") {
-                            alert("Role is Invalid");
-                        }
-                        else {
-                            allFielsAreOk = 1;
-                        }
-                        if (allFielsAreOk == 1) {
-                            if (role === "Employee") {
-                                if (userName == "renis@mail.com" && password == "Tomjson1") {
-                                    window.location.href = "home.html";
-                                } else {
-                                    alert("Invalid username or password");
-                                }
-                            }
-                            else if (role === "HR") {
-                                if (userName == "casi@mail.com" && password == "Tomjson1") {
-                                    window.location.href = "hrpage.html";
-                                } else {
-                                    alert("Invalid username or password");
-                                }
-                            }
-                        }
-                    }
-                </script>
             </div>
         </div>
     </div>
