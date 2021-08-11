@@ -45,7 +45,7 @@ export class HistoryComponent implements OnInit {
 leaveform(sno : number)
 {
     console.log("sno", sno);
-    window.location.href = "history/editleaveform?val= "+sno;
+    window.location.href = "history/editleaveform?val="+sno;
 }
 
 }

@@ -11,7 +11,7 @@
             <br />
         </div>
         <div *ngFor="let history of historyDetails">
-            <div *ngIf="this.sno === history.sno">
+            <div *ngIf="this.serialNo == history.sno">
                 <div class="editleave-content pre-scrollable1">
                     <br />
 
@@ -42,7 +42,7 @@
                                 <label>To Date : </label>
                             </div>
                             <div class="col-sm-8">
-                                <input type="date" required id="toDate" class="box-control">
+                                <input type="date" value="{{history.toDate}}" required id="toDate" class="box-control">
                                 <br />
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <select required id="type" class="box-control">
-                                    <option value="">--select--</option>
+                                    <option value="">{{history.type}}</option>
                                     <option value="sickLeave">Sick Leave</option>
                                     <option value="casualLeave">Casual Leave</option>
                                 </select>
@@ -67,7 +67,7 @@
                                 <label>Reason : </label>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" required id="reason" class="box-control">
+                                <input type="text" value="{{history.reason}}" required id="reason" class="box-control">
                                 <br />
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-8">
                                     <input type="submit" style="width : 100%; height : 40px; font-size : 16px;"
-                                        value="Apply" class="btn1-style">
+                                        value="UPDATE" class="btn1-style">
                                     <div class="col-sm-2"></div>
                                 </div>
                             </div>

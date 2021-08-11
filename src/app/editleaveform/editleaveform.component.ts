@@ -8,21 +8,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditleaveformComponent implements OnInit {
 
-  sno : any;
+  serialNo : any;
 
-  constructor(private route : ActivatedRoute) 
-  { 
-    // this.sno = this.route.snapshot.paramMap.get("val");
-    // console.log("sno", this.sno);
-    this.route.paramMap.subscribe(params => {
-      console.log("param", params.get("val"));
-    })
-  }
+  constructor() 
+  {
+    const queryString= window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('val');
+    this.serialNo = id;
+    console.log("ID : ",id);
+   }
 
   ngOnInit(): void {
   }
-
-  // sno:number = 1; 
    historyDetails = [
     {
         sno: 1,
