@@ -20,3 +20,12 @@
     color : whitesmoke;
     opacity: 0.7;
 }
+label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.box-style{
+    display: block;
+    margin-bottom: 20px;
+}

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if (data.role === "employee" && this.role === "Employee") {
           alert("Successffully Login");
+          updateLocal();
           window.location.href = "/home";
         } else if (data.role === "hr" && this.role === "HR") {
           alert("Successffully Login");
@@ -63,3 +65,15 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+function updateLocal() {
+  let availableLeave = [
+    {
+      casualLeave : 6,
+      sickLeave : 6,
+      earnedLeave : 6,
+      total : 18
+    }
+  ];
+  localStorage.setItem("availableLeave", JSON.stringify(availableLeave));
+}
+

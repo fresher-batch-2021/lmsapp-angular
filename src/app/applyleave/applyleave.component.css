@@ -1,13 +1,13 @@
 .leave-title{
     width:91%;
     margin-top: 10px;
-    padding-left: 10px;
+    padding: 15px;
     border: 2px solid rgb(195,195,195);
     border-radius: 10px 10px;
 }
 
 .leave-content{
-    width:90%;
+    width:92%;
     margin-top: 10px;
     padding-left: 10px;
     padding-right: 10px;

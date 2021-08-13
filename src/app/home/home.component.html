@@ -1,21 +1,79 @@
-<div>
+<div style="max-width: 98.5%;">
     <div class="row">
         <div class="col-sm-2">
             <app-header></app-header>
         </div>
         <div class="col-sm-8">
             <div class="company-title">
-                <h2>Chain-Sys Corporation</h2>
+                <br />
+                <h2 class = "title-align">Ren-Sys Corporation</h2>
+                <a class="edit-profile" href="editprofile.html"> <img style="width : 30px; height:30px; position: relative;" src="assets/images/edituser.png" alt="user logo"> </a>
+                <br />
             </div>
             <div class="home-content pre-scrollable1">
-                <iframe width="750" height="415" src="https://www.youtube.com/embed/PfjbDoEt6Os"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                
+                <div class = "why-page">
+                    <div class = "why-content">
+                        <h2>Why RenSys...</h2>
+                        <p>Trusted, well-established, and collaborative. Our years of extensive experience paired with our deep client and Oracle, SAP, Microsoft, and Salesforce partnerships position us to deliver best-in-class products and services for our clients.</p>
+                    </div>
+                    <div class = "">
+                        <img src = "assets/images/home.jpg" alt = "homePage Image" height="300px" width="450px" style="border-radius: 0px 20px 20px 0px;">
+                    </div>
+                </div>
+                <div><h2 style="text-align: center; color: rgb(13,31,107);">We're different because we build</h2></div>
+                <div class = "row">
+                    <div class = col-sm-4>
+                        <div class = "center">
+                            <img src = "assets/images/graphicon.svg" alt = "toolIcon">
+                        </div>
+                        <p>Our entire product stack has been built from scratch, which enables us to deliver solutions 
+                            that solve unique business problems. If it don't fit, it don't work!</p>
+                    </div>
+                    <div class = col-sm-4>
+                        <div class = "center">
+                            <img src = "assets/images/toolicon.svg" alt = "toolIcon">
+                        </div>
+                        <p>Our agile mindset, and a configurable product suite make customer centricity a way of 
+                        life. Our customers become part of our growing family.</p>
+                    </div>
+                    <div class = col-sm-4>
+                        <div class = "center">
+                            <img src = "assets/images/timeicon.svg" alt = "toolIcon">
+                        </div>
+                        <p>Our team of over 1100 engineers have put in great efforts to build 9000+ data
+                        accelerators. Our mission has, and always will be to make data smarter, faster and simpler.</p>
+                    </div>
+                </div>
+                <div class = "tech-content">
+                   <h2 class = "tech-title">Our Technology</h2>
+                   <p>Each customer relationship is a unique partnership, and we treat it as such. We sit down and
+                     develop a personalized plan - never ever using a cookie-cutter approach. We know that every 
+                     client has different platforms, configurations, challenges, and needs, so we seek to understand
+                     the environment before developing a solution. We start by understanding data movement and ongoing
+                     maintenance and governance needs as well as current advanced analytical capabilities. We then 
+                     develop a plan and proof of concept (POC) to ensure we provide the value and outcomes expected. 
+                     Lastly, we assign associates—both on and offshore—to form a 24/7 team that supports any needs 
+                     that arise. Throughout the process, a project management application automatically provides
+                     updates and insight into the work being completed, which offers peace of mind and saves our 
+                     customers time by only having status meetings when necessary.</p>
+                </div>
             </div>
         </div>
         <div class="col-sm-2">
             <app-footer></app-footer>
         </div>
     </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $("#header").load("header.html");
+    </script>
+    <script>
+        $("#footer").load("footer.html");
+    </script>
+    <script>
+        let userStr = localStorage.getItem("LOGGED_IN_USER");
+        let user = userStr != null ? JSON.parse(userStr):null;
+        console.log("Name : ", user.name);
+    </script>
 </div>

@@ -4,11 +4,11 @@
     </div>
     <div class="col-sm-8">
         <div class="leave-title">
-            <br/>
+            
             <h2>
                 <strong>Leave Form</strong>
             </h2>
-            <br/>
+            
         </div>
         <div class="leave-content pre-scrollable1">
             <br/>
@@ -19,7 +19,7 @@
                         <label>Employee ID : </label>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" required name="empID" id = "employeeId" class="box-control">
+                        <input type="text" required name="leaveForm" [(ngModel)] = "employeeId" class="box-control">
                         <br/>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <label>From Date : </label>
                     </div>
                     <div class="col-sm-6">
-                        <input type="date" required id="fromDate" class="box-control">
+                        <input type="date" required name="leaveForm" [(ngModel)]="fromDate" class="box-control">
                         <br/>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <label>To Date : </label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="date" required id="toDate" class="box-control">
+                        <input type="date" required name="leaveForm" [(ngModel)]="toDate" class="box-control">
                         <br/>
                     </div>
                 </div>
@@ -49,12 +49,11 @@
                         <label>Leave Type : </label>
                     </div>
                     <div class="col-sm-8">
-                        <select required id="type" class="box-control">
+                        <select required [(ngModel)]="type" name="leaveForm" class="box-control">
                             <option value = "">--select--</option>
                             <option value = "sickLeave">Sick Leave</option>
                             <option value = "casualLeave">Casual Leave</option>
                         </select>
-                
                         <br/>
                     </div>
                 </div>
@@ -64,7 +63,7 @@
                         <label>Reason : </label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" required id="reason" class="box-control">
+                        <input type="text" required name="leaveForm" [(ngModel)]="reason" class="box-control">
                         <br/>
                     </div>
                 </div>
@@ -78,26 +77,6 @@
                     </div>
                 </div>
             </form>
-            <script>
-                function leaveForm(){
-                    event.preventDefault();
-                    const employeeId = document.querySelector("#employeeId").value;
-                    const fromDate = document.querySelector("#fromDate").value;
-                    const toDate = document.querySelector("#toDate").value;
-                    const leaveType = document.querySelector("#type").value;
-                    const reason = document.querySelector("#reason").value;
-                    const leaveFormObj = {
-                        "employeeId" : employeeId,
-                        "fromDate" : fromDate,
-                        "toDate" : toDate,
-                        "leaveType" : leaveType,
-                        "reason" : reason
-                    }
-                    console.log(leaveFormObj);
-                    window.location.href="history.html";
-                }
-                
-            </script>
         </div>
     </div>
     <div class="col-sm-2">

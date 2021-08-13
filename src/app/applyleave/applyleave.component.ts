@@ -7,20 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplyleaveComponent implements OnInit {
 
-  fromDate : any;
-  toDate : any;
 
-  constructor() 
-  {
-    this.fromDate = new Date();
-    console.log(this.fromDate)
+
+  constructor() {
   }
 
-  
+
   ngOnInit(): void {
   }
+  employeeId: any;
+  fromDate: any;
+  toDate: any;
+  type: any;
+  reason: any;
 
-  leaveForm(){
+  leaveForm() {
     console.log("renis");
     alert("button clicked");
   }

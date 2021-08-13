@@ -8,7 +8,7 @@
                         <em>User Registration</em>
                     </h2>
                 </div>
-                <br/>
+                
                 <form (ngSubmit)="register()">
                     <div class="span-group">
                         <div class="span-group2">
@@ -17,7 +17,7 @@
                         </div>
                         <input class="box1-style" [(ngModel)]="name" name="registrationForm" placeholder="Full name" type="text" required>
                     </div>
-                    <br/>
+                    
                     <div class="span-group">
                         <div class="span-group2">
                             <span class="span-group3">
@@ -25,7 +25,7 @@
                         </div>
                         <input class="box1-style" [(ngModel)]="empId" name="registrationForm" placeholder="Employee ID" type="text" required>
                     </div>
-                    <br/>
+                    
                     <div class="span-group">
                         <div class="span-group2">
                             <span class="span-group3">
@@ -38,7 +38,6 @@
                             <option value="hr">HR</option>
                         </select>
                     </div>
-                    <br/>
                     <div class="span-group">
                         <div class="span-group2">
                             <span class="span-group3">
@@ -46,15 +45,15 @@
                         </div>
                         <input class="box1-style" [(ngModel)]="mobileNumber" name="registrationForm" placeholder="Mobile Number" type="text" required>
                     </div>
-                    <br/>
+                    
                     <div class="span-group">
                         <div class="span-group2">
                             <span class="span-group3">
                                 <img style="width : 40px; height:40px; position: relative;" src="assets/images/envelope.png" alt="email logo"> </span>
                         </div>
-                        <input class="box1-style" [(ngModel)]="emailAddress" name="registrationForm" placeholder="Email Address" type="text" required>
+                        <input class="box1-style" [(ngModel)]="emailAddress" name="registrationForm" placeholder="Email Address" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     </div>
-                    <br/>
+                    
                     <div class="span-group">
                         <div class="span-group2">
                             <span class="span-group3">
@@ -62,7 +61,7 @@
                         </div>
                         <input class="box1-style" [(ngModel)]="password" name="registrationForm" placeholder="Password" type="password" required>
                     </div>
-                    <br/>
+                    
                     <div style="padding-left : 50px;">
                         <input type="submit" class="btn-style" style="font-size : 16px" value="Register">
                     </div>

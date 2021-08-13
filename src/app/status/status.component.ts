@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusComponent implements OnInit {
 
-  constructor() { }
+  constructor() { this.fun();}
 
   ngOnInit(): void {
   }
 
+  leaveCounts = localStorage.getItem("availableLeave");
+  availableLeave:any = this.leaveCounts != null ? JSON.parse(this.leaveCounts):null;
+    
+  
+  fun(){
+    console.log(this.availableLeave);
+  }
 }

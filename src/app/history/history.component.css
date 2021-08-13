@@ -17,6 +17,7 @@
     border-radius: 10px 10px;
 }
 table{
+    text-align: center;
     width : 100%;
     font-size: 18px;
     border: 1px solid rgb(195,195,195);
@@ -34,6 +35,6 @@ tr:nth-child(odd){
     background-color: rgb(190, 188, 188);
 }
 a{
-    color: whitesmoke;
+    color: rgb(77, 11, 230);
     text-decoration: none;
 }

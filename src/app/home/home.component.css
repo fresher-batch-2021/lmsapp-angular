@@ -2,21 +2,79 @@
     width: 95%;
     margin-top: 10px;
     margin-left: 0px;
-    padding-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     border: 2px solid rgb(195,195,195);
     border-radius: 10px 10px;
+    display: inline-block;
 }
 .home-content{
     width : 90%;
     height : auto;
     margin-top: 10px;
-    padding-top: 10px;
-    padding-left: 50px;
+    padding-top: 20px;
+    padding-left: 40px;
     border: 2px solid rgb(195,195,195);
     border-radius: 10px 10px;
 }
 
 .pre-scrollable1 {
-    max-height: 550px;
+    max-height: 480px;
+    overflow-x:hidden;
     overflow-y: scroll;
+    
+}
+.title-align{
+    float: left;
+}
+
+.edit-profile{
+    float: right;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.why-page{
+    display:inline-flex;
+    margin-bottom: 30px;
+}
+
+.why-content{
+    background-color: rgb(212,213,211);
+    border-radius: 20px 0px 0px 20px;
+    width: 350px;
+    padding: 20px;  
+}
+.center {
+        display: block;
+        margin-left: 50px;
+        margin-right: auto;
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+}
+p{
+    padding: 20px;
+    font-size: 16px;
+    color: rgb(13,31,107);
+}
+h2{
+    color: rgb(13,31,107);  
+}
+
+.tech-content{
+    color: rgb(13,31,107);
+    background-color:rgb(212,213,211);
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    border-radius: 20px 20px;
+    padding: 10px;
+}
+
+.tech-title{
+    text-align: center;
+    font-style: italic;
+    color: rgb(13,31,107);
 }
