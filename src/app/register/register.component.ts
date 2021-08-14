@@ -37,14 +37,14 @@ export class RegisterComponent implements OnInit {
     else if (this.role == null || this.role == "" || this.role.trim() == "") {
       alert("Enter valid Role");
     }
-    else if (this.mobileNumber == null || this.mobileNumber == "" || this.mobileNumber.trim() == "") {
+    else if (this.mobileNumber == null || this.mobileNumber == "" || this.mobileNumber.trim() == "" || this.mobileNumber.length > 10 || this.mobileNumber.length < 10) {
       alert("Enter valid Mobile number");
     }
     else if (this.emailAddress == null || this.emailAddress == "" || this.emailAddress.trim() == "") {
       alert("Enter valid Email Address");
     }
     else if (this.password == null || this.password == "" || this.password.trim() == "" || this.password.length > 8 || this.password.length < 8) {
-      alert("Must be 8 letters");
+      alert(" Password Must be 8 letters");
     }
     else if (this.password != null) {
       let numCheck = 0;
@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
         passCheck = 1;
       }
       else {
-        alert("Password must contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
+        alert("Password must be 8 characters and contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
       }
     } else {
       allFieldsAreOk = 1;
