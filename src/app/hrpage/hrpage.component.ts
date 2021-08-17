@@ -78,6 +78,4 @@ export class HrpageComponent implements OnInit {
     });
     this.loadForms();
   }
-
-
 }

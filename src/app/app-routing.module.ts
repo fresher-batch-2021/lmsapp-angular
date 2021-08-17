@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
+import { DownloadFormComponent } from './download-form/download-form.component';
 import { EditleaveformComponent } from './editleaveform/editleaveform.component';
 import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:"history", component: HistoryComponent},
   {path:"history/editleaveform", component : EditleaveformComponent},
   {path:"upcoming", component: UpcomingLeaveComponent},
+  {path:"download", component: DownloadFormComponent},
   {path:"hrmHome", component: HrmHomeComponent},
   {path:"hrpage", component: HrpageComponent},
   {path:"logout", component: LogoutComponent},

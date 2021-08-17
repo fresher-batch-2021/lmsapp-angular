@@ -19,6 +19,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { HrmheaderComponent } from './hrmheader/hrmheader.component';
 import { HrmHomeComponent } from './hrm-home/hrm-home.component';
 import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.component';
+import { DownloadFormComponent } from './download-form/download-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.componen
     LogoutComponent,
     HrmheaderComponent,
     HrmHomeComponent,
-    LeaveAnalysisComponent
+    LeaveAnalysisComponent,
+    DownloadFormComponent
   ],
   imports: [
     BrowserModule,

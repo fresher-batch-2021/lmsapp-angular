@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
         if (data.docs[0].role === "employee" && this.role === "Employee") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           alert("Successffully Login");
+          alert("Welcome " + data.docs[0].name);
           window.location.href = "/home";
         } else if (data.docs[0].role === "hr" && this.role === "HR") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));

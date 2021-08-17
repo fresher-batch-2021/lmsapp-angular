@@ -67,5 +67,8 @@ leaveform(sno : number)
     console.log("sno", sno);
     window.location.href = "history/editleaveform?val="+sno;
 }
+downloadForm(sno:number){
+    window.location.href = "/download?val="+sno;
+}
 
 }
