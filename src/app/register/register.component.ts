@@ -74,7 +74,10 @@ export class RegisterComponent implements OnInit {
     }
     if (passCheck == 1) {
       console.log("api called");
-      let url = "https://product-mock-api.herokuapp.com/lmsapp/api/v1/auth/register";
+      const dbUsername = "apikey-v2-112mfjkmfy0vbc1cwfx61kckru87k40qr1lnztxypzbg";
+      const dbPassword = "28cadd4e1a6e2edf67df43007bae28dc";
+      const basicAuth = "Basic " + btoa(dbUsername + ":" + dbPassword);
+      let url = "https://9c34f728-220d-4b98-91c8-b24ae354ff67-bluemix.cloudantnosqldb.appdomain.cloud/lms-users";
       let formData = {
         name: this.name,
         empId: this.empId,
@@ -83,15 +86,15 @@ export class RegisterComponent implements OnInit {
         email: this.emailAddress,
         password: this.password
       }
-      axios.post(url, formData).then(res => {
+      axios.post(url, formData, { headers: {'Authorization': basicAuth }}).then(res => {
         let data = res.data;
         console.log("response : ", data);
         alert("Successffully Registered");
-        window.location.href = "/index";
+        window.location.href = "/login";
       }).catch(err => {
-        let errorMessage = err.response.data.errorMessage;
-        console.error(errorMessage);
-        alert("Error-" + errorMessage);
+        //let errorMessage = err.response.data.errorMessage;
+        //console.error(errorMessage);
+        alert("Error - unable to Register");
       });
 
     }

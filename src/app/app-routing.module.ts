@@ -6,6 +6,7 @@ import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
 import { HrpageComponent } from './hrpage/hrpage.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { StatusComponent } from './status/status.component';
 import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:"history/editleaveform", component : EditleaveformComponent},
   {path:"upcoming", component: UpcomingLeaveComponent},
   {path:"hrpage", component: HrpageComponent},
+  {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
 ];
 

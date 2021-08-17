@@ -15,6 +15,7 @@ import { HistoryComponent } from './history/history.component';
 import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
 import { HrpageComponent } from './hrpage/hrpage.component';
 import { EditleaveformComponent } from './editleaveform/editleaveform.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EditleaveformComponent } from './editleaveform/editleaveform.component'
     HistoryComponent,
     UpcomingLeaveComponent,
     HrpageComponent,
-    EditleaveformComponent
+    EditleaveformComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -30,4 +30,5 @@ export class HrpageComponent implements OnInit {
     },
 ];
 
+
 }
