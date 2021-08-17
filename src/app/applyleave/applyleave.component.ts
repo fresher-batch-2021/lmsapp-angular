@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { LeaveFormService } from '../leave-form.service';
 
 @Component({
   selector: 'app-applyleave',
@@ -61,12 +62,8 @@ export class ApplyleaveComponent implements OnInit {
       console.log("All fields are done");
     }
     if (allFieldsAreOk == 1) {
-      const dbUsername = "apikey-v2-112mfjkmfy0vbc1cwfx61kckru87k40qr1lnztxypzbg";
-      const dbPassword = "28cadd4e1a6e2edf67df43007bae28dc";
-      const basicAuth = "Basic " + btoa(dbUsername + ":" + dbPassword);
-      let url = "https://9c34f728-220d-4b98-91c8-b24ae354ff67-bluemix.cloudantnosqldb.appdomain.cloud/leaveforms";
-
-      axios.post(url, leaveFormObj, { headers: { 'Authorization': basicAuth } }).then(res => {
+      const serviceObj = new LeaveFormService;
+      serviceObj.applyLeave(leaveFormObj).then(res => {
         let data = res.data;
         console.log("response : ", data);
         alert("Applied Succesfully");
