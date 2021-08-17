@@ -9,16 +9,21 @@ import { LeaveFormService } from '../leave-form.service';
 })
 export class ApplyleaveComponent implements OnInit {
 
+  userStr: any = localStorage.getItem("LOGGED_IN_USER");
+  user: any = this.userStr != null ? JSON.parse(this.userStr) : null;
 
+  eId : any;
 
   constructor() {
+    
+    console.log(this.user[0].empId);
+    this.eId = this.user[0].empId;
   }
 
 
   ngOnInit(): void {
   }
-  userStr: any = localStorage.getItem("LOGGED_IN_USER");
-  user: any = this.userStr != null ? JSON.parse(this.userStr) : null;
+  
   employeeId: any;
   fromDate: any;
   toDate: any;
@@ -29,7 +34,7 @@ export class ApplyleaveComponent implements OnInit {
     console.log("renis");
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     let user = userStr != null ? JSON.parse(userStr) : null;
-    console.log("Name : ", user[0]._id);
+    console.log("Name : ", user);
     const userId = user[0]._id;
     const leaveFormObj = {
       "name": user[0].name,
@@ -76,7 +81,6 @@ export class ApplyleaveComponent implements OnInit {
         alert("Error - ");
       });
     }
-
+    
   }
-
 }

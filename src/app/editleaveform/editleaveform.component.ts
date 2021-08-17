@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LeaveFormService } from '../leave-form.service';
 
 @Component({
   selector: 'app-editleaveform',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditleaveformComponent implements OnInit {
 
   serialNo : any;
-
+  forms:any;
   constructor() 
   {
     const queryString= window.location.search;
@@ -17,8 +18,22 @@ export class EditleaveformComponent implements OnInit {
     const id = urlParams.get('val');
     this.serialNo = id;
     console.log("ID : ",id);
+    const serviceObj = new LeaveFormService();
+    serviceObj.listLeave().then(res => {
+        let data = res.data;
+        console.log("response : ", data);
+        this.forms = data.rows;
+        console.log("table list :", this.forms);
+        console.log("available list :");
+        console.log("success");
+    }).catch(err => {
+        //let errorMessage = err.response.data.errorMessage;
+        //console.error(errorMessage);
+        console.log("failed");
+        alert("Error-Unable to retrive");
+    });
    }
-
+   
   ngOnInit(): void {
   }
    historyDetails = [

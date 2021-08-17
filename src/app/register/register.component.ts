@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaveAnalysisComponent } from '../leave-analysis/leave-analysis.component';
+import { LeaveAvailabilityService } from '../leave-availability.service';
 import { UserService } from '../user-service';
 
 @Component({
@@ -18,7 +20,7 @@ export class RegisterComponent implements OnInit {
   mobileNumber: string = "";
   emailAddress: string = "";
   password: string = "";
-
+  registerID: string= "";
   register() {
     console.log(this.name);
     console.log(this.empId);
@@ -74,10 +76,7 @@ export class RegisterComponent implements OnInit {
     }
     if (passCheck == 1) {
       console.log("api called");
-      const dbUsername = "apikey-v2-112mfjkmfy0vbc1cwfx61kckru87k40qr1lnztxypzbg";
-      const dbPassword = "28cadd4e1a6e2edf67df43007bae28dc";
-      const basicAuth = "Basic " + btoa(dbUsername + ":" + dbPassword);
-      let url = "https://9c34f728-220d-4b98-91c8-b24ae354ff67-bluemix.cloudantnosqldb.appdomain.cloud/lms-users";
+      
       let formData = {
         name: this.name,
         empId: this.empId,
@@ -86,11 +85,34 @@ export class RegisterComponent implements OnInit {
         email: this.emailAddress,
         password: this.password
       }
-      const obj = new UserService;
+      
+      const obj = new UserService();
       obj.registration(formData).then(res => {
         let data = res.data;
+        this.registerID = res.data.id;
+        console.log("RegisterId : ", this.registerID);
         console.log("response : ", data);
         alert("Successffully Registered");
+        //window.location.href = "/login";
+      }).catch(err => {
+        //let errorMessage = err.response.data.errorMessage;
+        //console.error(errorMessage);
+        alert("Error - unable to Register");
+      });
+
+      let data = {
+        total : 18,
+        sickLeave : 6,
+        casualLeave : 6,
+        earnedLeave : 6,
+        empId : this.empId,
+        email : this.emailAddress
+      }
+      const leaveAvailabilityObj = new LeaveAvailabilityService();
+      leaveAvailabilityObj.addLeaveAvailability(data).then(res => {
+        let data = res.data;
+        console.log("response : ", data);
+        alert("Leave balance added to your Account");
         window.location.href = "/login";
       }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;

@@ -19,7 +19,7 @@
                         <label>Employee ID : </label>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" required name="leaveForm" [(ngModel)] = "employeeId" class="box-control">
+                        <input type="text" required value="{{this.eId}}" name="leaveForm" class="box-control" readonly>
                         <br/>
                     </div>
                 </div>
@@ -52,6 +52,7 @@
                         <select required [(ngModel)]="type" name="leaveForm" class="box-control">
                             <option value = "">--select--</option>
                             <option value = "sickLeave">Sick Leave</option>
+                            <option value="earnedLeave">Earned Leave</option>
                             <option value = "casualLeave">Casual Leave</option>
                         </select>
                         <br/>

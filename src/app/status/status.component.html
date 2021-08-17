@@ -4,33 +4,35 @@
     </div>
     <div class="col-sm-8">
         <div class="status-title">
-            <br/>
+            <br />
             <h2>
                 <strong>
                     <em>Available Count</em>
                 </strong>
             </h2>
-            <br/>
+            <br />
         </div>
         <div class="status-content pre-scrollable1">
-            <br/>
-            <div id = "availableLeaves" *ngFor="let counts of availableLeave">
-                <div class = "content">
-                    Available Leave : {{counts.total}} days
-                </div>
-                <div class = "content">
-                    Available Sick Leave : {{counts.sickLeave}} days
-                </div>
-                <div class = "content">
-                    Available Casual Leave : {{counts.casualLeave}} days
-                </div>
-                <div class = "content">
-                    Available Earned Leave : {{counts.earnedLeave}} days
+            <br />
+            <div id="availableLeaves" *ngFor="let counts of forms">
+                <div *ngIf="counts.doc.email == this.user[0].email">
+                    <div class="content">
+                        Available Leave : {{counts.doc.total}} days
+                    </div>
+                    <div class="content">
+                        Available Sick Leave : {{counts.doc.sickLeave}} days
+                    </div>
+                    <div class="content">
+                        Available Casual Leave : {{counts.doc.casualLeave}} days
+                    </div>
+                    <div class="content">
+                        Available Earned Leave : {{counts.doc.earnedLeave}} days
+                    </div>
                 </div>
             </div>
-        </div>         
+        </div>
     </div>
-    <div class = "col-sm-2">
+    <div class="col-sm-2">
         <app-footer></app-footer>
     </div>
 </div>

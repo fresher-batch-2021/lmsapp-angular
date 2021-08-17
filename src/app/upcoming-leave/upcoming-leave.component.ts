@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpcomingLeaveComponent implements OnInit {
 
-  constructor() {
-    
+  constructor() {  
   }
 
   ngOnInit(): void {
@@ -120,9 +119,5 @@ export class UpcomingLeaveComponent implements OnInit {
       status: "Christmas"
     }
   ];
-  month:string = "";
-
-  currentMonth(){
-    let month = this.month;
-  }
+  month:any;
 }

@@ -4,13 +4,13 @@
     </div>
     <div class="col-sm-8">
         <div class="upcoming-title">
-            <br/>
+            <br />
             <h2>Upcoming Holidays</h2>
-            <br/>
+            <br />
         </div>
-        <div class = "upcoming-content">
-            <form (ngSubmit) = "currentMonth()">
-                <select class = "select-style" id="month">
+        <div class="upcoming-content">
+                <select class="select-style" [(ngModel)]="month">
+                    <option value="">--select--</option>
                     <option value="01">JAN</option>
                     <option value="02">FEB</option>
                     <option value="03">MAR</option>
@@ -24,25 +24,24 @@
                     <option value="11">NOV</option>
                     <option value="12">DEC</option>
                 </select>
-                <input class = "btnn-style" type="submit" value="Filter" >
-            </form>
+                <!-- <input class="btnn-style" type="submit" (click)="currentMonth()" value="Filter"> -->
             <table aria-describedby="mydesc">
                 <tr>
-                <th scope="col">DATE</th>
-                <th scope="col">DAY</th>
-                <th scope="col">DESCRIPTION</th>
+                    <th scope="col">DATE</th>
+                    <th scope="col">DAY</th>
+                    <th scope="col">DESCRIPTION</th>
                 </tr>
-                <tr *ngFor="let leave of array">
-
-                    <td>{{leave.date}}</td>
-                    <td>{{leave.day}}</td>
-                    <td>{{leave.status}}</td>
-                </tr>
-
+                <tbody *ngFor="let leave of array">
+                    <tr *ngIf="this.month == leave.date.split('-')[1]">
+                        <td>{{leave.date}}</td>
+                        <td>{{leave.day}}</td>
+                        <td>{{leave.status}}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
-    <div class = "col-sm-2">
+    <div class="col-sm-2">
         <app-footer></app-footer>
     </div>
 </div>

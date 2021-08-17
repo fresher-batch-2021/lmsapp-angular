@@ -4,35 +4,38 @@
     </div>
     <div class="col-sm-8">
         <div class="title-box">
-            <br/>
+            <br />
             <h2>History</h2>
-            <br/>
+            <br />
         </div>
         <div class="history-table pre-scrollable1">
             <table aria-describedby="mydesc">
                 <tr>
                     <th scope="col">###</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">FromDate</th>
+                    <th scope="col">To Date</th>
                     <th scope="col">Type</th>
                     <th scope="col">Reason</th>
                     <th scope="col">Status</th>
                     <th scope="col">Options</th>
                 </tr>
-                <tbody id = "history-details">
-                    <tr *ngFor="let history of historyDetails">
-                        <td>{{history.sno}}</td>
-                        <td>{{history.date}}</td>
-                        <td>{{history.type}}</td>
-                        <td>{{history.reason}}</td>
-                        <td>{{history.status}}</td>
-                        <td><a (click)="leaveform(history.sno)">Edit</a></td>
-                    </tr>
+                <tbody id="history-details" *ngFor="let history of forms">
+                    
+                        <tr *ngIf="history.doc.employeeId  == this.empId">
+                            <td>{{history.doc.employeeId}}</td>
+                            <td>{{history.doc.fromDate}}</td>
+                            <td>{{history.doc.toDate}}</td>
+                            <td>{{history.doc.leaveType}}</td>
+                            <td>{{history.doc.reason}}</td>
+                            <td>{{history.doc.status}}</td>
+                            <td><a (click)="leaveform(history.doc._id)">Edit</a></td>
+                        </tr>
                 </tbody>
             </table>
         </div>
 
     </div>
-    <div class = "col-sm-2">
+    <div class="col-sm-2">
         <app-footer></app-footer>
     </div>
 </div>

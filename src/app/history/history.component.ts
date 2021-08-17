@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaveFormService } from '../leave-form.service';
 
 @Component({
   selector: 'app-history',
@@ -6,8 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-
-  constructor() { }
+    forms : any;
+    empId : any;
+  constructor() {
+    let userStr = localStorage.getItem("LOGGED_IN_USER");
+    let user = userStr != null ? JSON.parse(userStr):null;
+    this.empId = user[0].empid;
+    const serviceObj = new LeaveFormService();
+    serviceObj.listLeave().then(res => {
+        let data = res.data;
+        console.log("response : ", data);
+        this.forms = data.rows;
+        console.log("table list :", this.forms);
+        console.log("available list :");
+        console.log("success");
+    }).catch(err => {
+        //let errorMessage = err.response.data.errorMessage;
+        //console.error(errorMessage);
+        console.log("failed");
+        alert("Error-Can't Load");
+    });
+   }
 
   ngOnInit(): void {
   }

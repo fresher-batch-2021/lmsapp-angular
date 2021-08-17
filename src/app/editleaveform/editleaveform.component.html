@@ -10,8 +10,8 @@
             </h2>
             <br />
         </div>
-        <div *ngFor="let history of historyDetails">
-            <div *ngIf="this.serialNo == history.sno">
+        <div *ngFor="let history of forms">
+            <div *ngIf="this.serialNo == history.doc._id">
                 <div class="editleave-content pre-scrollable1">
                     <br />
 
@@ -22,7 +22,7 @@
                                 <label>Employee ID : </label>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" value="{{history.sno}}" required name="empID" id="employeeId" class="box-control">
+                                <input type="text" value="{{history.doc.employeeId}}" required name="empID" id="employeeId" class="box-control">
                                 <br />
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 <label>From Date : </label>
                             </div>
                             <div class="col-sm-6">
-                                <input type="date" value="{{history.fromDate}}" required id="fromDate" class="box-control">
+                                <input type="date" value="{{history.doc.fromDate}}" required id="fromDate" class="box-control">
                                 <br />
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 <label>To Date : </label>
                             </div>
                             <div class="col-sm-8">
-                                <input type="date" value="{{history.toDate}}" required id="toDate" class="box-control">
+                                <input type="date" value="{{history.doc.toDate}}" required id="toDate" class="box-control">
                                 <br />
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <select required id="type" class="box-control">
-                                    <option value="">{{history.type}}</option>
+                                    <option value="">{{history.doc.leaveType}}</option>
                                     <option value="sickLeave">Sick Leave</option>
                                     <option value="casualLeave">Casual Leave</option>
                                 </select>
@@ -67,7 +67,7 @@
                                 <label>Reason : </label>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" value="{{history.reason}}" required id="reason" class="box-control">
+                                <input type="text" value="{{history.doc.reason}}" required id="reason" class="box-control">
                                 <br />
                             </div>
                         </div>

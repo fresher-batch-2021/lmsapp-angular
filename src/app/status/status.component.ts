@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaveAvailabilityService } from '../leave-availability.service';
 
 @Component({
   selector: 'app-status',
@@ -6,17 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status.component.css']
 })
 export class StatusComponent implements OnInit {
-
-  constructor() { this.fun();}
+  user : any;
+  forms : any;
+  constructor() {
+    const leaveAvailabilityObj = new LeaveAvailabilityService();
+    let userStr = localStorage.getItem("LOGGED_IN_USER");
+    this.user = userStr != null ? JSON.parse(userStr) : null;
+    console.log("Name : ", this.user[0]._id);
+    leaveAvailabilityObj.getLeaveAvailability().then(res => {
+      let data = res.data;
+      console.log("response : ", data);
+      this.forms = data.rows;
+      console.log("table list :", this.forms);
+      console.log("success");
+  }).catch(err => {
+      //let errorMessage = err.response.data.errorMessage;
+      //console.error(errorMessage);
+      console.log("failed");
+      alert("Error-Can't Load");
+  });
+  }
 
   ngOnInit(): void {
   }
 
-  leaveCounts = localStorage.getItem("availableLeave");
-  availableLeave:any = this.leaveCounts != null ? JSON.parse(this.leaveCounts):null;
-    
-  
-  fun(){
-    console.log(this.availableLeave);
-  }
 }
