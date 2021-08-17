@@ -5,21 +5,27 @@
 <div class="hrpage-content">
     <main>
         <div id="application-forms">
-            <div class="application-form" *ngFor="let form of leaveForms">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label>Name : {{form.name}}</label><br />
-                        <label>Employee {{form.employeeId}}</label><br />
-                        <label>Team : {{form.team}}</label><br />
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Leave days : {{form.leaveDays}}</label><br />
-                        <label>Leave Type : {{form.leaveType}}</label><br />
-                        <label>Reason : {{form.reason}}</label><br />
-                    </div>
-                    <div class="col-sm-4" style="text-align: center;">
-                        <input type="submit" class="btn1-style" value="Approve"><br />
-                        <input type="submit" class="btn2-style" value="Decline">
+            <div *ngFor="let form of forms">
+                <div class="application-form" *ngIf="form.doc.status == 'Pending'">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>Name : {{this.userName}}</label><br />
+                            <label>Employee {{form.doc.employeeId}}</label><br />
+                            <label>From date : {{form.doc.fromDate}}</label><br />
+                        </div>
+                        <div class="col-sm-4">
+                            <label>To date : {{form.doc.toDate}}</label><br />
+                            <label>Leave Type : {{form.doc.leaveType}}</label><br />
+                            <label>Reason : {{form.doc.reason}}</label><br />
+                        </div>
+                        <div class="col-sm-4" style="text-align: center;">
+                            <input type="submit" class="btn1-style"
+                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,'Approved')"
+                                value="Approve"><br />
+                            <input type="submit" class="btn2-style"
+                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,'Declined')"
+                                value="Decline">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,4 +19,10 @@ export class LeaveFormService {
   listLeave(){
     return axios.get(this.url+"/_all_docs?include_docs=true", { headers: { 'Authorization': this.basicAuth } })
   }
+
+  updateLeaveStatus(data: { id: any; employeeId: any; fromDate: any; toDate: any; leaveType: any; reason: any; status: any; },_id: any,_rev: any){
+    console.log("_ID :" , _id);
+    console.log("_REV :" , _rev);
+    return axios.put(this.url+"/"+_id+"?rev="+_rev ,data, { headers: { 'Authorization': this.basicAuth } })
+  }
 }
