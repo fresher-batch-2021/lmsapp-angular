@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
+import { UserService } from '../user-service';
 
 @Component({
   selector: 'app-register',
@@ -86,7 +86,8 @@ export class RegisterComponent implements OnInit {
         email: this.emailAddress,
         password: this.password
       }
-      axios.post(url, formData, { headers: {'Authorization': basicAuth }}).then(res => {
+      const obj = new UserService;
+      obj.registration(formData).then(res => {
         let data = res.data;
         console.log("response : ", data);
         alert("Successffully Registered");

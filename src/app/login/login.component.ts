@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
+import { UserService } from '../user-service';
 
 @Component({
   selector: 'app-login',
@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
             },
             fields: ["_id","_rev","name","role", "empId"] 
         };
-
-      axios.post(url, formData, { headers: { 'Authorization': basicAuth } }).then(res => {
+      const serviceObj = new UserService();
+      serviceObj.login(formData).then(res => {
         let data = res.data;
         console.log(data);
         if (data.docs[0].role === "employee" && this.role === "Employee") {
@@ -59,7 +59,8 @@ export class LoginComponent implements OnInit {
         } else if (data.docs[0].role === "hr" && this.role === "HR") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           alert("Successffully Login");
-          window.location.href = "/hrpage";
+          alert("Welcome "+data.docs[0].name);
+          window.location.href = "/hrmHome";
         } else {
           alert("Invalid Role defined")
         }

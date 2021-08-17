@@ -16,6 +16,9 @@ import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.componen
 import { HrpageComponent } from './hrpage/hrpage.component';
 import { EditleaveformComponent } from './editleaveform/editleaveform.component';
 import { LogoutComponent } from './logout/logout.component';
+import { HrmheaderComponent } from './hrmheader/hrmheader.component';
+import { HrmHomeComponent } from './hrm-home/hrm-home.component';
+import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { LogoutComponent } from './logout/logout.component';
     UpcomingLeaveComponent,
     HrpageComponent,
     EditleaveformComponent,
-    LogoutComponent
+    LogoutComponent,
+    HrmheaderComponent,
+    HrmHomeComponent,
+    LeaveAnalysisComponent
   ],
   imports: [
     BrowserModule,

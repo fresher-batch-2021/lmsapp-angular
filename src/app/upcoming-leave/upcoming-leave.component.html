@@ -26,6 +26,20 @@
                 </select>
                 <input class = "btnn-style" type="submit" value="Filter" >
             </form>
+            <table aria-describedby="mydesc">
+                <tr>
+                <th scope="col">DATE</th>
+                <th scope="col">DAY</th>
+                <th scope="col">DESCRIPTION</th>
+                </tr>
+                <tr *ngFor="let leave of array">
+
+                    <td>{{leave.date}}</td>
+                    <td>{{leave.day}}</td>
+                    <td>{{leave.status}}</td>
+                </tr>
+
+            </table>
         </div>
     </div>
     <div class = "col-sm-2">
