@@ -12,7 +12,7 @@ export class HistoryComponent implements OnInit {
   constructor() {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     let user = userStr != null ? JSON.parse(userStr):null;
-    this.empId = user[0].empid;
+    this.empId = user[0].empId;
     const serviceObj = new LeaveFormService();
     serviceObj.listLeave().then(res => {
         let data = res.data;
