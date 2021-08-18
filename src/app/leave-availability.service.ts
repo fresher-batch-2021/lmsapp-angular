@@ -19,4 +19,12 @@ export class LeaveAvailabilityService {
   getLeaveAvailability(){
     return axios.get(this.url+"/_all_docs?include_docs=true", { headers: { 'Authorization': this.basicAuth } })
   }
+
+  getOneLeaveAvailability(data: { selector: { empId: any; }; fields: string[]; }){
+    return axios.post(this.url+"/_find", data, { headers: { 'Authorization': this.basicAuth } })
+  }
+
+  updateLeaveAvailability(data: { id: any; total: any; sickLeave: any; casualLeave: any; earnedLeave: any; empId: any; email: any; },rev: any,id: any){
+    return axios.put(this.url+"/"+id+"?rev="+rev, data, { headers: { 'Authorization': this.basicAuth } })
+  }
 }
