@@ -1,0 +1,14 @@
+<app-hrmheader></app-hrmheader>
+<div class = "sortpage-content">
+    <select [(ngModel)] = "leaveType" class = "select-box">
+        <option value="">--select--</option>
+        <option value="allLeave">All Leave</option>
+        <option value="sickLeave">Sick Leave</option>
+        <option value="casualLeave">Casual Leave</option>
+        <option value="earnedLeave">Earned Leave</option>
+    </select>
+    <input type="date" [(ngModel)] = "date" class = "select-box">
+    <input type="submit" class="btn-style" (click) = "filter()" value="search">
+
+    {{this.array}}
+</div>

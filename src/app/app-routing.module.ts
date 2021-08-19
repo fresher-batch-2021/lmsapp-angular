@@ -10,6 +10,7 @@ import { HrpageComponent } from './hrpage/hrpage.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.component';
 import { StatusComponent } from './status/status.component';
 import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path:"download", component: DownloadFormComponent},
   {path:"hrmHome", component: HrmHomeComponent},
   {path:"hrpage", component: HrpageComponent},
+  {path:"sortforms", component: SortLeaveFormComponent},
   {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
 ];

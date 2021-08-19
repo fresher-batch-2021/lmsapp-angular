@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hrmheader.component.css']
 })
 export class HrmheaderComponent implements OnInit {
-
-  constructor() { }
+  user:any;
+  constructor() { 
+    let userStr = localStorage.getItem("LOGGED_IN_USER");
+    this.user = userStr != null ? JSON.parse(userStr):null;
+  }
 
   ngOnInit(): void {
   }

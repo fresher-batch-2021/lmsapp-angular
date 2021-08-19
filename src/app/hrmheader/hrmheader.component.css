@@ -13,3 +13,8 @@ header {
     font-style: initial;
     color: whitesmoke;
 }
+.user-name{
+    float: right;
+    padding-right: 40px;
+    font-size: 16px;
+}

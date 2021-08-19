@@ -64,8 +64,6 @@ export class ApplyleaveComponent implements OnInit {
         console.log("success");
         window.location.href = "/history";
       }).catch(err => {
-        //let errorMessage = err.response.data.errorMessage;
-        //console.error(errorMessage);
         console.log("failed");
         alert("Error - ");
       });
