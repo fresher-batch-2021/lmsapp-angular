@@ -39,7 +39,8 @@ export class DownloadFormComponent implements OnInit {
   }
   download_csv_file(leave: any) {
 
-    let csv = 'Name,Profession\n';
+    let csv = 'Ren-Sys Corporation\n\n';
+    csv += "Leave Application\n\n";
     console.log(leave);
     for (let leaveDetail of leave) {
       if (this.serialNo == leaveDetail.doc._id) {

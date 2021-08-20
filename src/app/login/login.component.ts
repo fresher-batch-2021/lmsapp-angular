@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service';
+import { ValidatorService } from '../validator.service';
 
 @Component({
   selector: 'app-login',
@@ -20,21 +21,11 @@ export class LoginComponent implements OnInit {
     console.log("user :", this.username);
     console.log("pass :", this.password);
     console.log("role :", this.role);
-    let allFielsAreOk = 0;
-    if (this.username == null || this.username == "" || this.username.trim() == "") {
-      alert("Enter valid username");
-    }
-    else if (this.password == null || this.password == "" || this.password.trim() == "" || this.password.length > 8 || this.password.length < 8) {
-      alert("Password Must be 8 letters");
-    }
-
-    else if (this.role == null || this.role == "" || this.role.trim() == "") {
-      alert("Role is Invalid");
-    }
-    else {
-      allFielsAreOk = 1;
-    }
-    if (allFielsAreOk == 1) {
+    try{
+      const validatorService = new ValidatorService();
+      validatorService.isEmpty(this.username, "Username Can't be empty");
+      validatorService.isEmpty(this.password, "Password Can't be empty");
+      validatorService.isEmpty(this.role, "Role Can't be empty");
       console.log("called");
       const dbUsername = "apikey-v2-112mfjkmfy0vbc1cwfx61kckru87k40qr1lnztxypzbg";
       const dbPassword = "28cadd4e1a6e2edf67df43007bae28dc";
@@ -53,12 +44,10 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if (data.docs[0].role === "employee" && this.role === "Employee") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
-          alert("Successffully Login");
           alert("Welcome " + data.docs[0].name);
           window.location.href = "/home";
         } else if (data.docs[0].role === "hr" && this.role === "HR") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
-          alert("Successffully Login");
           alert("Welcome " + data.docs[0].name);
           window.location.href = "/hrmHome";
         } else {
@@ -69,6 +58,8 @@ export class LoginComponent implements OnInit {
         //console.error(errorMessage);
         alert("Error - Invalid Credentials");
       });
+    }catch(err){
+
     }
   }
 }

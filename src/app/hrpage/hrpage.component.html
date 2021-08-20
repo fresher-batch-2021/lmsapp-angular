@@ -20,10 +20,10 @@
                         </div>
                         <div class="col-sm-4" style="text-align: center;">
                             <input type="submit" class="btn1-style"
-                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,'Approved')"
+                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,form.doc.name,'Approved')"
                                 value="Approve"><br />
                             <input type="submit" class="btn2-style"
-                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,'Declined')"
+                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,form.doc.name,'Declined')"
                                 value="Decline">
                         </div>
                     </div>

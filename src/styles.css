@@ -117,3 +117,7 @@ input:focus, select:focus{
 .col-sm-12{
     width : 100%; 
 }
+*
+{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

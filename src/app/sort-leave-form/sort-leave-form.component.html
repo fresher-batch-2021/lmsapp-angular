@@ -10,5 +10,26 @@
     <input type="date" [(ngModel)] = "date" class = "select-box">
     <input type="submit" class="btn-style" (click) = "filter()" value="search">
 
-    {{this.array}}
+    <table>
+        <tr>
+            <th scope="col">Employee ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">From Date</th>
+            <th scope="col">To Date</th>
+            <th scope="col">Type</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Status</th>
+        </tr>
+        <tbody *ngFor = "let leave of this.array">
+            <tr>
+                <td>{{leave.employeeId}}</td>
+                <td>{{leave.name}}</td>
+                <td>{{leave.fromDate}}</td>
+                <td>{{leave.toDate}}</td>
+                <td>{{leave.leaveType}}</td>
+                <td>{{leave.reason}}</td>
+                <td>{{leave.status}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

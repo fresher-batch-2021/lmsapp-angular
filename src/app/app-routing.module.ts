@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
+import { AvailableleaveComponent } from './availableleave/availableleave.component';
 import { DownloadFormComponent } from './download-form/download-form.component';
 import { EditleaveformComponent } from './editleaveform/editleaveform.component';
 import { HistoryComponent } from './history/history.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:"applyleave", component: ApplyleaveComponent},
   {path:"register", component: RegisterComponent},
   {path:"status", component:StatusComponent},
+  {path:"availableLeave", component: AvailableleaveComponent},
   {path:"history", component: HistoryComponent},
   {path:"history/editleaveform", component : EditleaveformComponent},
   {path:"upcoming", component: UpcomingLeaveComponent},

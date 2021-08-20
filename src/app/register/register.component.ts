@@ -38,7 +38,9 @@ export class RegisterComponent implements OnInit {
       validatorService.isEmpty(this.emailAddress, "Email ID can't be empty");
       validatorService.isEmpty(this.password, "Password can't be empty");
       validatorService.isValidString(this.name, "Enter Valid Name");
+      validatorService.isVaildEmployeeId(this.empId, "Enter valid Employee ID");
       validatorService.isValidMobileNumber(this.mobileNumber, "Enter valid Mobile Number");
+      validatorService.isValidEmail(this.emailAddress, "Enter valid Email adderss");
       validatorService.isValidPassword(this.password, "Password must be 8 characters and contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
 
       console.log("api called");

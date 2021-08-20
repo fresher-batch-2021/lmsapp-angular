@@ -21,6 +21,7 @@ import { HrmHomeComponent } from './hrm-home/hrm-home.component';
 import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.component';
 import { DownloadFormComponent } from './download-form/download-form.component';
 import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.component';
+import { AvailableleaveComponent } from './availableleave/availableleave.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.compon
     HrmHomeComponent,
     LeaveAnalysisComponent,
     DownloadFormComponent,
-    SortLeaveFormComponent
+    SortLeaveFormComponent,
+    AvailableleaveComponent
   ],
   imports: [
     BrowserModule,

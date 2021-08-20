@@ -17,12 +17,30 @@ export class ValidatorService {
     let valueArray = value.split("");
     let count = 0;
     for(let c of valueArray){
-      if(c >= 'a' && c <= 'z' || c >= 'A' && c <= 'z')
+      if(c >= 'a' && c <= 'z' || c >= 'A' && c <= 'z' || c == ' ')
         count++;
     }
     if(count != valueArray.length){
       throw new Error(errorMessage);
     }
+  }
+
+  isVaildEmployeeId(value: string,errorMessage: string ){
+    let valueArray = value.split("");
+    let count = 0;
+    let zeroCount = 0;
+    for(let c of valueArray){
+      if(parseInt(c) >= 0 && parseInt(c) <= 9){
+        count++;
+      }
+      if(parseInt(c) == 0){
+        zeroCount++;
+      }
+    }
+    if(zeroCount == valueArray.length || count != valueArray.length){
+      throw new Error(errorMessage);
+    }
+
   }
 
   isValidPassword(password: string | any[],errorMessage: string | undefined){
@@ -87,6 +105,75 @@ export class ValidatorService {
     else{
       throw new Error(errorMessage);
     }
+  }
+
+  isValidEmail(value: string,error: string){
+    let valueArray = value.split("");
+    let index = valueArray.indexOf("@");
+    let alpha = 0;
+    let number = 0;
+    let special = 0;
+    let others = 0;
+    let doubleDot = 0;
+    let domainCheck = 0;
+
+    for(let v of valueArray){
+      if(v >= 'a' && v <= 'z')
+        alpha++;
+
+      else if(v == '.')
+        special++;
+      
+      else if(v == '-')
+        special++;
+      
+      else if(v == '_')
+        special++;
+      
+      else if(v == '#')
+        special++;
+      
+      else if(v == "@")
+        special++;
+      
+      else if(parseInt(v) >= 0 && parseInt(v) <= 9)
+        number++;
+      
+      else
+        others++;
+    }
+
+    for(let i = 0; i < valueArray.length-1; i++){
+      if(valueArray[i] == '.'){
+        if(valueArray[i+1] == '.')
+          doubleDot++;
+      }
+    }
+
+    let valueReverse = valueArray.reverse();
+    let dotIndex = valueReverse.indexOf(".");
+    valueArray.reverse();
+    let emailStarts = 0;
+    let beforeAt = 0;
+    let afterAt = 0;
+    if(valueArray[0] >= 'a' && valueArray[0] <= 'z'){
+      emailStarts = 1;
+    }
+    if(valueArray[index-1] >= 'a' && valueArray[index-1] <= 'z'){
+      beforeAt = 1;
+    }
+    if(valueArray[index+1] >= 'a' && valueArray[index+1] <= 'z'){
+      afterAt = 1;
+    }
+    if(dotIndex > 1){
+      domainCheck = 1;
+    }
+    if(others == 0 && emailStarts == 1 && beforeAt == 1 && afterAt == 1 && domainCheck == 1 && doubleDot == 0){
+      console.log("valid email");
+    }else{
+      throw new Error(error);
+    }
+    
   }
 
 }

@@ -56,9 +56,10 @@ export class HrpageComponent implements OnInit {
     },
   ];
 
-  statusUpdate(id: any, rev: any, eid: any, empid: any, fromDate: any, toDate: any, leaveType: any, reason: any, status: any) {
+  statusUpdate(id: any, rev: any, eid: any, empid: any, fromDate: any, toDate: any, leaveType: any, reason: any,name:any, status: any) {
     const updatedForm = {
       "id": eid,
+      "name": name,
       "employeeId": empid,
       "fromDate": fromDate,
       "toDate": toDate,
