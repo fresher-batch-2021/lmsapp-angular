@@ -38,6 +38,13 @@
                         <td>{{leave.status}}</td>
                     </tr>
                 </tbody>
+                <tbody *ngFor="let leave of array">
+                    <tr *ngIf="this.month == null || this.month == ''">
+                        <td>{{leave.date}}</td>
+                        <td>{{leave.day}}</td>
+                        <td>{{leave.status}}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

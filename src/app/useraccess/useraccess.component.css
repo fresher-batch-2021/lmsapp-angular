@@ -11,7 +11,30 @@
     border-radius: 10px 10px;
 }
 
+.useraccess-forms{
+    padding: 20px;
+    border: 1px solid rgb(195,195,195);
+    border-radius: 8px;
+}
+
 label{
     display: block;
     margin-bottom: 10px;
+}
+
+.accept-btn{
+    background-color: rgb(23, 99, 23);
+    color: whitesmoke;
+}
+
+.reject-btn{
+    background-color: rgb(165, 32, 32);
+    color: whitesmoke;
+}
+
+._btn{
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 15px;
 }

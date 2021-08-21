@@ -5,6 +5,7 @@
     border: 2px solid rgb(195,195,195);
     border-radius: 10px 10px;
 }
+
 .upcoming-content{
     width:90%;
     margin-top: 10px;
@@ -14,7 +15,11 @@
     border: 2px solid rgb(195,195,195);
     border-radius: 10px 10px;
     font-size: 14px;
+    max-height: 467px;
+    overflow-x:hidden;
+    overflow-y: scroll;
 }
+
 table{
     margin-top: 20px;
     width : 100%;
@@ -23,23 +28,28 @@ table{
     border-radius: 5px 5px;
     text-align: center;
 }
+
 tr{
     height: 50px;
     border: 1px solid rgb(195,195,195);
 }
+
 th{
     background-color: rgb(80, 80, 172);
     color: rgb(24, 23, 23);
 }
+
 tr:nth-child(even){
     background-color: rgb(128, 128, 173);
 }
+
 .select-style{
     border-radius: 5px 5px;
     width: 250px;
     height: 40px;
     font-size: 16px;
 }
+
 .btnn-style{
     border-radius: 5px 5px;
     background-color: rgb(73, 73, 238);
