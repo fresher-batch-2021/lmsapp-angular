@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +21,13 @@ export class UserService {
   login(formData: { selector: { email: string; password: string; }; fields: string[]; }){
     console.log(formData);
     return axios.post(this.url+"/_find", formData, { headers: {'Authorization': this.basicAuth }})
+  }
+
+  listUsers(){
+    return axios.get(this.url+"/_all_docs?include_docs=true", { headers: {'Authorization': this.basicAuth }})
+  }
+
+  updateUser(id: string,rev: string,data: { name: any; empId: any; role: any; mobileNumber: any; email: any; password: any; status: any; }){
+    return axios.put(this.url+"/"+id+"?rev="+rev, data, { headers: {'Authorization': this.basicAuth }})
   }
 }

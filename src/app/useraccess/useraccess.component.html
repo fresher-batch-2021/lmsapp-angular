@@ -1,0 +1,15 @@
+<app-hrmheader></app-hrmheader>
+<div class = "useraccess-content">
+    <div >
+        <div class = "row"  *ngFor = "let request of this.requests" >
+            <div class = "col-sm-4" *ngIf = "request.doc.status == 'Waiting'">
+                <label>Name : {{request.doc.name}}</label>
+                <label>Employee ID : {{request.doc.empId}}</label>
+                <label>Team : {{request.doc.role}}</label>
+                <label>Email ID : {{request.doc.email}}</label>
+                <input type="submit" (click) = "acceptanceStatus(request.doc._id,request.doc._rev,request.doc.name,request.doc.empId,request.doc.role,request.doc.mobileNumber,request.doc.email,request.doc.password,'Accepted')" value="Accept">
+                <input type="submit" (click) = "acceptanceStatus(request.doc._id,request.doc._rev,request.doc.name,request.doc.empId,request.doc.role,request.doc.mobileNumber,request.doc.email,request.doc.password,'Declined')" value="Decline">
+            </div>
+        </div>
+    </div>
+</div>

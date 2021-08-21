@@ -22,6 +22,7 @@ import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.componen
 import { DownloadFormComponent } from './download-form/download-form.component';
 import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.component';
 import { AvailableleaveComponent } from './availableleave/availableleave.component';
+import { UseraccessComponent } from './useraccess/useraccess.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AvailableleaveComponent } from './availableleave/availableleave.compone
     LeaveAnalysisComponent,
     DownloadFormComponent,
     SortLeaveFormComponent,
-    AvailableleaveComponent
+    AvailableleaveComponent,
+    UseraccessComponent
   ],
   imports: [
     BrowserModule,

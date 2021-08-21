@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.component';
 import { StatusComponent } from './status/status.component';
 import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
+import { UseraccessComponent } from './useraccess/useraccess.component';
 
 const routes: Routes = [
   {path:"home", component : HomeComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:"download", component: DownloadFormComponent},
   {path:"hrmHome", component: HrmHomeComponent},
   {path:"hrpage", component: HrpageComponent},
+  {path:"userRequest", component:UseraccessComponent},
   {path:"sortforms", component: SortLeaveFormComponent},
   {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}

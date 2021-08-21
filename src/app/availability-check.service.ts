@@ -29,33 +29,33 @@ export class AvailabilityCheckService {
       console.log("failed");
       alert("Error-Can't Load");
     });
-    // let sl;
-    // let cl;
-    // let el;
-    // let total;
-    // for (let form of this.forms) {
-    //   if (form.doc.email == this.user[0].email) {
-    //     sl = form.doc.sickLeave;
-    //     cl = form.doc.casualLeave;
-    //     el = form.doc.earnedLeave;
-    //     total = form.doc.total;
-    //   }
-    // }
-    // if (type == "sickLeave") {
-    //   if (sl < days) {
-    //     throw new Error("Available Sick Leave " + sl + " Days");
-    //   }
-    // }
-    // if (type == "casualLeave") {
-    //   if (cl < days) {
-    //     throw new Error("Available Sick Leave " + cl + " Days");
-    //   }
-    // }
-    // if (type == "earnedLeave") {
-    //   if (el < days) {
-    //     throw new Error("Available Sick Leave " + el + " Days");
-    //   }
-    // }
+    let sl;
+    let cl;
+    let el;
+    let total;
+    for (let form of this.forms) {
+      if (form.doc.email == this.user[0].email) {
+        sl = form.doc.sickLeave;
+        cl = form.doc.casualLeave;
+        el = form.doc.earnedLeave;
+        total = form.doc.total;
+      }
+    }
+    if (type == "sickLeave") {
+      if (sl < days) {
+        throw new Error("Available Sick Leave " + sl + " Days");
+      }
+    }
+    if (type == "casualLeave") {
+      if (cl < days) {
+        throw new Error("Available Sick Leave " + cl + " Days");
+      }
+    }
+    if (type == "earnedLeave") {
+      if (el < days) {
+        throw new Error("Available Sick Leave " + el + " Days");
+      }
+    }
   }
 
 }

@@ -65,7 +65,7 @@ export class ValidatorService {
       }else{
         strenthCheck = 1;
       }
-      if (numCheck == 1 && charCheck == 1 && capsCheck == 1) {
+      if (numCheck == 1 && charCheck == 1 && capsCheck == 1 && strenthCheck == 1) {
         console.log("password checked");
       }else{
         throw new Error(errorMessage);
@@ -116,24 +116,14 @@ export class ValidatorService {
     let others = 0;
     let doubleDot = 0;
     let domainCheck = 0;
+    let beforeAtCount = 0;
+    let afterAtCount = 0;
 
     for(let v of valueArray){
       if(v >= 'a' && v <= 'z')
         alpha++;
 
-      else if(v == '.')
-        special++;
-      
-      else if(v == '-')
-        special++;
-      
-      else if(v == '_')
-        special++;
-      
-      else if(v == '#')
-        special++;
-      
-      else if(v == "@")
+      else if(v == '.' || v == '-' || v == '_' || v == '#' || v == '@')
         special++;
       
       else if(parseInt(v) >= 0 && parseInt(v) <= 9)
@@ -168,7 +158,13 @@ export class ValidatorService {
     if(dotIndex > 1){
       domainCheck = 1;
     }
-    if(others == 0 && emailStarts == 1 && beforeAt == 1 && afterAt == 1 && domainCheck == 1 && doubleDot == 0){
+    if(index > 2){
+      beforeAtCount = 1;
+    }
+    if(index+4 < valueArray.length){
+      afterAtCount = 1;
+    }
+    if(others == 0 && emailStarts == 1 && beforeAt == 1 && beforeAtCount == 1 && afterAtCount == 1 && afterAt == 1 && domainCheck == 1 && doubleDot == 0){
       console.log("valid email");
     }else{
       throw new Error(error);

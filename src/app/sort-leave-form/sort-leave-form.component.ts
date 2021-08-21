@@ -50,7 +50,7 @@ export class SortLeaveFormComponent implements OnInit {
     this.array = [];
     for (let form of this.forms) {
       console.log(form);
-      if (form.doc.leaveType == this.leaveType) {
+      if (form.doc.leaveType == this.leaveType || this.leaveType == "allLeave") {
         console.log("form : " + form.doc.fromDate);
         let fromDateArray = form.doc.fromDate.split('-');
         let toDateArray = form.doc.toDate.split('-');

@@ -51,7 +51,8 @@ export class RegisterComponent implements OnInit {
         role: this.role,
         mobileNumber: this.mobileNumber,
         email: this.emailAddress,
-        password: this.password
+        password: this.password,
+        status : "Waiting"
       }
 
       const obj = new UserService();
@@ -61,31 +62,13 @@ export class RegisterComponent implements OnInit {
         console.log("RegisterId : ", this.registerID);
         console.log("response : ", data);
         alert("Successffully Registered");
-      }).catch(err => {
-        //let errorMessage = err.response.data.errorMessage;
-        //console.error(errorMessage);
-        alert("Error - unable to Register");
-      });
-
-      let data = {
-        total: 18,
-        sickLeave: 6,
-        casualLeave: 6,
-        earnedLeave: 6,
-        empId: this.empId,
-        email: this.emailAddress
-      }
-      const leaveAvailabilityObj = new LeaveAvailabilityService();
-      leaveAvailabilityObj.addLeaveAvailability(data).then(res => {
-        let data = res.data;
-        console.log("response : ", data);
-        alert("Leave balance added to your Account");
         window.location.href = "/login";
       }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;
         //console.error(errorMessage);
         alert("Error - unable to Register");
       });
+
     } catch (error) {
       alert(error.message);
     }

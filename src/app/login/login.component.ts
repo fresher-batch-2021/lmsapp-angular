@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
           email: this.username,
           password: this.password
         },
-        fields: ["_id", "_rev", "name","email", "role", "empId"]
+        fields: ["_id", "_rev", "name","email", "role", "empId", "status"]
       };
       const serviceObj = new UserService();
       serviceObj.login(formData).then(res => {
         let data = res.data;
         console.log(data);
-        if (data.docs[0].role === "employee" && this.role === "Employee") {
+        if (data.docs[0].role === "employee" && this.role != "HR" && data.docs[0].status === "Accepted") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           alert("Welcome " + data.docs[0].name);
           window.location.href = "/home";
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         alert("Error - Invalid Credentials");
       });
     }catch(err){
-
+      alert(err.message);
     }
   }
 }

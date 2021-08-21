@@ -31,5 +31,8 @@
                 <td>{{leave.status}}</td>
             </tr>
         </tbody>
+        <tbody *ngIf = "this.array.length == 0">
+            <tr>No records Found</tr>
+        </tbody>
     </table>
 </div>

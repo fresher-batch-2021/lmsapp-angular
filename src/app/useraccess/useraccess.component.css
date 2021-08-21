@@ -1,0 +1,17 @@
+.useraccess-content{
+    margin-top : 10px;
+    margin-right: 15px;
+    margin-left:15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width : 95%;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 10px 10px;
+}
+
+label{
+    display: block;
+    margin-bottom: 10px;
+}
