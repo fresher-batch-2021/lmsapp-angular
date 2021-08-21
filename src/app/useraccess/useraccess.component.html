@@ -1,8 +1,8 @@
 <app-hrmheader></app-hrmheader>
 <div class = "useraccess-content">
-    <div >
-        <div class = "row"  *ngFor = "let request of this.requests" >
-            <div class = "col-sm-4" *ngIf = "request.doc.status == 'Waiting'">
+    <div class = "row">
+        <div *ngFor = "let request of this.requests" >
+            <div class = "col-sm-4" style="width: 100%;" *ngIf = "request.doc.status == 'Waiting'">
                 <label>Name : {{request.doc.name}}</label>
                 <label>Employee ID : {{request.doc.empId}}</label>
                 <label>Team : {{request.doc.role}}</label>

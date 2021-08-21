@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       serviceObj.login(formData).then(res => {
         let data = res.data;
         console.log(data);
-        if (data.docs[0].role === "employee" && this.role != "HR" && data.docs[0].status === "Accepted") {
+        if (data.docs[0].role != "hr" && data.docs[0].status === "Accepted") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           alert("Welcome " + data.docs[0].name);
           window.location.href = "/home";
