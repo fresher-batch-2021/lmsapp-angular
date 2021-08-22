@@ -51,6 +51,7 @@ export class UseraccessComponent implements OnInit {
         this.leaveCountUpdation(employeeId, email);
       } else {
         console.log("status : " + status)
+        this.loadRequests();
       }
     }).catch(err => {
       console.log("failed");

@@ -43,8 +43,6 @@ export class RegisterComponent implements OnInit {
       validatorService.isValidEmail(this.emailAddress, "Enter valid Email adderss");
       validatorService.isValidPassword(this.password, "Password must be 8 characters and contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
 
-      console.log("api called");
-
       let formData = {
         name: this.name,
         empId: this.empId,
@@ -61,7 +59,7 @@ export class RegisterComponent implements OnInit {
         this.registerID = res.data.id;
         console.log("RegisterId : ", this.registerID);
         console.log("response : ", data);
-        alert("Successffully Registered");
+        alert("Registered Successffully... Your Registration in Progress");
         window.location.href = "/login";
       }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;

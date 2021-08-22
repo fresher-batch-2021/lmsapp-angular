@@ -11,7 +11,7 @@
                 <input type="submit" class = "reject-btn _btn" (click) = "acceptanceStatus(request.doc._id,request.doc._rev,request.doc.name,request.doc.empId,request.doc.role,request.doc.mobileNumber,request.doc.email,request.doc.password,'Declined')" value="Decline">
             </div>
         </div>
-        <div *ngIf = "this.requests.length == 0">
+        <div *ngIf = "requests.length == 0 || requests == null">
             <label>No Requests found</label>
         </div>
     </div>

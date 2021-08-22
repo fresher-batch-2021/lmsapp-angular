@@ -50,6 +50,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           alert("Welcome " + data.docs[0].name);
           window.location.href = "/hrmHome";
+        } else if (data.docs[0].status === "Waiting"){
+          alert("Your Registration in Progress.. Please Wait");
+        } else if (data.docs[0].status === "Declined"){
+          alert("Your Registration was Declined By HR Team ");
         } else {
           alert("Invalid Role defined")
         }

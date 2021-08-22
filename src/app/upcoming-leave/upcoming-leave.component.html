@@ -32,17 +32,17 @@
                     <th scope="col">DESCRIPTION</th>
                 </tr>
                 <tbody *ngFor="let leave of array">
-                    <tr *ngIf="this.month == leave.date.split('-')[1]">
-                        <td>{{leave.date}}</td>
-                        <td>{{leave.day}}</td>
-                        <td>{{leave.status}}</td>
+                    <tr *ngIf="this.month == leave.doc.date.split('-')[1]">
+                        <td>{{leave.doc.date}}</td>
+                        <td>{{leave.doc.day}}</td>
+                        <td>{{leave.doc.status}}</td>
                     </tr>
                 </tbody>
                 <tbody *ngFor="let leave of array">
                     <tr *ngIf="this.month == null || this.month == ''">
-                        <td>{{leave.date}}</td>
-                        <td>{{leave.day}}</td>
-                        <td>{{leave.status}}</td>
+                        <td>{{leave.doc.date}}</td>
+                        <td>{{leave.doc.day}}</td>
+                        <td>{{leave.doc.status}}</td>
                     </tr>
                 </tbody>
             </table>

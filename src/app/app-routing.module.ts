@@ -5,6 +5,7 @@ import { AvailableleaveComponent } from './availableleave/availableleave.compone
 import { DownloadFormComponent } from './download-form/download-form.component';
 import { EditleaveformComponent } from './editleaveform/editleaveform.component';
 import { HistoryComponent } from './history/history.component';
+import { HolidaysComponent } from './holidays/holidays.component';
 import { HomeComponent } from './home/home.component';
 import { HrmHomeComponent } from './hrm-home/hrm-home.component';
 import { HrpageComponent } from './hrpage/hrpage.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:"hrmHome", component: HrmHomeComponent},
   {path:"hrpage", component: HrpageComponent},
   {path:"userRequest", component:UseraccessComponent},
+  {path:"holidays", component:HolidaysComponent},
   {path:"sortforms", component: SortLeaveFormComponent},
   {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
