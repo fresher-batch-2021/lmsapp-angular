@@ -1,0 +1,27 @@
+<app-hrmheader></app-hrmheader>
+<h3>Employee List</h3>
+<div>
+    <input name="search" id="search" type="text" [(ngModel)] = "sort" >
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">EmployeeID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">mobile Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let user of (users | searchterm : sort);">
+            <tr>
+                <td>{{user.doc.empId}}</td>
+                <td>{{user.doc.name}}</td>
+                <td>{{user.doc.role}}</td>
+                <td>{{user.doc.mobileNumber}}</td>
+                <td>{{user.doc.email}}</td>
+                <td><button value="Delete">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

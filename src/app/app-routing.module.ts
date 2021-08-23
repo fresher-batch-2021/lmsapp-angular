@@ -17,6 +17,7 @@ import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.compon
 import { StatusComponent } from './status/status.component';
 import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
 import { UseraccessComponent } from './useraccess/useraccess.component';
+import { UserlistComponent } from './userlist/userlist.component';
 
 const routes: Routes = [
   {path:"home", component : HomeComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path:"holidays", component:HolidaysComponent},
   {path:"sortforms", component: SortLeaveFormComponent},
   {path:"leaveAnalysis", component: LeaveAnalysisComponent},
+  {path:"users", component: UserlistComponent},
   {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
 ];

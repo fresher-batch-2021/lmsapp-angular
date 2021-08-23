@@ -23,6 +23,8 @@ import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.compon
 import { AvailableleaveComponent } from './availableleave/availableleave.component';
 import { UseraccessComponent } from './useraccess/useraccess.component';
 import { HolidaysComponent } from './holidays/holidays.component';
+import { UserlistComponent } from './userlist/userlist.component';
+import { SearchPipe } from './search.pipe';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { HolidaysComponent } from './holidays/holidays.component';
     SortLeaveFormComponent,
     AvailableleaveComponent,
     UseraccessComponent,
-    HolidaysComponent
+    HolidaysComponent,
+    UserlistComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
