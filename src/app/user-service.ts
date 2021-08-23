@@ -30,4 +30,8 @@ export class UserService {
   updateUser(id: string,rev: string,data: { name: any; empId: any; role: any; mobileNumber: any; email: any; password: any; status: any; }){
     return axios.put(this.url+"/"+id+"?rev="+rev, data, { headers: {'Authorization': this.basicAuth }})
   }
+
+  deleteUser(id: string, rev: string){
+    return axios.delete(this.url+"/"+id+"?rev="+rev, {headers: {'Authorization': this.basicAuth}})
+  }
 }

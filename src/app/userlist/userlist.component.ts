@@ -28,4 +28,14 @@ export class UserlistComponent implements OnInit {
       alert("Error-Can't Load");
     });
   }
+
+  deleteOneUSer(id: string,rev: string){
+    const userService = new UserService();
+    userService.deleteUser(id,rev).then(res => {
+      console.log("deleted : ",res.data);
+      alert("Deleted Successfully");
+    }).catch(err =>{
+      alert("Failed to Delete");
+    })
+  }
 }
