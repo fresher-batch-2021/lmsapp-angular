@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,6 +23,7 @@ import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.compon
 import { AvailableleaveComponent } from './availableleave/availableleave.component';
 import { UseraccessComponent } from './useraccess/useraccess.component';
 import { HolidaysComponent } from './holidays/holidays.component';
+
 
 @NgModule({
   declarations: [

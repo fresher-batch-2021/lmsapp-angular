@@ -9,6 +9,7 @@ import { HolidaysComponent } from './holidays/holidays.component';
 import { HomeComponent } from './home/home.component';
 import { HrmHomeComponent } from './hrm-home/hrm-home.component';
 import { HrpageComponent } from './hrpage/hrpage.component';
+import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:"userRequest", component:UseraccessComponent},
   {path:"holidays", component:HolidaysComponent},
   {path:"sortforms", component: SortLeaveFormComponent},
+  {path:"leaveAnalysis", component: LeaveAnalysisComponent},
   {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
 ];

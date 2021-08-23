@@ -22,6 +22,5 @@ export class UpcomingLeaveComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
   month:any;
 }

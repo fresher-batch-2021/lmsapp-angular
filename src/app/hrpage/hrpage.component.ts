@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApplyleaveComponent } from '../applyleave/applyleave.component';
+import { AvailabilityCheckService } from '../availability-check.service';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
 
@@ -56,11 +58,12 @@ export class HrpageComponent implements OnInit {
     },
   ];
 
-  statusUpdate(id: any, rev: any, eid: any, empid: any, fromDate: any, toDate: any, leaveType: any, reason: any,name:any, status: any) {
+  statusUpdate(id: any, rev: any, eid: any, empid: any, role: any, fromDate: any, toDate: any, leaveType: any, reason: any,name:any, status: any) {
     const updatedForm = {
       "id": eid,
       "name": name,
       "employeeId": empid,
+      "role": role,
       "fromDate": fromDate,
       "toDate": toDate,
       "leaveType": leaveType,
@@ -90,6 +93,8 @@ export class HrpageComponent implements OnInit {
       let toDate = new Date(to_Date);
       let difference = toDate.getTime() - fromDate.getTime();
       let days = (difference / (1000 * 3600 * 24))+1;
+      const availabilityCheckService = new AvailabilityCheckService();
+      let daysTaken = availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate,days);
       const data = {
         selector : {
           "empId" : empId
@@ -105,7 +110,7 @@ export class HrpageComponent implements OnInit {
         leaveCount = data.docs;
         console.log("Leave Availability list :", leaveCount);
         console.log("success");
-        this.leaveUpdate(data.docs[0]._id,data.docs[0]._rev,data.docs[0].total,data.docs[0].sickLeave,data.docs[0].casualLeave,data.docs[0].earnedLeave,data.docs[0].empId,data.docs[0].email,days,leaveType);
+        this.leaveUpdate(data.docs[0]._id,data.docs[0]._rev,data.docs[0].total,data.docs[0].sickLeave,data.docs[0].casualLeave,data.docs[0].earnedLeave,data.docs[0].empId,data.docs[0].email,daysTaken,leaveType);
       }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;
         //console.error(errorMessage);
@@ -115,7 +120,7 @@ export class HrpageComponent implements OnInit {
 
     }
   }
-  leaveUpdate(id: any,rev: any,total: any,sickLeave: any,casualLeave: any,earnedLeave: any,empId: any,email: any,days: number,leaveType: any){
+  leaveUpdate(id: any,rev: any,total: any,sickLeave: any,casualLeave: any,earnedLeave: any,empId: any,email: any,days: any,leaveType: any){
     if(leaveType === "sickLeave"){
       console.log("leave : "+total,sickLeave,casualLeave,earnedLeave);
       sickLeave -= days;

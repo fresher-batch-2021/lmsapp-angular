@@ -48,7 +48,7 @@ export class UseraccessComponent implements OnInit {
       requestStatus = 1;
       console.log("success");
       if (requestStatus == 1 && status == "Accepted") {
-        this.leaveCountUpdation(employeeId, email);
+        this.leaveCountUpdation(employeeId, email, role);
       } else {
         console.log("status : " + status)
         this.loadRequests();
@@ -61,7 +61,7 @@ export class UseraccessComponent implements OnInit {
 
   }
 
-  leaveCountUpdation(employeeId: any, email: any) {
+  leaveCountUpdation(employeeId: any, email: any, role: any) {
     let today = new Date();
     let thisMonth = String(today.getMonth() + 1).padStart(2, '0');
     let sl, cl, el, total;
@@ -84,7 +84,8 @@ export class UseraccessComponent implements OnInit {
       'casualLeave': cl,
       'earnedLeave': el,
       'empId': employeeId,
-      'email': email
+      'email': email,
+      'role': role
     }
     console.log("leave date : " + data);
     const leaveAvailabilityObj = new LeaveAvailabilityService();

@@ -75,9 +75,11 @@ export class ValidatorService {
     let strenthCheck = 0;
     let startWithNonZero = 0;
     let startWith = 0;
+    let allAreNumber = 0;
     let valueArray = value.split("");
     let zeroCount = 0;
     let zeroCountCheck = 0;
+    let continuedNumbers = 0;
     console.log("value : ",valueArray);
     
     for(let c of valueArray){
@@ -85,6 +87,24 @@ export class ValidatorService {
         zeroCount++;
       }
     }
+    for(let c of valueArray){
+      if(parseInt(c) >= 0 && parseInt(c) <= 9){
+        allAreNumber++;
+      }
+    }
+    for(let i = 0; i < valueArray.length-1; i++){
+      let counts = 0;
+      for(let j = i+1; j < valueArray.length; j++){
+        if(valueArray[i] == valueArray[j]){
+          counts++;
+        }
+      }
+      if(counts > 5){
+        continuedNumbers = 1;
+        break;
+      }
+    }
+
     if(value.length == 10){
       strenthCheck = 1;
     } 
@@ -99,8 +119,8 @@ export class ValidatorService {
     if(zeroCount <= 6){
       zeroCountCheck = 1;
     }
-    if(strenthCheck == 1 && startWithNonZero == 1 && zeroCountCheck == 1 && startWith == 1){
-      console.log("valid Password");
+    if(continuedNumbers == 0 && allAreNumber == 10 && strenthCheck == 1 && startWithNonZero == 1 && zeroCountCheck == 1 && startWith == 1){
+      console.log("valid Mobile Number");
     }
     else{
       throw new Error(errorMessage);
