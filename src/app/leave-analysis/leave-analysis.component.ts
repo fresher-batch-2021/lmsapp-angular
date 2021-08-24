@@ -68,9 +68,5 @@ export class LeaveAnalysisComponent implements OnInit {
     console.log("DB Team : " + dbTeam);
     console.log("Admin : " + adminTeam);
     this.barChartData = [{ label: "Leave Days", data: [uxTeam, fsTeam, beTeam, dbTeam, adminTeam] },];
-
   }
-
-
-
 }
