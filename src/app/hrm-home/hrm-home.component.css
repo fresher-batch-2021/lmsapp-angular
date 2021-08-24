@@ -1,7 +1,27 @@
 .hr-home{
-    margin: 0 auto;
     display: block;
-    width: 40%;
-    padding: 30px;
-    font-size: 24px;
+    width: 97.4%;
+    margin-right: 120px;
+    margin-left: 20px;
+    background-image: url(/assets/images/hrm.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 500px;
+    padding-top: 100px;
+}
+
+.hr-quote{
+    background-color: rgb(105,139,165);
+    margin-left: 75px;
+    width: 45%;
+    height: 380px;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+label{
+    font-size: 20px;
+    display: block;
+    margin-bottom: 40px;
 }
