@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user-service';
 import { ValidatorService } from '../validator.service';
 
@@ -9,34 +10,42 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  username: any;
+  password: any;
+  role: any;
 
-  constructor() { }
+  constructor(private fb: FormBuilder,
+    private userService: UserService) {
+    this.loginForm = this.fb.group({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      role: new FormControl('', [Validators.required])
+    })
+  }
 
   ngOnInit(): void {
   }
-  username: string = "";
-  password: string = "";
-  role: string = "";
+
   login() {
-    console.log("user :", this.username);
-    console.log("pass :", this.password);
-    console.log("role :", this.role);
-    try{
+    console.log("user :", this.loginForm.value.username);
+    console.log("pass :", this.loginForm.value.password);
+    console.log("role :", this.loginForm.value.role);
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+    this.role = this.loginForm.value.role;
+    try {
       const validatorService = new ValidatorService();
       validatorService.isEmpty(this.username, "Username Can't be empty");
       validatorService.isEmpty(this.password, "Password Can't be empty");
       validatorService.isEmpty(this.role, "Role Can't be empty");
-      console.log("called");
-      const dbUsername = "apikey-v2-112mfjkmfy0vbc1cwfx61kckru87k40qr1lnztxypzbg";
-      const dbPassword = "28cadd4e1a6e2edf67df43007bae28dc";
-      const basicAuth = "Basic " + btoa(dbUsername + ":" + dbPassword);
-      let url = "https://9c34f728-220d-4b98-91c8-b24ae354ff67-bluemix.cloudantnosqldb.appdomain.cloud/lms-users/_find";
+
       let formData = {
         selector: {
           email: this.username,
           password: this.password
         },
-        fields: ["_id", "_rev", "name","email", "role", "empId", "status"]
+        fields: ["_id", "_rev", "name", "email", "role", "empId", "status"]
       };
       const serviceObj = new UserService();
       serviceObj.login(formData).then(res => {
@@ -50,9 +59,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           alert("Welcome " + data.docs[0].name);
           window.location.href = "/hrmHome";
-        } else if (data.docs[0].status === "Waiting"){
+        } else if (data.docs[0].status === "Waiting") {
           alert("Your Registration in Progress.. Please Wait");
-        } else if (data.docs[0].status === "Declined"){
+        } else if (data.docs[0].status === "Declined") {
           alert("Your Registration was Declined By HR Team ");
         } else {
           alert("Invalid Role defined")
@@ -62,7 +71,7 @@ export class LoginComponent implements OnInit {
         //console.error(errorMessage);
         alert("Error - Invalid Credentials");
       });
-    }catch(err){
+    } catch (err) {
       alert(err.message);
     }
   }

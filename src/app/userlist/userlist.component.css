@@ -1,0 +1,35 @@
+.search-box{
+    width : 300px;
+    height: 35px;
+    margin-left: 500px;
+    border : 1px solid grey;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+h3{
+    margin-left: 500px;
+}
+
+table{
+    margin-top: 20px;
+    width : 100%;
+    font-size: 18px;
+    border: 1px solid rgb(195,195,195);
+    border-radius: 5px 5px;
+    text-align: center;
+}
+
+tr{
+    height: 50px;
+    border: 1px solid rgb(195,195,195);
+}
+
+th{
+    background-color: rgb(80, 80, 172);
+    color: rgb(24, 23, 23);
+}
+
+tr:nth-child(even){
+    background-color: rgb(128, 128, 173);
+}

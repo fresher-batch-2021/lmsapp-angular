@@ -1,4 +1,13 @@
 <app-hrmheader></app-hrmheader>
 <div>
-    
+    <div class = "leave-content">
+        <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+        </canvas>
+    </div>
 </div>

@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatusComponent } from './status/status.component';
 import { HistoryComponent } from './history/history.component';
 import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
@@ -25,6 +25,7 @@ import { UseraccessComponent } from './useraccess/useraccess.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { SearchPipe } from './search.pipe';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -56,7 +57,9 @@ import { SearchPipe } from './search.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

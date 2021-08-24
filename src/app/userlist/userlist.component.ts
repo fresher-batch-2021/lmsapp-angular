@@ -29,7 +29,7 @@ export class UserlistComponent implements OnInit {
     });
   }
 
-  deleteOneUSer(id: string,rev: string){
+  deleteOneUser(id: string,rev: string){
     const userService = new UserService();
     userService.deleteUser(id,rev).then(res => {
       console.log("deleted : ",res.data);

@@ -95,7 +95,7 @@ export class ApplyleaveComponent implements OnInit {
       let to = new Date(this.toDate);
       let difference = to.getTime() - from.getTime();
       let days = (difference / (1000 * 3600 * 24)) + 1;
-      let daysTaken = isLeaveAvailableService.isOfficialHolidaysBetweenLeaveDays(this.fromDate, days);
+      let daysTaken = isLeaveAvailableService.isOfficialHolidaysBetweenLeaveDays(this.fromDate, this.toDate, days);
       validatorService.isEmpty(this.user[0].empId, "Employee ID can't be empty");
       validatorService.isEmpty(this.fromDate, "From Date can't be empty");
       validatorService.isEmpty(this.toDate, "To Date can't be empty");

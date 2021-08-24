@@ -7,20 +7,23 @@ import { HolidayService } from '../holiday.service';
   styleUrls: ['./upcoming-leave.component.css']
 })
 export class UpcomingLeaveComponent implements OnInit {
-  array:any;
+  array: any;
+  user: any;
   constructor() {
-      const holidayService = new HolidayService();
-      holidayService.listHolidays().then(res =>{
-        let data = res.data;
-        console.log("response : ", data);
-        this.array = data.rows;
-        console.log("Holidays List :" + this.array);
-      }).catch(err=>{
-        alert("can't load Holiday lists");
-      })
+    let userStr = localStorage.getItem("LOGGED_IN_USER");
+    this.user = userStr != null ? JSON.parse(userStr) : null;
+    const holidayService = new HolidayService();
+    holidayService.listHolidays().then(res => {
+      let data = res.data;
+      console.log("response : ", data);
+      this.array = data.rows;
+      console.log("Holidays List :" + this.array);
+    }).catch(err => {
+      alert("can't load Holiday lists");
+    })
   }
 
   ngOnInit(): void {
   }
-  month:any;
+  month: any;
 }

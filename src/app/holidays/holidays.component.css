@@ -1,0 +1,25 @@
+.add-holiday{
+    padding-left: 100px;
+    font-size: 16px;
+}
+
+label{
+    display: block;
+}
+
+.box-style{
+    height: 30px;
+    width: 200px;
+    font-size: 16px;
+    border: 2px solid rgb(195,195,195);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-style{
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 30px;
+    background-color: rgb(142, 26, 224);
+    border-radius: 5px;
+}

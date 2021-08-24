@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-sm-12" style="padding-left : 180px; padding-top : 10px;">
                 <h2 style="padding-left : 60px;">Sign In..</h2>
-                <form (ngSubmit)="login()">
+                <form [formGroup]="loginForm"  (ngSubmit)="login()">
                     <label for="username">Username</label>
-                    <input style=" width : 50%;" [(ngModel)]="username" name = "loginForm" type="text" class="box-style" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    <input style=" width : 50%;" formControlName="username" name = "loginForm" type="text" class="box-style" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     <label for="password">Password</label>
-                    <input style=" width : 50%;" [(ngModel)]="password" name = "loginForm" type="password" class="box-style" required>
+                    <input style=" width : 50%;" formControlName="password" name = "loginForm" type="password" class="box-style" required>
                     <label>User Role</label>
-                    <select class="box-style" style="width:50%;" [(ngModel)]="role" name = "loginForm" required>
+                    <select class="box-style" style="width:50%;" formControlName="role" name = "loginForm" required>
                         <option value="">--select--</option>
                         <option value="Employee">Employee</option>
                         <option value="HR">HR</option>

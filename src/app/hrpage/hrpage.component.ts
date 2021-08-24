@@ -84,7 +84,6 @@ export class HrpageComponent implements OnInit {
       console.log("failed");
       alert("Error-can't Update");
     });
-
   }
 
   leaveAvailabilityUpdate(from_Date: any, to_Date: any, leaveType: any, status: any, empId: any) {
@@ -94,7 +93,7 @@ export class HrpageComponent implements OnInit {
       let difference = toDate.getTime() - fromDate.getTime();
       let days = (difference / (1000 * 3600 * 24))+1;
       const availabilityCheckService = new AvailabilityCheckService();
-      let daysTaken = availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate,days);
+      let daysTaken = availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate,toDate,days);
       const data = {
         selector : {
           "empId" : empId

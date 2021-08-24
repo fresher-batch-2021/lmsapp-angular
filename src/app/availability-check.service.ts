@@ -23,7 +23,7 @@ export class AvailabilityCheckService {
 
   }
 
-  isOfficialHolidaysBetweenLeaveDays(fromDate: any, days: any) {
+  isOfficialHolidaysBetweenLeaveDays(fromDate: any,toDate:any, days: any) {
     let date = new Date(fromDate);
     let value = date.getDay();
     console.log("Day : " + value);
@@ -38,8 +38,38 @@ export class AvailabilityCheckService {
         value++;
       }
     }
+    let holidayList;
+    const holidayService = new HolidayService();
+    holidayService.listHolidays().then(res => {
+      holidayList = res.data.rows;
+      console.log("get all the holidays");
+      for(let holiday of holidayList){
+        if(this.isDateBetweenTwoDates(fromDate.split("-"),toDate.split("-"),holiday.doc.date.split("-"))){
+          leavedays--;
+        }
+      }
+    }).catch( err =>{
+      console.log("Failed to load Holidays");
+    })
+
     console.log("leavedays : " + leavedays);
     return leavedays;
+  }
+
+  isDateBetweenTwoDates(from: any, to: any, key: any) {
+
+    let fromDate = from[1] +'/'+ from[2] + '/' +from[0];
+    let toDate = to[1] + '/' + to[2] + '/' + to[0];  
+    let keyDate = key[1] + '/' + key[2] + '/' + key[0];
+    console.log(fromDate,toDate,keyDate);
+    let fDate = Date.parse(fromDate);
+    let lDate = Date.parse(toDate);
+    let kDate = Date.parse(keyDate);
+    console.log(fDate,lDate,kDate);
+    if ((kDate <= lDate && kDate >= fDate)) {
+      return true;
+    }
+    return false;
   }
 
   isLeaveAvailable(type: any, days: number) {
