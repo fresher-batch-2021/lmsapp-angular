@@ -41,7 +41,9 @@ export class RegisterComponent implements OnInit {
       validatorService.isVaildEmployeeId(this.empId, "Enter valid Employee ID");
       validatorService.isValidMobileNumber(this.mobileNumber, "Enter valid Mobile Number");
       validatorService.isValidEmail(this.emailAddress, "Enter valid Email adderss");
+      //validatorService.isValidUser(this.emailAddress, "This Email Already Exists");
       validatorService.isValidPassword(this.password, "Password must be 8 characters and contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
+      const userService = new UserService();
 
       let formData = {
         name: this.name,
@@ -52,9 +54,10 @@ export class RegisterComponent implements OnInit {
         password: this.password,
         status : "Waiting"
       }
-
-      const obj = new UserService();
-      obj.registration(formData).then(res => {
+      
+      
+      
+      userService.registration(formData).then(res => {
         let data = res.data;
         this.registerID = res.data.id;
         console.log("RegisterId : ", this.registerID);

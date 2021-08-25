@@ -1,6 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminauthGuard } from './adminauth.guard';
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
+import { AuthGuard } from './auth.guard';
 import { AvailableleaveComponent } from './availableleave/availableleave.component';
 import { DownloadFormComponent } from './download-form/download-form.component';
 import { EditleaveformComponent } from './editleaveform/editleaveform.component';
@@ -20,23 +22,23 @@ import { UseraccessComponent } from './useraccess/useraccess.component';
 import { UserlistComponent } from './userlist/userlist.component';
 
 const routes: Routes = [
-  {path:"home", component : HomeComponent},
+  {path:"home", component : HomeComponent, canActivate:[AuthGuard]},
   {path:"login", component : LoginComponent},
-  {path:"applyleave", component: ApplyleaveComponent},
+  {path:"applyleave", component: ApplyleaveComponent, canActivate:[AuthGuard]},
   {path:"register", component: RegisterComponent},
-  {path:"status", component:StatusComponent},
-  {path:"availableLeave", component: AvailableleaveComponent},
-  {path:"history", component: HistoryComponent},
-  {path:"history/editleaveform", component : EditleaveformComponent},
+  {path:"status", component:StatusComponent, canActivate:[AuthGuard]},
+  {path:"availableLeave", component: AvailableleaveComponent, canActivate:[AuthGuard]},
+  {path:"history", component: HistoryComponent, canActivate:[AuthGuard]},
+  {path:"history/editleaveform", component : EditleaveformComponent, canActivate:[AuthGuard]},
   {path:"upcoming", component: UpcomingLeaveComponent},
-  {path:"download", component: DownloadFormComponent},
-  {path:"hrmHome", component: HrmHomeComponent},
-  {path:"hrpage", component: HrpageComponent},
-  {path:"userRequest", component:UseraccessComponent},
+  {path:"download", component: DownloadFormComponent, canActivate:[AuthGuard]},
+  {path:"hrmHome", component: HrmHomeComponent, canActivate:[AdminauthGuard]},
+  {path:"hrpage", component: HrpageComponent, canActivate:[AdminauthGuard]},
+  {path:"userRequest", component:UseraccessComponent, canActivate:[AdminauthGuard]},
   {path:"holidays", component:HolidaysComponent},
-  {path:"sortforms", component: SortLeaveFormComponent},
-  {path:"leaveAnalysis", component: LeaveAnalysisComponent},
-  {path:"users", component: UserlistComponent},
+  {path:"sortforms", component: SortLeaveFormComponent, canActivate:[AdminauthGuard]},
+  {path:"leaveAnalysis", component: LeaveAnalysisComponent, canActivate:[AdminauthGuard]},
+  {path:"users", component: UserlistComponent, canActivate:[AdminauthGuard]},
   {path:"logout", component: LogoutComponent},
   {path:'', redirectTo:'login', pathMatch:'full'}
 ];

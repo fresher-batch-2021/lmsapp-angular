@@ -13,7 +13,7 @@ export class HrpageComponent implements OnInit {
   forms: any;
   userName: any;
   user:any;
-  option:any;
+  option:any = 'all';
   constructor() {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;

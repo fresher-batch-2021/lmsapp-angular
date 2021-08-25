@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserService } from './user-service';
 
 @Injectable({
   providedIn: 'root'
@@ -188,6 +189,33 @@ export class ValidatorService {
       console.log("valid email");
     }else{
       throw new Error(error);
+    }
+    
+  }
+
+  isValidUser(value: string , message: string){
+    let isExistData = {
+      selector : {
+        email : value
+      },
+      fields : ["name","email"]
+    };
+    let length = 0; 
+    const userService = new UserService();
+    let err = 0;
+    userService.checkAlreadyExists(isExistData).then(res =>{
+      length = res.data.docs.length;
+      console.log("length : ",res.data.docs.length);
+    }).catch(err =>{
+      console.log("Check Already Exists-Failed");
+    })
+    if(length == 0){
+      console.log("length : "+length)
+    }
+    else{
+      err = 1;
+      console.log("already Exists")
+      throw new Error(message);
     }
     
   }

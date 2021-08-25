@@ -34,4 +34,9 @@ export class UserService {
   deleteUser(id: string, rev: string){
     return axios.delete(this.url+"/"+id+"?rev="+rev, {headers: {'Authorization': this.basicAuth}})
   }
+
+  checkAlreadyExists(formData: { selector: { email: string;}; fields: string[]; }){
+    console.log(formData);
+    return axios.post(this.url+"/_find", formData, { headers: {'Authorization': this.basicAuth }})
+  }
 }
