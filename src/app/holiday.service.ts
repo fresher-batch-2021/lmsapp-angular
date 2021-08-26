@@ -15,4 +15,8 @@ export class HolidayService {
   listHolidays(){
     return axios.get(this.url+"/_all_docs?include_docs=true", { headers: {'Authorization': this.basicAuth }})
   }
+
+  addHoliday(data: any){
+    return axios.post(this.url, data, { headers: {'Authorization': this.basicAuth }})
+  }
 }

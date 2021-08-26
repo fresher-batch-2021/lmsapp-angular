@@ -76,17 +76,7 @@ export class ApplyleaveComponent implements OnInit {
     let user = userStr != null ? JSON.parse(userStr) : null;
     console.log("Name : ", user);
     const userId = user[0]._id;
-    const leaveFormObj = {
-      "name": user[0].name,
-      "id": userId,
-      "employeeId": user[0].empId,
-      "role": user[0].role,
-      "fromDate": this.fromDate,
-      "toDate": this.toDate,
-      "leaveType": this.type,
-      "reason": this.reason,
-      "status": "Pending"
-    }
+    
 
     try {
       const validatorService = new ValidatorService();
@@ -101,8 +91,21 @@ export class ApplyleaveComponent implements OnInit {
       validatorService.isEmpty(this.toDate, "To Date can't be empty");
       validatorService.isEmpty(this.type, "LeaveType can't be empty");
       validatorService.isEmpty(this.reason, "Reason can't be empty");
+      validatorService.isValidLeaveDays(this.fromDate,this.toDate);
       this.getLeaveAvailability(this.type, daysTaken);
       const serviceObj = new LeaveFormService;
+      const leaveFormObj = {
+        "name": user[0].name,
+        "id": userId,
+        "employeeId": user[0].empId,
+        "role": user[0].role,
+        "fromDate": this.fromDate,
+        "toDate": this.toDate,
+        "days": daysTaken,
+        "leaveType": this.type,
+        "reason": this.reason,
+        "status": "Pending"
+      }
       serviceObj.applyLeave(leaveFormObj).then(res => {
         let data = res.data;
         console.log("response : ", data);

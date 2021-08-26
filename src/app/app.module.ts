@@ -26,6 +26,9 @@ import { HolidaysComponent } from './holidays/holidays.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { SearchPipe } from './search.pipe';
 import { ChartsModule } from 'ng2-charts';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import { ChartsModule } from 'ng2-charts';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({positionClass: "toast-top-center"})
   ],
   providers: [],
   bootstrap: [AppComponent]

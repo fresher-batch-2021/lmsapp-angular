@@ -1,3 +1,4 @@
+@import '~ngx-toastr/toastr';
 
 .div{
     background-image: url(./assets/images/register.jpg);

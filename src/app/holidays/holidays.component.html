@@ -1,20 +1,22 @@
 <app-hrmheader></app-hrmheader>
-<div class = "row">
-    <div class = "col-sm-8">
+<div class="row">
+    <div class="col-sm-8">
         <app-upcoming-leave></app-upcoming-leave>
     </div>
-    <div class = "col-sm-4 add-holiday">
+    <div class="col-sm-4 add-holiday">
         <h3>Add Leaves</h3>
-        <div>
-            <label for="date">Leave Date</label>
-            <input type="date" class = "box-style" name="leaveDate" id="leaveDate">
-        </div>
-        <div>
-            <label for="Day">Leave Day</label>
-            <input type="text" class = "box-style" name="leaveDay" id="leaveDay"> 
-        </div>
-        <div>
-            <input type="submit" class = "btn-style" value="Add To Holidays">
-        </div>
+        <form (ngSubmit)="addLeave()">
+            <div>
+                <label for="date">Leave Date</label>
+                <input type="date" class="box-style" [(ngModel)] = "leaveDate" name="leaveDate" id="leaveDate">
+            </div>
+            <div>
+                <label for="Day">Leave Day</label>
+                <input type="text" class="box-style" [(ngModel)] = "leaveDescription" name="leaveDay" id="leaveDay">
+            </div>
+            <div>
+                <input type="submit" class="btn-style" value="Add To Holidays">
+            </div>
+        </form>
     </div>
 </div>

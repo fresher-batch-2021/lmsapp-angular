@@ -220,4 +220,27 @@ export class ValidatorService {
     
   }
 
+  isValidLeaveDays(from: string | number | Date,to: string | number | Date){
+    let fromDate = new Date(from);
+    let toDate = new Date(to);
+    let today = new Date();
+    let fDate = fromDate.getMonth()+"/"+fromDate.getDate()+"/"+fromDate.getFullYear();
+    let tDate = toDate.getMonth()+"/"+toDate.getDate()+"/"+toDate.getFullYear();
+    let tDay = today.getMonth()+"/"+today.getDate()+"/"+today.getFullYear();
+
+    if(Date.parse(fDate) <= Date.parse(tDate)){
+      console.log("Valid Leave Days");
+    }
+    else{
+      throw new Error("Please Select valid Dates");
+    }
+
+    if(Date.parse(tDay) <= Date.parse(fDate)){
+      console.log("Valid From Date");
+    }
+    else{
+      throw new Error("Please select Upcoming days");
+    }
+  }
+
 }
