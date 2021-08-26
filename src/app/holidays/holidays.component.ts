@@ -56,7 +56,7 @@ export class HolidaysComponent implements OnInit {
         this.toastr.error("Failed to Add");
       })
     } catch (err) {
-
+      this.toastr.warning(err.message);
     }
   }
 

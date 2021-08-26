@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { LeaveAnalysisComponent } from '../leave-analysis/leave-analysis.component';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { UserService } from '../user-service';
@@ -11,7 +12,7 @@ import { ValidatorService } from '../validator.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -62,7 +63,7 @@ export class RegisterComponent implements OnInit {
         this.registerID = res.data.id;
         console.log("RegisterId : ", this.registerID);
         console.log("response : ", data);
-        alert("Registered Successffully... Your Registration in Progress");
+        this.toastr.success("Registered Successffully... Your Registration in Progress");
         window.location.href = "/login";
       }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;
@@ -71,7 +72,7 @@ export class RegisterComponent implements OnInit {
       });
 
     } catch (error) {
-      alert(error.message);
+      this.toastr.warning(error.message);
     }
 
   }
