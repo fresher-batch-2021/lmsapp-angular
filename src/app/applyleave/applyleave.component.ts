@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AvailabilityCheckService } from '../availability-check.service';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
@@ -16,7 +17,8 @@ export class ApplyleaveComponent implements OnInit {
   eId: any;
   forms: any;
   availableLeaveCount: any;
-  constructor(private availabilityCheckService: AvailabilityCheckService) {
+  constructor(private availabilityCheckService: AvailabilityCheckService,
+    private toastr: ToastrService) {
     console.log(this.user[0].empId);
     this.eId = this.user[0].empId;
     const leaveAvailabilityObj = new LeaveAvailabilityService();
@@ -76,7 +78,7 @@ export class ApplyleaveComponent implements OnInit {
     let user = userStr != null ? JSON.parse(userStr) : null;
     console.log("Name : ", user);
     const userId = user[0]._id;
-    
+
 
     try {
       const validatorService = new ValidatorService();
@@ -91,7 +93,7 @@ export class ApplyleaveComponent implements OnInit {
       validatorService.isEmpty(this.toDate, "To Date can't be empty");
       validatorService.isEmpty(this.type, "LeaveType can't be empty");
       validatorService.isEmpty(this.reason, "Reason can't be empty");
-      validatorService.isValidLeaveDays(this.fromDate,this.toDate);
+      validatorService.isValidLeaveDays(this.fromDate, this.toDate);
       this.getLeaveAvailability(this.type, daysTaken);
       const serviceObj = new LeaveFormService;
       const leaveFormObj = {
@@ -119,7 +121,7 @@ export class ApplyleaveComponent implements OnInit {
 
     } catch (err) {
       console.log(err);
-      alert(err.message);
+      this.toastr.error(err.message);
     }
   }
 

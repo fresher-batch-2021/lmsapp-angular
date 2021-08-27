@@ -51,15 +51,15 @@ export class LeaveAnalysisComponent implements OnInit {
 
     for (let forms of this.leaveForms) {
       if (forms.doc.role == "UI/UX" && forms.doc.status == "Approved") {
-        uxTeam++;
+        uxTeam+=parseInt(forms.doc.days);
       } else if (forms.doc.role == "Backend Dev" && forms.doc.status == "Approved") {
-        beTeam++;
+        beTeam+=parseInt(forms.doc.days);
       } else if (forms.doc.role == "FullStack Dev" && forms.doc.status == "Approved") {
-        fsTeam++;
+        fsTeam+=parseInt(forms.doc.days);
       } else if (forms.doc.role == "Data Administration" && forms.doc.status == "Approved") {
-        dbTeam++;
+        dbTeam+=parseInt(forms.doc.days);
       } else if (forms.doc.role == "Admin" && forms.doc.status == "Approved") {
-        adminTeam++;
+        adminTeam+=parseInt(forms.doc.days);
       }
     }
     console.log("UI/UX : " + uxTeam);

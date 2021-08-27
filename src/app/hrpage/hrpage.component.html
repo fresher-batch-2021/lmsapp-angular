@@ -9,8 +9,8 @@
             <input type="radio" name="radioButton" (click) = "sortForms('Pending')" id="pending">Pending Forms &numsp;
             <input type="radio" name="radioButton" (click) = "sortForms('Approved')" id="approve">Approved Forms &numsp;
             <input type="radio" name="radioButton" (click) = "sortForms('Declined')" id="decline">Declined Forms &numsp;
-            <div *ngFor="let form of forms">
-                <div class="application-form" *ngIf="form.doc.status == option || option == 'all'">
+            <div *ngFor="let form of searchResults">
+                <div class="application-form">
                     <div class="row">
                         <div class="col-sm-4">
                             <label>Name : {{form.doc.name}}-{{form.doc.employeeId}}</label><br />
@@ -24,17 +24,17 @@
                         </div>
                         <div class="col-sm-4" style="text-align: center;">
                             <input type="submit" class="btn1-style" *ngIf="form.doc.status == 'Pending'"
-                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.role,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,form.doc.name,'Approved')"
+                                (click)="statusUpdate(form,'Approved')"
                                 value="Approve"><br />
                             <input type="submit" class="btn2-style" *ngIf="form.doc.status == 'Pending'"
-                                (click)="statusUpdate(form.doc._id,form.doc._rev,form.doc.id,form.doc.employeeId,form.doc.role,form.doc.fromDate,form.doc.toDate,form.doc.leaveType,form.doc.reason,form.doc.name,'Declined')"
+                                (click)="statusUpdate(form,'Declined')"
                                 value="Decline">
                         </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf = "forms.length == 0">
-                <label>No Leave forms</label>
+            <div *ngIf = "searchResults.length == 0">
+                <label class = "label-style">No Leave forms</label>
             </div>
         </div>
     </main>
