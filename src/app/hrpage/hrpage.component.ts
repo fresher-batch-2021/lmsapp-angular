@@ -77,7 +77,14 @@ export class HrpageComponent implements OnInit {
       console.log("response : ", data);
       console.log("success");
       alert(" statusUpdate called Successfully !");
-      this.leaveAvailabilityUpdate(form.doc.fromDate, form.doc.toDate, form.doc.leaveType, status, form.doc.empid);
+      const availabilityData = {
+        'from_Date': form.doc.fromDate,
+        'to_Date': form.doc.toDate,
+        'leaveType': form.doc.leaveType,
+        'status' : status,
+        'empId' : form.doc.empId
+      }
+      this.leaveAvailabilityUpdate(availabilityData);
       this.loadForms();
     }).catch(err => {
       //let errorMessage = err.response.data.errorMessage;
@@ -87,17 +94,17 @@ export class HrpageComponent implements OnInit {
     });
   }
 
-  leaveAvailabilityUpdate(from_Date: any, to_Date: any, leaveType: any, status: any, empId: any) {
-    if (status === "Approved") {
-      let fromDate = new Date(from_Date);
-      let toDate = new Date(to_Date);
+  leaveAvailabilityUpdate(datas: { from_Date: any; to_Date: any; leaveType: any; status: any; empId: any; }) {
+    if (datas.status === "Approved") {
+      let fromDate = new Date(datas.from_Date);
+      let toDate = new Date(datas.to_Date);
       let difference = toDate.getTime() - fromDate.getTime();
       let days = (difference / (1000 * 3600 * 24)) + 1;
       const availabilityCheckService = new AvailabilityCheckService();
       let daysTaken = availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate, toDate, days);
       const data = {
         selector: {
-          "empId": empId
+          "empId": datas.empId
         },
         fields: ["_id", "_rev", "total", "sickLeave", "casualLeave", "earnedLeave", "empId", "email"]
       }
@@ -110,7 +117,19 @@ export class HrpageComponent implements OnInit {
         leaveCount = data.docs;
         console.log("Leave Availability list :", leaveCount);
         console.log("success");
-        this.leaveUpdate(data.docs[0]._id, data.docs[0]._rev, data.docs[0].total, data.docs[0].sickLeave, data.docs[0].casualLeave, data.docs[0].earnedLeave, data.docs[0].empId, data.docs[0].email, daysTaken, leaveType);
+        const leaveUpdateData = {
+          'id' : data.docs[0]._id,
+          'rev' : data.docs[0]._rev,
+          'total' : data.docs[0].total,
+          'sickLeave' : data.docs[0].sickLeave,
+          'casualLeave' : data.docs[0].casualLeave,
+          'earnedLeave' : data.docs[0].earnedLeave,
+          'empId' : data.docs[0].empId,
+          'email' : data.docs[0].email,
+          'daysTaken' : daysTaken,
+          'leaveType' : datas.leaveType
+        }
+        this.leaveUpdate(leaveUpdateData);
       }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;
         //console.error(errorMessage);
@@ -120,47 +139,46 @@ export class HrpageComponent implements OnInit {
 
     }
   }
-  leaveUpdate(id: any, rev: any, total: any, sickLeave: any, casualLeave: any, earnedLeave: any, empId: any, email: any, days: any, leaveType: any) {
-    if (leaveType === "sickLeave") {
-      console.log("leave : " + total, sickLeave, casualLeave, earnedLeave);
-      sickLeave -= days;
-      casualLeave = casualLeave;
-      earnedLeave = earnedLeave;
-      total -= days;
-      console.log("leave : " + total, sickLeave, casualLeave, earnedLeave);
+  leaveUpdate(datas: { id: any; rev: any; total: any; sickLeave: any; casualLeave: any; earnedLeave: any; empId: any; email: any; daysTaken: any; leaveType: any; }) {
+    if (datas.leaveType === "sickLeave") {
+      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
+      datas.sickLeave -= datas.daysTaken;
+      datas.casualLeave = datas.casualLeave;
+      datas.earnedLeave = datas.earnedLeave;
+      datas.total -= datas.daysTaken;
+      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
-    else if (leaveType === "casualLeave") {
-      console.log("leave : " + total, sickLeave, casualLeave, earnedLeave);
-      casualLeave -= days;
-      sickLeave = sickLeave;
-      earnedLeave = earnedLeave;
-      total -= days;
-      console.log("leave : " + total, sickLeave, casualLeave, earnedLeave);
+    else if (datas.leaveType === "casualLeave") {
+      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
+      datas.casualLeave -= datas.daysTaken;
+      datas.sickLeave = datas.sickLeave;
+      datas.earnedLeave = datas.earnedLeave;
+      datas.total -= datas.daysTaken;
+      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
-    else if (leaveType === "earnedLeave") {
-      console.log("leave : " + total, sickLeave, casualLeave, earnedLeave);
-      earnedLeave -= days;
-      sickLeave = sickLeave;
-      casualLeave = casualLeave;
-      total -= days;
-      console.log("leave : " + total, sickLeave, casualLeave, earnedLeave);
+    else if (datas.leaveType === "earnedLeave") {
+      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
+      datas.earnedLeave -= datas.daysTaken;
+      datas.sickLeave = datas.sickLeave;
+      datas.casualLeave = datas.casualLeave;
+      datas.total -= datas.daysTaken;
+      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
     const updateddata = {
-      "id": id,
-      "total": total,
-      "sickLeave": sickLeave,
-      "casualLeave": casualLeave,
-      "earnedLeave": earnedLeave,
-      "empId": empId,
-      "email": email
+      "id": datas.id,
+      "total": datas.total,
+      "sickLeave": datas.sickLeave,
+      "casualLeave": datas.casualLeave,
+      "earnedLeave": datas.earnedLeave,
+      "empId": datas.empId,
+      "email": datas.email
     }
     console.log("updatedData : " + updateddata.casualLeave, updateddata.sickLeave, updateddata.earnedLeave);
     const leaveAvailabilityService = new LeaveAvailabilityService();
-    leaveAvailabilityService.updateLeaveAvailability(updateddata, rev, id).then(res => {
+    leaveAvailabilityService.updateLeaveAvailability(updateddata, datas.rev, datas.id).then(res => {
       let data = res.data;
       console.log("response : ", data);
       console.log("leaveAvailability Update success");
-      //this.leaveUpdate(data.docs[0]._id,data.docs[0]._rev,data.docs[0].total,data.docs[0].sl,data.docs[0].cl,data.docs[0].el,data.docs[0].empId,data.docs[0].email,days,leaveType);
     }).catch(err => {
       //let errorMessage = err.response.data.errorMessage;
       //console.error(errorMessage);

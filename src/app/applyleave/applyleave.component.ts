@@ -79,7 +79,6 @@ export class ApplyleaveComponent implements OnInit {
     console.log("Name : ", user);
     const userId = user[0]._id;
 
-
     try {
       const validatorService = new ValidatorService();
       const isLeaveAvailableService = new AvailabilityCheckService();
