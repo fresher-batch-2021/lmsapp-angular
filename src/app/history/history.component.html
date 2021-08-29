@@ -17,6 +17,7 @@
                     <th scope="col">Type</th>
                     <th scope="col">Reason</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Remarks</th>
                     <th scope="col">Options</th>
                     <!-- <th scope="col">Download</th> -->
                 </tr>
@@ -29,7 +30,8 @@
                             <td>{{history.doc.leaveType}}</td>
                             <td>{{history.doc.reason}}</td>
                             <td>{{history.doc.status}}</td>
-                            <td *ngIf = "history.doc.status == 'Pending'"><a (click)="leaveform(history.doc._id,history.doc._rev)">Edit</a></td>
+                            <td>{{history.doc.remarks}}</td>
+                            <td *ngIf = "history.doc.status == 'Pending'"><a (click)="leaveform(history.doc._id,history.doc._rev)">Cancel</a></td>
                             <td *ngIf = "history.doc.status != 'Pending'"><a (click)="downloadForm(history.doc._id)">Download</a></td>
                         </tr>
                 </tbody>

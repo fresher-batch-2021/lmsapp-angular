@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ApplyleaveComponent } from '../applyleave/applyleave.component';
 import { AvailabilityCheckService } from '../availability-check.service';
 import { LeaveAvailabilityService } from '../leave-availability.service';
@@ -15,7 +16,7 @@ export class HrpageComponent implements OnInit {
   user: any;
   searchResults: any;
   option: any = 'all';
-  constructor() {
+  constructor(private toastr: ToastrService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
     this.userName = this.user[0].name;
@@ -54,44 +55,74 @@ export class HrpageComponent implements OnInit {
       //let errorMessage = err.response.data.errorMessage;
       //console.error(errorMessage);
       console.log("failed");
-      alert("Error-Can't Load");
+      this.toastr.error("Error-Can't Load");
     });
   }
 
-  statusUpdate(form: any,status: any) {
-    const updatedForm = {
-      "id": form.doc.eid,
-      "name": form.doc.name,
-      "employeeId": form.doc.empid,
-      "role": form.doc.role,
-      "days": form.doc.days,
-      "fromDate": form.doc.fromDate,
-      "toDate": form.doc.toDate,
-      "leaveType": form.doc.leaveType,
-      "reason": form.doc.reason,
-      "status": status
-    }
-    const serviceObj = new LeaveFormService();
-    serviceObj.updateLeaveStatus(updatedForm, form.doc.id, form.doc.rev).then(res => {
-      let data = res.data;
-      console.log("response : ", data);
-      console.log("success");
-      alert(" statusUpdate called Successfully !");
-      const availabilityData = {
-        'from_Date': form.doc.fromDate,
-        'to_Date': form.doc.toDate,
-        'leaveType': form.doc.leaveType,
-        'status' : status,
-        'empId' : form.doc.empId
+  statusUpdate(form: any, status: any) {
+
+    if (status == "Approved") {
+      const updatedForm = {
+        "name": form.doc.name,
+        "employeeId": form.doc.employeeId,
+        "role": form.doc.role,
+        "days": form.doc.days,
+        "fromDate": form.doc.fromDate,
+        "toDate": form.doc.toDate,
+        "leaveType": form.doc.leaveType,
+        "reason": form.doc.reason,
+        "status": status,
+        "remarks" : "Approved"
       }
-      this.leaveAvailabilityUpdate(availabilityData);
-      this.loadForms();
-    }).catch(err => {
-      //let errorMessage = err.response.data.errorMessage;
-      //console.error(errorMessage);
-      console.log("failed");
-      alert("Error-can't Update");
-    });
+      const serviceObj = new LeaveFormService();
+      serviceObj.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).then(res => {
+        let data = res.data;
+        console.log("response : ", data);
+        console.log("success");
+        this.toastr.success("Status Updated!");
+        const availabilityData = {
+          'from_Date': form.doc.fromDate,
+          'to_Date': form.doc.toDate,
+          'leaveType': form.doc.leaveType,
+          'status': status,
+          'empId': form.doc.empId
+        }
+        this.leaveAvailabilityUpdate(availabilityData);
+        this.loadForms();
+
+      }).catch(err => {
+        //let errorMessage = err.response.data.errorMessage;
+        //console.error(errorMessage);
+        console.log("failed");
+        this.toastr.success("Error-can't Update");
+      });
+    }else{
+      let reason = prompt("Enter Reason");
+      console.log(reason);
+      const updatedForm = {
+        "name": form.doc.name,
+        "employeeId": form.doc.employeeId,
+        "role": form.doc.role,
+        "days": form.doc.days,
+        "fromDate": form.doc.fromDate,
+        "toDate": form.doc.toDate,
+        "leaveType": form.doc.leaveType,
+        "reason": form.doc.reason,
+        "status": status,
+        "remarks" : reason
+      }
+      const serviceObj = new LeaveFormService();
+      serviceObj.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).then(res => {
+        let data = res.data;
+        console.log("response : ", data);
+        console.log("success");
+        this.toastr.success("Updated!!");
+        this.loadForms();
+      }).catch(err => {
+        console.log("failed");
+        this.toastr.error("Error-can't Update");
+      });
+    }
   }
 
   leaveAvailabilityUpdate(datas: { from_Date: any; to_Date: any; leaveType: any; status: any; empId: any; }) {
@@ -118,16 +149,16 @@ export class HrpageComponent implements OnInit {
         console.log("Leave Availability list :", leaveCount);
         console.log("success");
         const leaveUpdateData = {
-          'id' : data.docs[0]._id,
-          'rev' : data.docs[0]._rev,
-          'total' : data.docs[0].total,
-          'sickLeave' : data.docs[0].sickLeave,
-          'casualLeave' : data.docs[0].casualLeave,
-          'earnedLeave' : data.docs[0].earnedLeave,
-          'empId' : data.docs[0].empId,
-          'email' : data.docs[0].email,
-          'daysTaken' : daysTaken,
-          'leaveType' : datas.leaveType
+          'id': data.docs[0]._id,
+          'rev': data.docs[0]._rev,
+          'total': data.docs[0].total,
+          'sickLeave': data.docs[0].sickLeave,
+          'casualLeave': data.docs[0].casualLeave,
+          'earnedLeave': data.docs[0].earnedLeave,
+          'empId': data.docs[0].empId,
+          'email': data.docs[0].email,
+          'daysTaken': daysTaken,
+          'leaveType': datas.leaveType
         }
         this.leaveUpdate(leaveUpdateData);
       }).catch(err => {

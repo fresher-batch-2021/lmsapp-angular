@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
+import { ToastrService } from 'ngx-toastr';
 import { LeaveFormService } from '../leave-form.service';
 
 @Component({
@@ -36,11 +36,11 @@ export class HistoryComponent implements OnInit {
 leaveform(id : string, rev : string)
 {
     const leaveFormService = new LeaveFormService();
-    leaveFormService.deleteLeave(id,rev).then(res=>{
+    leaveFormService.deleteLeave(id,rev).then(res => {
         console.log(res.data);
         this.toastr.success("Leave Application Removed");
         window.location.reload();
-    }).catch(err =>{
+    }).catch(err => {
         console.log(err.data);
         this.toastr.error("Failed");
     })

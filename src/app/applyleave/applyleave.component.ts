@@ -97,7 +97,6 @@ export class ApplyleaveComponent implements OnInit {
       const serviceObj = new LeaveFormService;
       const leaveFormObj = {
         "name": user[0].name,
-        "id": userId,
         "employeeId": user[0].empId,
         "role": user[0].role,
         "fromDate": this.fromDate,
@@ -105,7 +104,8 @@ export class ApplyleaveComponent implements OnInit {
         "days": daysTaken,
         "leaveType": this.type,
         "reason": this.reason,
-        "status": "Pending"
+        "status": "Pending",
+        "remarks" :""
       }
       serviceObj.applyLeave(leaveFormObj).then(res => {
         let data = res.data;
