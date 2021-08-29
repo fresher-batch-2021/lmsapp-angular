@@ -20,7 +20,8 @@ export class UserlistComponent implements OnInit {
     serviceObj.listUsers().then(res => {
       let data = res.data;
       console.log("response : ", data);
-      this.users = data.rows;
+      let userList = data.rows;
+      this.users = userList.filter((obj: any) => obj.doc.status == 'Accepted');
       console.log("table list :", this.users);
       console.log("success");
     }).catch(err => {

@@ -39,4 +39,8 @@ export class UserService {
     console.log(formData);
     return axios.post(this.url+"/_find", formData, { headers: {'Authorization': this.basicAuth }})
   }
+
+  checkEmpIdAlreadyExists(data: { selector: { empId: string; }; fields: string[]; }){
+    return axios.post(this.url+"/_find", data, { headers: {'Authorization': this.basicAuth }})
+  }
 }

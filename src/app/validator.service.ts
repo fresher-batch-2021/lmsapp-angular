@@ -5,8 +5,54 @@ import { UserService } from './user-service';
   providedIn: 'root'
 })
 export class ValidatorService {
+  empIdCount:number = 0;
+  emailCount:number = 0;
+  constructor() { 
+    
+  }
 
-  constructor() { }
+  isEmpIdAlreadyExists(value: any){
+    const userService = new UserService();
+    userService.listUsers().then(res =>{
+      console.log(res.data.rows);
+      let activeUsers = res.data.rows;
+      for(let user of activeUsers){
+        if(user.doc.empId == value){
+          console.log("wmpId")
+          this.empIdCount++;
+        }
+      }
+    }) 
+  }
+
+  isEmailAlreadyExists(value: any){
+    let count = 0;
+    const userService = new UserService();
+    userService.listUsers().then(res =>{
+      console.log(res.data.rows);
+      let activeUsers = res.data.rows;
+      for(let user of activeUsers){
+        if(user.doc.email == value){
+          console.log("email")
+          this.emailCount++;
+        }
+      }
+    })
+  }
+
+  isEmailExists(message: string | undefined){
+    console.log(this.emailCount);
+    if(this.emailCount != 0){
+      throw new Error(message);    
+    }
+  }
+
+  isEmpIdExists(message: string){
+    console.log(this.empIdCount);
+    if(this.empIdCount != 0){
+      throw new Error(message);    
+    }
+  }
 
   isEmpty(value: any, errorMessage: any) {
     if (value == null || value.trim() == "" || value == undefined) {

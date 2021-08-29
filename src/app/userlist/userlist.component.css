@@ -33,3 +33,7 @@ th{
 tr:nth-child(even){
     background-color: rgb(128, 128, 173);
 }
+table{
+    width: 90%;
+    margin: 0 auto;
+}

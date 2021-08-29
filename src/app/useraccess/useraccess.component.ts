@@ -20,7 +20,8 @@ export class UseraccessComponent implements OnInit {
     serviceObj.listUsers().then(res => {
       let data = res.data;
       console.log("response : ", data);
-      this.requests = data.rows;
+      let request = data.rows;
+      this.requests = request.filter((obj: any) => obj.doc.status == 'Waiting');
       console.log("table list :", this.requests);
       console.log("success");
     }).catch(err => {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
 import { LeaveFormService } from '../leave-form.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { LeaveFormService } from '../leave-form.service';
 export class HistoryComponent implements OnInit {
     forms : any;
     empId : any;
-  constructor() {
+  constructor(private toastr: ToastrService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     let user = userStr != null ? JSON.parse(userStr):null;
     this.empId = user[0].empId;
@@ -24,7 +25,7 @@ export class HistoryComponent implements OnInit {
     }).catch(err => {
         //let errorMessage = err.response.data.errorMessage;
         //console.error(errorMessage);
-        console.log("failed");
+        console.log(err.data);
         alert("Error-Can't Load");
     });
    }
@@ -32,43 +33,20 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  historyDetails = [
-    {
-        sno : 1,
-        date : "09-08-2021",
-        type : "Casual Leave",
-        reason : "Function",
-        status : "Pending"
-    },
-    {
-        sno : 2,
-        date : "02-08-2021",
-        type : "Sick Leave",
-        reason : "Fever",
-        status : "Approved"
-    },
-    {
-        sno : 3,
-        date : "26-07-2021",
-        type : "Casual Leave",
-        reason : "Personal",
-        status : "Approved"
-    },
-    {
-        sno : 4,
-        date : "08-07-2021",
-        type : "Casual Leave",
-        reason : "birthday Party",
-        status : "Declined"
-    },
-];
-leaveform(sno : number)
+leaveform(id : string, rev : string)
 {
-    console.log("sno", sno);
-    window.location.href = "history/editleaveform?val="+sno;
+    const leaveFormService = new LeaveFormService();
+    leaveFormService.deleteLeave(id,rev).then(res=>{
+        console.log(res.data);
+        this.toastr.success("Leave Application Removed");
+        window.location.reload();
+    }).catch(err =>{
+        console.log(err.data);
+        this.toastr.error("Failed");
+    })
 }
-downloadForm(sno:number){
-    window.location.href = "/download?val="+sno;
+downloadForm(id:string){
+    window.location.href = "/download?val="+id;
 }
 
 }

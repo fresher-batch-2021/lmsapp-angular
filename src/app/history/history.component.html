@@ -29,7 +29,7 @@
                             <td>{{history.doc.leaveType}}</td>
                             <td>{{history.doc.reason}}</td>
                             <td>{{history.doc.status}}</td>
-                            <td *ngIf = "history.doc.status == 'Pending'"><a (click)="leaveform(history.doc._id)">Edit</a></td>
+                            <td *ngIf = "history.doc.status == 'Pending'"><a (click)="leaveform(history.doc._id,history.doc._rev)">Edit</a></td>
                             <td *ngIf = "history.doc.status != 'Pending'"><a (click)="downloadForm(history.doc._id)">Download</a></td>
                         </tr>
                 </tbody>
