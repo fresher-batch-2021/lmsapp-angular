@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ApplyleaveComponent } from '../applyleave/applyleave.component';
 import { AvailabilityCheckService } from '../availability-check.service';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
@@ -52,8 +51,6 @@ export class HrpageComponent implements OnInit {
       console.log("table list :", this.forms);
       console.log("success");
     }).catch(err => {
-      //let errorMessage = err.response.data.errorMessage;
-      //console.error(errorMessage);
       console.log("failed");
       this.toastr.error("Error-Can't Load");
     });
@@ -91,8 +88,6 @@ export class HrpageComponent implements OnInit {
         this.loadForms();
 
       }).catch(err => {
-        //let errorMessage = err.response.data.errorMessage;
-        //console.error(errorMessage);
         console.log("failed");
         this.toastr.success("Error-can't Update");
       });
@@ -162,8 +157,6 @@ export class HrpageComponent implements OnInit {
         }
         this.leaveUpdate(leaveUpdateData);
       }).catch(err => {
-        //let errorMessage = err.response.data.errorMessage;
-        //console.error(errorMessage);
         console.log("failed");
         alert("Error-Can't Load - get leaveAvailability for Updation");
       });
@@ -174,24 +167,18 @@ export class HrpageComponent implements OnInit {
     if (datas.leaveType === "sickLeave") {
       console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
       datas.sickLeave -= datas.daysTaken;
-      datas.casualLeave = datas.casualLeave;
-      datas.earnedLeave = datas.earnedLeave;
       datas.total -= datas.daysTaken;
       console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
     else if (datas.leaveType === "casualLeave") {
       console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
       datas.casualLeave -= datas.daysTaken;
-      datas.sickLeave = datas.sickLeave;
-      datas.earnedLeave = datas.earnedLeave;
       datas.total -= datas.daysTaken;
       console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
     else if (datas.leaveType === "earnedLeave") {
       console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
       datas.earnedLeave -= datas.daysTaken;
-      datas.sickLeave = datas.sickLeave;
-      datas.casualLeave = datas.casualLeave;
       datas.total -= datas.daysTaken;
       console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
@@ -211,8 +198,6 @@ export class HrpageComponent implements OnInit {
       console.log("response : ", data);
       console.log("leaveAvailability Update success");
     }).catch(err => {
-      //let errorMessage = err.response.data.errorMessage;
-      //console.error(errorMessage);
       console.log("failed");
       alert("Error-Can't Load");
     });

@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
       role: new FormControl('', [Validators.required])
     })
   }
-
   ngOnInit(): void {
   }
 
@@ -68,8 +67,6 @@ export class LoginComponent implements OnInit {
           this.toastr.warning("Invalid Role defined")
         }
       }).catch(err => {
-        //let errorMessage = err.response.data.errorMessage;
-        //console.error(errorMessage);
         this.toastr.error("Error - Invalid Credentials");
       });
     } catch (err) {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { LeaveFormService } from '../leave-form.service';
 
 @Component({
@@ -27,8 +26,6 @@ export class EditleaveformComponent implements OnInit {
         console.log("available list :");
         console.log("success");
     }).catch(err => {
-        //let errorMessage = err.response.data.errorMessage;
-        //console.error(errorMessage);
         console.log("failed");
         alert("Error-Unable to retrive");
     });

@@ -17,8 +17,7 @@ export class ApplyleaveComponent implements OnInit {
   eId: any;
   forms: any;
   availableLeaveCount: any;
-  constructor(private availabilityCheckService: AvailabilityCheckService,
-    private toastr: ToastrService) {
+  constructor(private toastr: ToastrService) {
     console.log(this.user[0].empId);
     this.eId = this.user[0].empId;
     const leaveAvailabilityObj = new LeaveAvailabilityService();

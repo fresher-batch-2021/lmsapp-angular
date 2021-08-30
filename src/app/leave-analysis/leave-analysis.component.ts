@@ -23,9 +23,6 @@ export class LeaveAnalysisComponent implements OnInit {
   ];
 
   leaveForms: any;
-  constructor() {
-
-  }
 
   ngOnInit(): void {
     this.loadDatas();
