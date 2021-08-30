@@ -81,7 +81,6 @@ export class AvailabilityCheckService {
       this.forms = data.rows;
       console.log("rows : ", this.forms);
       console.log("doc : "+this.forms.doc);
-      //console.log("table list :", this.forms);
       console.log("success");
     }).catch(err => {
       console.log("failed");

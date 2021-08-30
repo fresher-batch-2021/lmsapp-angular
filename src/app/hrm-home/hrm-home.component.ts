@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HrmHomeComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
 

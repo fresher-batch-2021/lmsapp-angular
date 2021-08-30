@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { LeaveAnalysisComponent } from '../leave-analysis/leave-analysis.component';
-import { LeaveAvailabilityService } from '../leave-availability.service';
 import { UserService } from '../user-service';
 import { ValidatorService } from '../validator.service';
 
@@ -76,8 +74,7 @@ export class RegisterComponent implements OnInit {
                 this.toastr.success("Registered Successffully... Your Registration in Progress");
                 window.location.href = "/login";
               }).catch(err => {
-                //let errorMessage = err.response.data.errorMessage;
-                //console.error(errorMessage);
+                console.log(err.data);
                 alert("Error - unable to Register");
               });
             } else {

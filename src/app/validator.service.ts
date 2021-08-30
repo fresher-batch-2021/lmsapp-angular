@@ -7,9 +7,6 @@ import { UserService } from './user-service';
 export class ValidatorService {
   empIdCount:number = 0;
   emailCount:number = 0;
-  constructor() { 
-    
-  }
 
   isEmpIdAlreadyExists(value: any){
     const userService = new UserService();

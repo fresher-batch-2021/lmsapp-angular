@@ -6,7 +6,7 @@ import axios from 'axios';
 })
 export class LeaveAvailabilityService {
 
-  constructor() { }
+  
   dbUsername = "apikey-v2-112mfjkmfy0vbc1cwfx61kckru87k40qr1lnztxypzbg";
   dbPassword = "28cadd4e1a6e2edf67df43007bae28dc";
   basicAuth = "Basic " + btoa(this.dbUsername + ":" + this.dbPassword);

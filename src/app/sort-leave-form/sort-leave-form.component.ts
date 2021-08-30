@@ -19,8 +19,6 @@ export class SortLeaveFormComponent implements OnInit {
       console.log("Leave list :", this.forms);
       console.log("success");
     }).catch(err => {
-      //let errorMessage = err.response.data.errorMessage;
-      //console.error(errorMessage);
       console.log("failed");
       alert("Error-Can't Load");
     });
@@ -42,9 +40,6 @@ export class SortLeaveFormComponent implements OnInit {
         let fromDateArray = form.doc.fromDate.split('-');
         let toDateArray = form.doc.toDate.split('-');
         let todayArray = this.date.split('-');
-        // fromDateArray.reverse();
-        // toDateArray.reverse();
-        // todayArray.reverse();
         const cheackAvailability = new AvailabilityCheckService();
         if (cheackAvailability.isDateBetweenTwoDates(fromDateArray,toDateArray,todayArray)) {
           const result = {

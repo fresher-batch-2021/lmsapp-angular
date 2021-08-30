@@ -51,7 +51,7 @@ export class HrpageComponent implements OnInit {
       console.log("table list :", this.forms);
       console.log("success");
     }).catch(err => {
-      console.log("failed");
+      console.log(err.data);
       this.toastr.error("Error-Can't Load");
     });
   }
@@ -88,7 +88,7 @@ export class HrpageComponent implements OnInit {
         this.loadForms();
 
       }).catch(err => {
-        console.log("failed");
+        console.log(err.data);
         this.toastr.success("Error-can't Update");
       });
     }else{
@@ -114,7 +114,7 @@ export class HrpageComponent implements OnInit {
         this.toastr.success("Updated!!");
         this.loadForms();
       }).catch(err => {
-        console.log("failed");
+        console.log(err.data);
         this.toastr.error("Error-can't Update");
       });
     }
@@ -157,7 +157,7 @@ export class HrpageComponent implements OnInit {
         }
         this.leaveUpdate(leaveUpdateData);
       }).catch(err => {
-        console.log("failed");
+        console.log(err.data);
         alert("Error-Can't Load - get leaveAvailability for Updation");
       });
 
@@ -198,7 +198,7 @@ export class HrpageComponent implements OnInit {
       console.log("response : ", data);
       console.log("leaveAvailability Update success");
     }).catch(err => {
-      console.log("failed");
+      console.log(err.data);
       alert("Error-Can't Load");
     });
   }

@@ -9,8 +9,6 @@ import { UserService } from '../user-service';
 })
 export class UseraccessComponent implements OnInit {
   requests: any;
-  constructor() { }
-
   ngOnInit(): void {
     this.loadRequests();
   }

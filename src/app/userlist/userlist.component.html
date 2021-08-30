@@ -20,7 +20,6 @@
                 <td>{{user.doc.role}}</td>
                 <td>{{user.doc.mobileNumber}}</td>
                 <td>{{user.doc.email}}</td>
-                <!-- <td><button (click)="deleteUser(user.doc._id,user.doc._rev)" value="Delete">Delete</button></td> -->
                 <td><input type = "submit" value="delete"  (click)="deleteOneUser(user.doc._id,user.doc._rev)"></td>
             </tr>
         </tbody>

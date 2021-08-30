@@ -18,8 +18,6 @@ export class AdminauthGuard implements CanActivate {
       else{
         alert("You are not authorized to access this page");
         window.location.href="login";
-        //this.router.navigateByUrl("login");
-        //return false;
       }
     return true;
   }

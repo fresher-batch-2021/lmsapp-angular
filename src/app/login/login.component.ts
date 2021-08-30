@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   role: any;
 
   constructor(private fb: FormBuilder,
-    private userService: UserService,private toastr: ToastrService) {
+    private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
           this.toastr.warning("Invalid Role defined")
         }
       }).catch(err => {
+        console.log(err.data);
         this.toastr.error("Error - Invalid Credentials");
       });
     } catch (err) {

@@ -21,8 +21,6 @@ export class StatusComponent implements OnInit {
       console.log("table list :", this.forms);
       console.log("success");
     }).catch(err => {
-      //let errorMessage = err.response.data.errorMessage;
-      //console.error(errorMessage);
       console.log("failed");
       alert("Error-Can't Load");
     });
