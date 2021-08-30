@@ -27,6 +27,7 @@ export class AvailableleaveComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Available Leave");
   }
 
 }

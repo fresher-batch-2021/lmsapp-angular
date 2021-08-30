@@ -13,6 +13,7 @@ export class HrmheaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Header");
   }
 
 }

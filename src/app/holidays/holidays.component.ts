@@ -13,6 +13,7 @@ export class HolidaysComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Holiday");
   }
   leaveDate: any;
   leaveDescription: any;

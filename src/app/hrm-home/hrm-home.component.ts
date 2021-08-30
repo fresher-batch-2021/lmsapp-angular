@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HrmHomeComponent implements OnInit {
 
   ngOnInit(): void {
+    console.log("Home");
   }
 
 }

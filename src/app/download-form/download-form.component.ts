@@ -27,8 +27,7 @@ export class DownloadFormComponent implements OnInit {
       console.log("success");
       this.download_csv_file(this.leaveForms);
     }).catch((er) => {
-      //let errorMessage = err.response.data.errorMessage;
-      //console.error(errorMessage);
+      console.log(er.data);
       console.log("failed");
       alert("Error-Unable to retrive");
     });
@@ -36,6 +35,7 @@ export class DownloadFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("DownloadForm");
   }
   download_csv_file(leave: any) {
 

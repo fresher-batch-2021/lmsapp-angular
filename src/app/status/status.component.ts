@@ -27,6 +27,7 @@ export class StatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Status");
   }
 
 }

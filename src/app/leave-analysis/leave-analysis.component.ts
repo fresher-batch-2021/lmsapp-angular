@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { LeaveFormService } from '../leave-form.service';
 
@@ -35,6 +35,7 @@ export class LeaveAnalysisComponent implements OnInit {
       this.leaveForms = res.data.rows;
       this.buildDataSets();
     }).catch(err => {
+      console.log(err.data);
       console.log("Failed to Load Leave Days");
     })
   }

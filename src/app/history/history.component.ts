@@ -29,6 +29,7 @@ export class HistoryComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log("");
     }
 
     leaveform(id: string, rev: string) {

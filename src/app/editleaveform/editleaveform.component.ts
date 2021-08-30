@@ -32,6 +32,7 @@ export class EditleaveformComponent implements OnInit {
    }
    
   ngOnInit(): void {
+    console.log("Edit Leave");
   }
    historyDetails = [
     {

@@ -40,6 +40,7 @@ export class ApplyleaveComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("ApplyLeave");
   }
 
   getLeaveAvailability(type: String, days: number) {

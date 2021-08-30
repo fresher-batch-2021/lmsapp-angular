@@ -13,6 +13,7 @@ export class LogoutComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log("Logout");
   }
 
   

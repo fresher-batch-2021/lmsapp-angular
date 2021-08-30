@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    console.log("Register");
   }
   name: string = "";
   empId: string = "";

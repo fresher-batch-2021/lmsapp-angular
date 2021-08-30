@@ -94,6 +94,7 @@ export class UseraccessComponent implements OnInit {
       alert("Leave balance added to Account");
       this.loadRequests();
     }).catch(err => {
+      console.log(err.data);
       alert("Error - unable to Register");
     });
   }

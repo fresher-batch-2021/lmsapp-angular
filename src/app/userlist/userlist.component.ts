@@ -8,7 +8,6 @@ import { UserService } from '../user-service';
 })
 export class UserlistComponent implements OnInit {
 
-  constructor() { }
   sort:any;
   users:any;
   ngOnInit(): void {
@@ -36,6 +35,7 @@ export class UserlistComponent implements OnInit {
       console.log("deleted : ",res.data);
       alert("Deleted Successfully");
     }).catch(err =>{
+      console.log(err.data);
       alert("Failed to Delete");
     })
   }

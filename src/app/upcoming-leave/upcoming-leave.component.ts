@@ -24,6 +24,7 @@ export class UpcomingLeaveComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Upcoming Holidays");
   }
   month: any;
 }

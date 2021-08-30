@@ -25,6 +25,7 @@ export class SortLeaveFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Sort Leave");
   }
 
   
