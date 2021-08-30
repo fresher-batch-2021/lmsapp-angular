@@ -23,13 +23,6 @@
 table{
     width : 100%;
     font-size: 18px;
-}
-tr{
-    height: 40px;
-}
-table{
-    width : 100%;
-    font-size: 18px;
     border: 2px solid rgb(195,195,195);
     border-radius: 5px 5px;
 }

@@ -128,7 +128,7 @@ export class HrpageComponent implements OnInit {
       let days = (difference / (1000 * 3600 * 24)) + 1;
       const availabilityCheckService = new AvailabilityCheckService();
       let daysTaken = availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate, toDate, days);
-      const data = {
+      const getData = {
         selector: {
           "empId": datas.empId
         },
@@ -137,7 +137,7 @@ export class HrpageComponent implements OnInit {
       let leaveCount;
       console.log("data : " + this.user[0].email, this.user[0].empId);
       const leaveAvailabilityService = new LeaveAvailabilityService();
-      leaveAvailabilityService.getOneLeaveAvailability(data).then(res => {
+      leaveAvailabilityService.getOneLeaveAvailability(getData).then(res => {
         let data = res.data;
         console.log("response : ", data);
         leaveCount = data.docs;

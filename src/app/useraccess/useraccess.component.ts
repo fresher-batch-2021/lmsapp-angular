@@ -23,7 +23,7 @@ export class UseraccessComponent implements OnInit {
       console.log("table list :", this.requests);
       console.log("success");
     }).catch(err => {
-      console.log("failed");
+      console.log("failed : "+err.data);
       alert("Error-Can't Load");
     });
   }
@@ -77,7 +77,7 @@ export class UseraccessComponent implements OnInit {
       el = 13 - month;
       total = sl + cl + el;
     }
-    let data = {
+    let postData = {
       'total': total,
       'sickLeave': sl,
       'casualLeave': cl,
@@ -86,9 +86,9 @@ export class UseraccessComponent implements OnInit {
       'email': email,
       'role': role
     }
-    console.log("leave date : " + data);
+    console.log("leave date : " + postData);
     const leaveAvailabilityObj = new LeaveAvailabilityService();
-    leaveAvailabilityObj.addLeaveAvailability(data).then(res => {
+    leaveAvailabilityObj.addLeaveAvailability(postData).then(res => {
       let data = res.data;
       console.log("response : ", data);
       alert("Leave balance added to Account");

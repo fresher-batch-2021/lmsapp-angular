@@ -55,8 +55,8 @@ export class RegisterComponent implements OnInit {
             selector: { 'empId': this.empId },
             fields: ['_id']
           }
-          userService.checkEmpIdAlreadyExists(checkEmpIdExists).then(res => {
-            if (res.data.docs.length == 0) {
+          userService.checkEmpIdAlreadyExists(checkEmpIdExists).then(response => {
+            if (response.data.docs.length == 0) {
               let formData = {
                 name: this.name,
                 empId: this.empId,
@@ -67,9 +67,9 @@ export class RegisterComponent implements OnInit {
                 status: "Waiting"
               }
 
-              userService.registration(formData).then(res => {
-                let data = res.data;
-                this.registerID = res.data.id;
+              userService.registration(formData).then(res1 => {
+                let data = res1.data;
+                this.registerID = res1.data.id;
                 console.log("RegisterId : ", this.registerID);
                 console.log("response : ", data);
                 this.toastr.success("Registered Successffully... Your Registration in Progress");

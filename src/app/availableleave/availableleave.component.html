@@ -2,9 +2,6 @@
     <br />
     <div id="availableLeaves" *ngFor="let counts of forms">
         <div *ngIf="counts.doc.email == this.user[0].email">
-            <!-- <div class="content">
-                Available Leave : {{counts.doc.total}} days
-            </div> -->
             <div class="content">
                 Available Sick Leave : {{counts.doc.sickLeave}} days
             </div>

@@ -43,7 +43,7 @@ export class ApplyleaveComponent implements OnInit {
     console.log("ApplyLeave");
   }
 
-  getLeaveAvailability(type: String, days: number) {
+  getLeaveAvailability(type: string, days: number) {
     if (type == "sickLeave") {
       console.log("sl");
       if (this.availableLeaveCount.sickLeave < days) {
@@ -77,7 +77,6 @@ export class ApplyleaveComponent implements OnInit {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     let user = userStr != null ? JSON.parse(userStr) : null;
     console.log("Name : ", user);
-    const userId = user[0]._id;
 
     try {
       const validatorService = new ValidatorService();

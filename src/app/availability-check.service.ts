@@ -95,7 +95,6 @@ export class AvailabilityCheckService {
         sl = form.doc.sickLeave;
         cl = form.doc.casualLeave;
         el = form.doc.earnedLeave;
-        total = form.doc.total;
       }
     }
     if (type == "sickLeave") {
