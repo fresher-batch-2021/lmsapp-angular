@@ -45,52 +45,43 @@ export class RegisterComponent implements OnInit {
       const userService = new UserService();
 
       const checkIsExists = {
-        selector: { 'email': this.emailAddress },
-        fields: ['_id']
+        "selector" : {
+          "$or": [
+              { "empId": this.empId },
+              {"email": this.emailAddress}
+          ]
+      },
+        "fields": ['empId','email']
       }
       userService.checkAlreadyExists(checkIsExists).then(res => {
         console.log("length : ", res.data.docs.length);
         if (res.data.docs.length == 0) {
-          const checkEmpIdExists = {
-            selector: { 'empId': this.empId },
-            fields: ['_id']
+          let formData = {
+            name: this.name,
+            empId: this.empId,
+            role: this.role,
+            mobileNumber: this.mobileNumber,
+            email: this.emailAddress,
+            password: this.password,
+            status: "Waiting"
           }
-          userService.checkEmpIdAlreadyExists(checkEmpIdExists).then(response => {
-            if (response.data.docs.length == 0) {
-              let formData = {
-                name: this.name,
-                empId: this.empId,
-                role: this.role,
-                mobileNumber: this.mobileNumber,
-                email: this.emailAddress,
-                password: this.password,
-                status: "Waiting"
-              }
-
-              userService.registration(formData).then(res1 => {
-                let data = res1.data;
-                this.registerID = res1.data.id;
-                console.log("RegisterId : ", this.registerID);
-                console.log("response : ", data);
-                this.toastr.success("Registered Successffully... Your Registration in Progress");
-                window.location.href = "/login";
-              }).catch(err => {
-                console.log(err.data);
-                alert("Error - unable to Register");
-              });
-            } else {
-              this.toastr.warning("Employee ID Already Exists");
-            }
-          })
+          userService.registration(formData).then(res1 => {
+            let data = res1.data;
+            this.registerID = res1.data.id;
+            console.log("RegisterId : ", this.registerID);
+            console.log("response : ", data);
+            this.toastr.success("Registered Successffully... Your Registration in Progress");
+            window.location.href = "/login";
+          }).catch(err => {
+            console.log(err.data);
+            alert("Error - unable to Register");
+          });
         } else {
-          this.toastr.warning("Email Already Exists");
+          this.toastr.warning("Employee ID or Email Already Exists");
         }
       })
-
-
     } catch (error) {
       this.toastr.warning(error.message);
     }
-
   }
 }

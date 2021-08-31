@@ -28,26 +28,26 @@ export class UseraccessComponent implements OnInit {
     });
   }
 
-  acceptanceStatus(id: any, rev: any, name: any, employeeId: any, role: any, mobileNumber: any, email: any, password: any, status: any) {
+  acceptanceStatus(request: any,status: any) {
     let requestStatus = 0;
     const updatedUserData = {
-      name: name,
-      empId: employeeId,
-      role: role,
-      mobileNumber: mobileNumber,
-      email: email,
-      password: password,
+      name: request.doc.name,
+      empId: request.doc.empId,
+      role: request.doc.role,
+      mobileNumber: request.doc.mobileNumber,
+      email: request.doc.email,
+      password: request.doc.password,
       status: status
     }
 
     const serviceObj = new UserService();
-    serviceObj.updateUser(id, rev, updatedUserData).then(res => {
+    serviceObj.updateUser(request.doc._id, request.doc._rev, updatedUserData).then(res => {
       let data = res.data;
       console.log("response : ", data);
       requestStatus = 1;
       console.log("success");
       if (requestStatus == 1 && status == "Accepted") {
-        this.leaveCountUpdation(employeeId, email, role);
+        this.leaveCountUpdation(request.doc.employeeId, request.doc.email, request.doc.role);
       } else {
         console.log("status : " + status)
         this.loadRequests();

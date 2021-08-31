@@ -33,7 +33,7 @@ export class UserService {
     return axios.delete(this.url+"/"+id+"?rev="+rev, {headers: {'Authorization': this.basicAuth}})
   }
 
-  checkAlreadyExists(formData: { selector: { email: string;}; fields: string[]; }){
+  checkAlreadyExists(formData: { selector: { email: string; } | { $or: ({ empId: string; email?: undefined; } | { email: string; empId?: undefined; })[]; }; fields: string[]; }){
     console.log(formData);
     return axios.post(this.url+"/_find", formData, { headers: {'Authorization': this.basicAuth }})
   }

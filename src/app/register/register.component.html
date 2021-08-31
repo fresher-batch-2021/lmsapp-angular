@@ -9,27 +9,18 @@
                     </h2>
                 </div>         
                 <form (ngSubmit)="register()">
-                    <div class="span-group">
-                        <div class="span-group2">
-                            <span class="span-group3">
-                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/user.png" alt="user logo"> </span>
-                        </div>
+                    <div class="span-group">    
+                        <img style="width : 40px; height:40px; position: relative;" src="assets/images/user.png" alt="user logo"> 
                         <input class="box1-style" [(ngModel)]="name" name="registrationForm" placeholder="Full name" type="text" required>
                     </div>
                     
                     <div class="span-group">
-                        <div class="span-group2">
-                            <span class="span-group3">
-                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/badge.png" alt="empId logo"> </span>
-                        </div>
+                        <img style="width : 40px; height:40px; position: relative;" src="assets/images/badge.png" alt="empId logo">
                         <input class="box1-style" [(ngModel)]="empId" name="registrationForm" placeholder="Employee ID" type="text" required>
                     </div>
                     
                     <div class="span-group">
-                        <div class="span-group2">
-                            <span class="span-group3">
-                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/group.png" alt="team logo"> </span>
-                        </div>
+                        <img style="width : 40px; height:40px; position: relative;" src="assets/images/group.png" alt="team logo">
                         <select [(ngModel)] = "role" style="height: 45px; width: 256px;" name="registrationForm" class="box1-style" required>
                             <option value="">--select--</option>
                             <option value="UI/UX">UI/UX</option>    
@@ -41,26 +32,17 @@
                         </select>
                     </div>
                     <div class="span-group">
-                        <div class="span-group2">
-                            <span class="span-group3">
-                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/smartphone.png" alt="smart phone logo"> </span>
-                        </div>
+                        <img style="width : 40px; height:40px; position: relative;" src="assets/images/smartphone.png" alt="smart phone logo">
                         <input class="box1-style" [(ngModel)]="mobileNumber" name="registrationForm" placeholder="Mobile Number" type="text" required>
                     </div>
                     
                     <div class="span-group">
-                        <div class="span-group2">
-                            <span class="span-group3">
-                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/envelope.png" alt="email logo"> </span>
-                        </div>
-                        <input class="box1-style" [(ngModel)]="emailAddress" name="registrationForm" placeholder="Email Address" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/envelope.png" alt="email logo">
+                        <input class="box1-style" [(ngModel)]="emailAddress" name="registrationForm" placeholder="Email Address" type="email" required>
                     </div>
                     
                     <div class="span-group">
-                        <div class="span-group2">
-                            <span class="span-group3">
-                                <img style="width : 40px; height:40px; position: relative;" src="assets/images/padlock.png" alt="password logo"> </span>
-                        </div>
+                        <img style="width : 40px; height:40px; position: relative;" src="assets/images/padlock.png" alt="password logo">
                         <input class="box1-style" [(ngModel)]="password" name="registrationForm" placeholder="Password" type="password" required>
                     </div>
                     
