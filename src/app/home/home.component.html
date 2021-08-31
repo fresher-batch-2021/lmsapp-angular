@@ -17,10 +17,10 @@
                         <p>Trusted, well-established, and collaborative. Our years of extensive experience paired with our deep client and Oracle, SAP, Microsoft, and Salesforce partnerships position us to deliver best-in-class products and services for our clients.</p>
                     </div>
                     <div class = "">
-                        <img src = "assets/images/home.jpg" alt = "homePage Image" height="300px" width="450px" style="border-radius: 0px 20px 20px 0px;">
+                        <img src = "assets/images/home.jpg" alt = "homePage Image" class="home-image">
                     </div>
                 </div>
-                <div><h2 style="text-align: center; color: rgb(13,31,107);">We're different because we build</h2></div>
+                <div><h2 class="h2-heading">We're different because we build</h2></div>
                 <div class = "row">
                     <div class = col-sm-4>
                         <div class = "center">
@@ -63,16 +63,4 @@
             <app-footer></app-footer>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script>
-        $("#header").load("header.html");
-    </script>
-    <script>
-        $("#footer").load("footer.html");
-    </script>
-    <script>
-        let userStr = localStorage.getItem("LOGGED_IN_USER");
-        let user = userStr != null ? JSON.parse(userStr):null;
-        console.log("Name : ", user.name);
-    </script>
 </div>

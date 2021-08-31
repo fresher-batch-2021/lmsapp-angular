@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../user-service';
@@ -54,6 +55,8 @@ export class RegisterComponent implements OnInit {
         "fields": ['empId','email']
       }
       userService.checkAlreadyExists(checkIsExists).then(res => {
+        let response = res.data;
+        console.log(JSON.stringify(response));
         console.log("length : ", res.data.docs.length);
         if (res.data.docs.length == 0) {
           let formData = {
@@ -76,8 +79,10 @@ export class RegisterComponent implements OnInit {
             console.log(err.data);
             alert("Error - unable to Register");
           });
-        } else {
-          this.toastr.warning("Employee ID or Email Already Exists");
+        } else if(JSON.stringify(response).includes('"email":"'+this.emailAddress+'"')){
+          this.toastr.warning("Email Already Exists");
+        } else{
+          this.toastr.warning("Employee ID already Exists");
         }
       })
     } catch (error) {

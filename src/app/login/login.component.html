@@ -4,21 +4,21 @@
                 <em>LMS - APP</em>
             </h1>
         <div class="row">
-            <div class="col-sm-12" style="padding-left : 180px; padding-top : 10px;">
-                <h2 style="padding-left : 60px;">Sign In..</h2>
+            <div class="col-sm-12 content">
+                <h2>Sign In..</h2>
                 <form [formGroup]="loginForm"  (ngSubmit)="login()">
                     <label for="username">Username</label>
-                    <input style=" width : 50%;" formControlName="username" name = "loginForm" type="text" class="box-style" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    <input formControlName="username" name = "loginForm" type="text" class="box-style" required>
                     <label for="password">Password</label>
-                    <input style=" width : 50%;" formControlName="password" name = "loginForm" type="password" class="box-style" required>
+                    <input formControlName="password" name = "loginForm" type="password" class="box-style" required>
                     <label>User Role</label>
-                    <select class="box-style" style="width:50%;" formControlName="role" name = "loginForm" required>
+                    <select class="box-style" formControlName="role" name = "loginForm" required>
                         <option value="">--select--</option>
                         <option value="Employee">Employee</option>
                         <option value="HR">HR</option>
                     </select>
                     <div style="padding-left : 70px;">
-                        <input style=" width : 25%;" type="submit" class="btn btn-style">
+                        <input type="submit" class="btn btn-style">
                     </div>
                     <br />
                     <a routerLink="/register" style="padding-left : 35px;">New User - Register here!</a>

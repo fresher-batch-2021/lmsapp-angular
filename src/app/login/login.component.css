@@ -28,4 +28,19 @@ label{
 .box-style{
     display: block;
     margin-bottom: 20px;
+    width: 50%;
+}
+
+.content{
+    padding-left : 180px; 
+    padding-top : 10px;
+}
+h2{
+    padding-left: 60px;
+}
+.btn{
+    width:25%;
+}
+.btn-align{
+    padding-left: 70px;
 }
