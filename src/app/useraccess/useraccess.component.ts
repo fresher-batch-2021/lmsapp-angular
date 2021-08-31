@@ -47,7 +47,7 @@ export class UseraccessComponent implements OnInit {
       requestStatus = 1;
       console.log("success");
       if (requestStatus == 1 && status == "Accepted") {
-        this.leaveCountUpdation(request.doc.employeeId, request.doc.email, request.doc.role);
+        this.leaveCountUpdation(request.doc.empId, request.doc.email, request.doc.role);
       } else {
         console.log("status : " + status)
         this.loadRequests();
