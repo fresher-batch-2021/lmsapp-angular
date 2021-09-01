@@ -21,11 +21,10 @@
                     <th scope="col">Options</th>
                 </tr>
                 <tbody id="history-details" *ngFor="let history of forms">
-                    
                         <tr *ngIf="history.doc.employeeId  == this.empId">
                             <td>{{history.doc.employeeId}}</td>
-                            <td>{{history.doc.fromDate}}</td>
-                            <td>{{history.doc.toDate}}</td>
+                            <td>{{history.doc.fromDate | date: "dd-MMM-yyyy"}}</td>
+                            <td>{{history.doc.toDate | date: "dd-MMM-yyyy"}}</td>
                             <td>{{history.doc.leaveType}}</td>
                             <td>{{history.doc.reason}}</td>
                             <td>{{history.doc.status}}</td>

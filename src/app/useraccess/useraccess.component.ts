@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { UserService } from '../user-service';
 
@@ -9,22 +10,23 @@ import { UserService } from '../user-service';
 })
 export class UseraccessComponent implements OnInit {
   requests: any;
+  constructor(private toastr:ToastrService,
+    private userService: UserService,
+    private leaveAvailabilityService: LeaveAvailabilityService){}
   ngOnInit(): void {
     this.loadRequests();
   }
 
   loadRequests() {
-    const serviceObj = new UserService();
-    serviceObj.listUsers().then(res => {
-      let data = res.data;
-      console.log("response : ", data);
+    
+    this.userService.listUsers().subscribe((res:any) => {
+      let data = res;
       let request = data.rows;
       this.requests = request.filter((obj: any) => obj.doc.status == 'Waiting');
-      console.log("table list :", this.requests);
-      console.log("success");
-    }).catch(err => {
-      console.log("failed : "+err.data);
-      alert("Error-Can't Load");
+      console.log("success table list :", this.requests);
+    }),((err:any) => {
+      console.log("failed : "+err);
+      this.toastr.error("Error-Can't Load");
     });
   }
 
@@ -40,9 +42,8 @@ export class UseraccessComponent implements OnInit {
       status: status
     }
 
-    const serviceObj = new UserService();
-    serviceObj.updateUser(request.doc._id, request.doc._rev, updatedUserData).then(res => {
-      let data = res.data;
+    this.userService.updateUser(request.doc._id, request.doc._rev, updatedUserData).subscribe((res:any) => {
+      let data = res;
       console.log("response : ", data);
       requestStatus = 1;
       console.log("success");
@@ -52,12 +53,10 @@ export class UseraccessComponent implements OnInit {
         console.log("status : " + status)
         this.loadRequests();
       }
-    }).catch(err => {
-      console.log("failed");
-      alert("Error-Can't Load");
+    }),((err:any) => {
+      console.log("failed"+err);
+      this.toastr.error("Error-Can't Load");
     });
-
-
   }
 
   leaveCountUpdation(employeeId: any, email: any, role: any) {
@@ -87,15 +86,15 @@ export class UseraccessComponent implements OnInit {
       'role': role
     }
     console.log("leave date : " + postData);
-    const leaveAvailabilityObj = new LeaveAvailabilityService();
-    leaveAvailabilityObj.addLeaveAvailability(postData).then(res => {
-      let data = res.data;
+    
+    this.leaveAvailabilityService.addLeaveAvailability(postData).subscribe((res:any) => {
+      let data = res;
       console.log("response : ", data);
-      alert("Leave balance added to Account");
+      this.toastr.success("Leave balance added to Account");
       this.loadRequests();
-    }).catch(err => {
-      console.log(err.data);
-      alert("Error - unable to Register");
+    }),((err:any) => {
+      console.log(err);
+      this.toastr.error("Error - Leave balance not added");
     });
   }
 }

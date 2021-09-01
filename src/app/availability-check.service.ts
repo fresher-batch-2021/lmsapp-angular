@@ -9,15 +9,15 @@ export class AvailabilityCheckService {
   user: any;
   forms: any;
   holidays:any;
-  constructor() {
+  constructor(private holidayService : HolidayService,
+    private leaveAvailabilityService: LeaveAvailabilityService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
     console.log("Name : ", this.user[0]._id);
-    const holidayService = new HolidayService();
-    holidayService.listHolidays().then(res => {
-      this.holidays = res.data.rows;
+    holidayService.listHolidays().subscribe((res:any) => {
+      this.holidays = res.rows;
       console.log("holidayList : ",this.holidays);
-    }).catch(err => {
+    }),((err:any) => {
       console.log("Can't load LeaveLists");
     })
 
@@ -39,16 +39,16 @@ export class AvailabilityCheckService {
       }
     }
     let holidayList;
-    const holidayService = new HolidayService();
-    holidayService.listHolidays().then(res => {
-      holidayList = res.data.rows;
+    
+    this.holidayService.listHolidays().subscribe((res:any) => {
+      holidayList = res.rows;
       console.log("get all the holidays");
       for(let holiday of holidayList){
         if(this.isDateBetweenTwoDates(fromDate.split("-"),toDate.split("-"),holiday.doc.date.split("-"))){
           leavedays--;
         }
       }
-    }).catch( err =>{
+    }),((err:any) =>{
       console.log("Failed to load Holidays");
     })
 
@@ -73,8 +73,8 @@ export class AvailabilityCheckService {
   }
 
   isLeaveAvailable(type: any, days: number) {
-    const leaveAvailabilityObj = new LeaveAvailabilityService();
-    leaveAvailabilityObj.getLeaveAvailability().then(res => {
+    
+    this.leaveAvailabilityService.getLeaveAvailability().subscribe((res:any) => {
       let data = res.data;
       console.log("res : "+res);
       console.log("response : ", data);
@@ -82,7 +82,7 @@ export class AvailabilityCheckService {
       console.log("rows : ", this.forms);
       console.log("doc : "+this.forms.doc);
       console.log("success");
-    }).catch(err => {
+    }),((err:any) => {
       console.log("failed");
       alert("Error-Can't Load");
     });

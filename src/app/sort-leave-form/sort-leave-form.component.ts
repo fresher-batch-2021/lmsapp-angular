@@ -10,16 +10,15 @@ import { LeaveFormService } from '../leave-form.service';
 export class SortLeaveFormComponent implements OnInit {
   array: any;
   forms: any;
-  constructor() {
-    const leaveFormService = new LeaveFormService();
-    leaveFormService.listLeave().then(res => {
-      let data = res.data;
-      console.log("response : ", data);
+  constructor(private leaveFormService: LeaveFormService,
+    private availabilityCheckService: AvailabilityCheckService) {
+    
+    this.leaveFormService.listLeave().subscribe((res:any) => {
+      let data = res;
       this.forms = data.rows;
-      console.log("Leave list :", this.forms);
-      console.log("success");
-    }).catch(err => {
-      console.log("failed");
+      console.log("success Leave list :", this.forms);
+    }),((err:any) => {
+      console.log("failed"+err);
       alert("Error-Can't Load");
     });
   }
@@ -41,8 +40,8 @@ export class SortLeaveFormComponent implements OnInit {
         let fromDateArray = form.doc.fromDate.split('-');
         let toDateArray = form.doc.toDate.split('-');
         let todayArray = this.date.split('-');
-        const cheackAvailability = new AvailabilityCheckService();
-        if (cheackAvailability.isDateBetweenTwoDates(fromDateArray,toDateArray,todayArray)) {
+        
+        if (this.availabilityCheckService.isDateBetweenTwoDates(fromDateArray,toDateArray,todayArray)) {
           const result = {
             name: form.doc.name,
             employeeId: form.doc.employeeId,
@@ -55,7 +54,6 @@ export class SortLeaveFormComponent implements OnInit {
           this.array.push(result);
         }
       }
-    }
-    console.log("Array : " + this.array[0].fromDate);
+    }   
   }
 }

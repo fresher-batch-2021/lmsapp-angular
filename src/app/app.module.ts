@@ -28,7 +28,7 @@ import { SearchPipe } from './search.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -64,9 +64,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     ChartsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot({positionClass: "toast-top-center"})
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,10 @@ export class HrpageComponent implements OnInit {
   user: any;
   searchResults: any;
   option: any = 'all';
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService,
+    private leaveFormService: LeaveFormService,
+    private availabilityCheckService: AvailabilityCheckService,
+    private leaveAvailabilityService: LeaveAvailabilityService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
     this.userName = this.user[0].name;
@@ -26,8 +29,8 @@ export class HrpageComponent implements OnInit {
     this.sortForms('all');
   }
 
-  sortForms(n: any) {
-    this.option = n;
+  sortForms(choice: any) {
+    this.option = choice;
     console.log(this.option);
     if (this.option == "Pending") {
       this.searchResults = this.forms.filter((obj: any) => obj.doc.status == 'Pending');
@@ -42,22 +45,18 @@ export class HrpageComponent implements OnInit {
 
 
   loadForms() {
-    const serviceObj = new LeaveFormService();
-    serviceObj.listLeave().then(res => {
-      let data = res.data;
-      console.log("response : ", data);
+    this.leaveFormService.listLeave().subscribe((res:any) => {
+      let data = res;
       this.forms = data.rows;
       this.searchResults = this.forms;
       console.log("table list :", this.forms);
-      console.log("success");
-    }).catch(err => {
-      console.log(err.data);
+    }),((err:any) => {
+      console.log(err);
       this.toastr.error("Error-Can't Load");
     });
   }
 
   statusUpdate(form: any, status: any) {
-
     if (status == "Approved") {
       const updatedForm = {
         "name": form.doc.name,
@@ -71,12 +70,9 @@ export class HrpageComponent implements OnInit {
         "status": status,
         "remarks" : "Approved"
       }
-      const serviceObj = new LeaveFormService();
-      serviceObj.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).then(res => {
-        let data = res.data;
-        console.log("response : ", data);
-        console.log("success");
-        this.toastr.success("Status Updated!");
+      this.leaveFormService.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).subscribe((res:any) => {
+        let data = res;
+        this.toastr.success("Status Updated!"+data);
         const availabilityData = {
           'from_Date': form.doc.fromDate,
           'to_Date': form.doc.toDate,
@@ -87,8 +83,8 @@ export class HrpageComponent implements OnInit {
         this.leaveAvailabilityUpdate(availabilityData);
         this.loadForms();
 
-      }).catch(err => {
-        console.log(err.data);
+      }),((err:any) => {
+        console.log(err);
         this.toastr.success("Error-can't Update");
       });
     }else{
@@ -106,15 +102,13 @@ export class HrpageComponent implements OnInit {
         "status": status,
         "remarks" : reason
       }
-      const serviceObj = new LeaveFormService();
-      serviceObj.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).then(res => {
-        let data = res.data;
-        console.log("response : ", data);
-        console.log("success");
-        this.toastr.success("Updated!!");
+    
+      this.leaveFormService.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).subscribe((res:any) => {
+        let data = res;
+        this.toastr.success("Updated!!"+data);
         this.loadForms();
-      }).catch(err => {
-        console.log(err.data);
+      }),((err:any) => {
+        console.log(err);
         this.toastr.error("Error-can't Update");
       });
     }
@@ -126,8 +120,7 @@ export class HrpageComponent implements OnInit {
       let toDate = new Date(datas.to_Date);
       let difference = toDate.getTime() - fromDate.getTime();
       let days = (difference / (1000 * 3600 * 24)) + 1;
-      const availabilityCheckService = new AvailabilityCheckService();
-      let daysTaken = availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate, toDate, days);
+      let daysTaken = this.availabilityCheckService.isOfficialHolidaysBetweenLeaveDays(fromDate, toDate, days);
       const getData = {
         selector: {
           "empId": datas.empId
@@ -136,13 +129,10 @@ export class HrpageComponent implements OnInit {
       }
       let leaveCount;
       console.log("data : " + this.user[0].email, this.user[0].empId);
-      const leaveAvailabilityService = new LeaveAvailabilityService();
-      leaveAvailabilityService.getOneLeaveAvailability(getData).then(res => {
-        let data = res.data;
-        console.log("response : ", data);
+      this.leaveAvailabilityService.getOneLeaveAvailability(getData).subscribe((res:any) => {
+        let data = res;
         leaveCount = data.docs;
         console.log("Leave Availability list :", leaveCount);
-        console.log("success");
         const leaveUpdateData = {
           'id': data.docs[0]._id,
           'rev': data.docs[0]._rev,
@@ -156,31 +146,24 @@ export class HrpageComponent implements OnInit {
           'leaveType': datas.leaveType
         }
         this.leaveUpdate(leaveUpdateData);
-      }).catch(err => {
-        console.log(err.data);
+      }),((err:any) => {
+        console.log(err);
         alert("Error-Can't Load - get leaveAvailability for Updation");
       });
-
     }
   }
   leaveUpdate(datas: { id: any; rev: any; total: any; sickLeave: any; casualLeave: any; earnedLeave: any; empId: any; email: any; daysTaken: any; leaveType: any; }) {
     if (datas.leaveType === "sickLeave") {
-      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
       datas.sickLeave -= datas.daysTaken;
       datas.total -= datas.daysTaken;
-      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
     else if (datas.leaveType === "casualLeave") {
-      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
       datas.casualLeave -= datas.daysTaken;
       datas.total -= datas.daysTaken;
-      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
     else if (datas.leaveType === "earnedLeave") {
-      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
       datas.earnedLeave -= datas.daysTaken;
       datas.total -= datas.daysTaken;
-      console.log("leave : " + datas.total, datas.sickLeave, datas.casualLeave, datas.earnedLeave);
     }
     const updateddata = {
       "id": datas.id,
@@ -192,12 +175,12 @@ export class HrpageComponent implements OnInit {
       "email": datas.email
     }
     console.log("updatedData : " + updateddata.casualLeave, updateddata.sickLeave, updateddata.earnedLeave);
-    const leaveAvailabilityService = new LeaveAvailabilityService();
-    leaveAvailabilityService.updateLeaveAvailability(updateddata, datas.rev, datas.id).then(res => {
-      let data = res.data;
+    
+    this.leaveAvailabilityService.updateLeaveAvailability(updateddata, datas.rev, datas.id).subscribe((res:any) => {
+      let data = res;
       console.log("response : ", data);
       console.log("leaveAvailability Update success");
-    }).catch(err => {
+    }),((err:any) => {
       console.log(err.data);
       alert("Error-Can't Load");
     });

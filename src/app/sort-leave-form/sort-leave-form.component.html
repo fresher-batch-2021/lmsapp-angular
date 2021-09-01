@@ -24,8 +24,8 @@
             <tr>
                 <td>{{leave.employeeId}}</td>
                 <td>{{leave.name}}</td>
-                <td>{{leave.fromDate}}</td>
-                <td>{{leave.toDate}}</td>
+                <td>{{leave.fromDate | date: "dd-MMM-yyyy"}}</td>
+                <td>{{leave.toDate | date: "dd-MMM-yyyy"}}</td>
                 <td>{{leave.leaveType}}</td>
                 <td>{{leave.reason}}</td>
                 <td>{{leave.status}}</td>

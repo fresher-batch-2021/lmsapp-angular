@@ -15,10 +15,10 @@
                         <div class="col-sm-4">
                             <label>Name : {{form.doc.name}}-{{form.doc.employeeId}}</label><br />
                             <label>Role : {{form.doc.role}} </label><br />
-                            <label>From date : {{form.doc.fromDate}}</label><br />
+                            <label>From date : {{form.doc.fromDate | date: "dd-MMM-yyyy"}}</label><br />
                         </div>
                         <div class="col-sm-4">
-                            <label>To date : {{form.doc.toDate}}</label><br />
+                            <label>To date : {{form.doc.toDate | date: "dd-MMM-yyyy"}}</label><br />
                             <label>Leave Type : {{form.doc.leaveType}}</label><br />
                             <label>Reason : {{form.doc.reason}}</label><br />
                         </div>

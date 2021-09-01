@@ -7,10 +7,12 @@ import { UserService } from './user-service';
 export class ValidatorService {
   empIdCount:number = 0;
   emailCount:number = 0;
+  constructor(private userService: UserService){
+
+  }
 
   isEmpIdAlreadyExists(value: any){
-    const userService = new UserService();
-    userService.listUsers().then(res =>{
+    this.userService.listUsers().subscribe((res:any) =>{
       console.log(res.data.rows);
       let activeUsers = res.data.rows;
       for(let user of activeUsers){
@@ -24,8 +26,8 @@ export class ValidatorService {
 
   isEmailAlreadyExists(value: any){
     let count = 0;
-    const userService = new UserService();
-    userService.listUsers().then(res =>{
+    
+    this.userService.listUsers().subscribe((res:any) =>{
       console.log(res.data.rows);
       let activeUsers = res.data.rows;
       for(let user of activeUsers){
@@ -244,12 +246,11 @@ export class ValidatorService {
       fields : ["name","email"]
     };
     let length = 0; 
-    const userService = new UserService();
     let err = 0;
-    userService.checkAlreadyExists(isExistData).then(res =>{
+    this.userService.checkAlreadyExists(isExistData).subscribe((res:any) =>{
       length = res.data.docs.length;
       console.log("length : ",res.data.docs.length);
-    }).catch(err =>{
+    }),((err:any) =>{
       console.log("Check Already Exists-Failed");
     })
     if(length == 0){

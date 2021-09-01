@@ -11,7 +11,9 @@ import { ValidatorService } from '../validator.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService,
+            private userService: UserService,
+            private validatorService: ValidatorService) { }
 
   ngOnInit(): void {
     console.log("Register");
@@ -31,19 +33,17 @@ export class RegisterComponent implements OnInit {
     console.log(this.emailAddress);
     console.log(this.password);
     try {
-      const validatorService = new ValidatorService();
-      validatorService.isEmpty(this.name, "Name can't be empty");
-      validatorService.isEmpty(this.empId, "Employee Id can't be empty");
-      validatorService.isEmpty(this.role, "Role can't be empty");
-      validatorService.isEmpty(this.mobileNumber, "Mobile Number can't be empty");
-      validatorService.isEmpty(this.emailAddress, "Email ID can't be empty");
-      validatorService.isEmpty(this.password, "Password can't be empty");
-      validatorService.isValidString(this.name, "Enter Valid Name");
-      validatorService.isVaildEmployeeId(this.empId, "Enter valid Employee ID");
-      validatorService.isValidMobileNumber(this.mobileNumber, "Enter valid Mobile Number");
-      validatorService.isValidEmail(this.emailAddress, "Enter valid Email adderss");
-      validatorService.isValidPassword(this.password, "Password must be 8 characters and contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
-      const userService = new UserService();
+      this.validatorService.isEmpty(this.name, "Name can't be empty");
+      this.validatorService.isEmpty(this.empId, "Employee Id can't be empty");
+      this.validatorService.isEmpty(this.role, "Role can't be empty");
+      this.validatorService.isEmpty(this.mobileNumber, "Mobile Number can't be empty");
+      this.validatorService.isEmpty(this.emailAddress, "Email ID can't be empty");
+      this.validatorService.isEmpty(this.password, "Password can't be empty");
+      this.validatorService.isValidString(this.name, "Enter Valid Name");
+      this.validatorService.isVaildEmployeeId(this.empId, "Enter valid Employee ID");
+      this.validatorService.isValidMobileNumber(this.mobileNumber, "Enter valid Mobile Number");
+      this.validatorService.isValidEmail(this.emailAddress, "Enter valid Email adderss");
+      this.validatorService.isValidPassword(this.password, "Password must be 8 characters and contains Atleast 1 Number, 1 Upper Case, 1 Lower Case");
 
       const checkIsExists = {
         "selector" : {
@@ -54,11 +54,11 @@ export class RegisterComponent implements OnInit {
       },
         "fields": ['empId','email']
       }
-      userService.checkAlreadyExists(checkIsExists).then(res => {
-        let response = res.data;
+      this.userService.checkAlreadyExists(checkIsExists).subscribe((res:any) => {
+        let response = res.docs;
         console.log(JSON.stringify(response));
-        console.log("length : ", res.data.docs.length);
-        if (res.data.docs.length == 0) {
+        console.log("length : ", res.docs.length);
+        if (res.docs.length == 0) {
           let formData = {
             name: this.name,
             empId: this.empId,
@@ -68,14 +68,12 @@ export class RegisterComponent implements OnInit {
             password: this.password,
             status: "Waiting"
           }
-          userService.registration(formData).then(res1 => {
-            let data = res1.data;
-            this.registerID = res1.data.id;
-            console.log("RegisterId : ", this.registerID);
+          this.userService.registration(formData).subscribe(( res1:any) => {
+            let data = res1;
             console.log("response : ", data);
             this.toastr.success("Registered Successffully... Your Registration in Progress");
             window.location.href = "/login";
-          }).catch(err => {
+          },err => {
             console.log(err.data);
             alert("Error - unable to Register");
           });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { HolidayService } from '../holiday.service';
 
 @Component({
@@ -9,18 +10,19 @@ import { HolidayService } from '../holiday.service';
 export class UpcomingLeaveComponent implements OnInit {
   array: any;
   user: any;
-  constructor() {
+  constructor(private holidayService: HolidayService,
+    private toastr: ToastrService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
-    const holidayService = new HolidayService();
-    holidayService.listHolidays().then(res => {
-      let data = res.data;
+    holidayService.listHolidays().subscribe((res:any) => {
+      let data = res;
       console.log("response : ", data);
       this.array = data.rows;
       console.log("Holidays List :" + this.array);
       this.sortArray();
-    }).catch(err => {
-      alert("can't load Holiday lists");
+    }),((err:any) => {
+      console.error("Failed to load Holidays : "+err);
+      toastr.error("can't load Holiday lists");
     })
   }
 

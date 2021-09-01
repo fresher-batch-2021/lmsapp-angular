@@ -9,7 +9,9 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./holidays.component.css']
 })
 export class HolidaysComponent implements OnInit {
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService,
+    private validatorService: ValidatorService,
+    private holidayService: HolidayService) {
   }
 
   ngOnInit(): void {
@@ -21,9 +23,8 @@ export class HolidaysComponent implements OnInit {
     try {
       console.log(this.leaveDate);
       console.log(this.leaveDescription);
-      const validatorService = new ValidatorService();
-      validatorService.isEmpty(this.leaveDate,"Leave date can't be Empty");
-      validatorService.isEmpty(this.leaveDescription, "Leave Description can't be Empty");
+      this.validatorService.isEmpty(this.leaveDate,"Leave date can't be Empty");
+      this.validatorService.isEmpty(this.leaveDescription, "Leave Description can't be Empty");
       let date = new Date(this.leaveDate);
       let dateRef = date.getDay();
       let day;
@@ -48,12 +49,11 @@ export class HolidaysComponent implements OnInit {
         'status': this.leaveDescription
       }
   
-      const holidayService = new HolidayService();
-      holidayService.addHoliday(leaveData).then(res => {
-        console.log("Leave Added : " + res.data);
+      this.holidayService.addHoliday(leaveData).subscribe((res:any) => {
+        console.log("Leave Added : " + res);
         this.toastr.success("Leave Added Successfully");
         window.location.href = "/holidays";
-      }).catch(err => {
+      }),((err:any) => {
         this.toastr.error("Failed to Add");
       })
     } catch (err) {

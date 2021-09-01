@@ -9,7 +9,7 @@ import { LeaveFormService } from '../leave-form.service';
   styleUrls: ['./leave-analysis.component.css']
 })
 export class LeaveAnalysisComponent implements OnInit {
-
+  constructor(private leaveFormService : LeaveFormService){}
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -29,13 +29,13 @@ export class LeaveAnalysisComponent implements OnInit {
   }
 
   loadDatas() {
-    const leaveFormService = new LeaveFormService();
-    leaveFormService.listLeave().then(res => {
-      console.log(res.data);
-      this.leaveForms = res.data.rows;
+    
+    this.leaveFormService.listLeave().subscribe((res:any) => {
+      console.log(res);
+      this.leaveForms = res.rows;
       this.buildDataSets();
-    }).catch(err => {
-      console.log(err.data);
+    }),((err:any) => {
+      console.log(err);
       console.log("Failed to Load Leave Days");
     })
   }

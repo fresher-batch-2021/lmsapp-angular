@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   role: any;
 
   constructor(private fb: FormBuilder,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private userService: UserService,
+    private validatorService: ValidatorService) {
     this.loginForm = this.fb.group({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -36,10 +38,9 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.value.password;
     this.role = this.loginForm.value.role;
     try {
-      const validatorService = new ValidatorService();
-      validatorService.isEmpty(this.username, "Username Can't be empty");
-      validatorService.isEmpty(this.password, "Password Can't be empty");
-      validatorService.isEmpty(this.role, "Role Can't be empty");
+      this.validatorService.isEmpty(this.username, "Username Can't be empty");
+      this.validatorService.isEmpty(this.password, "Password Can't be empty");
+      this.validatorService.isEmpty(this.role, "Role Can't be empty");
 
       let formData = {
         selector: {
@@ -48,9 +49,9 @@ export class LoginComponent implements OnInit {
         },
         fields: ["_id", "_rev", "name", "email", "role", "empId", "status"]
       };
-      const serviceObj = new UserService();
-      serviceObj.login(formData).then(res => {
-        let data = res.data;
+
+      this.userService.login(formData).subscribe((res: any) => {
+        let data = res;
         console.log(data);
         if (data.docs[0].role != "hr" && data.docs[0].status === "Accepted") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
@@ -67,10 +68,10 @@ export class LoginComponent implements OnInit {
         } else {
           this.toastr.warning("Invalid Role defined")
         }
-      }).catch(err => {
-        console.log(err.data);
+      }), (err: { data: any; }) => {
+        console.log(err);
         this.toastr.error("Error - Invalid Credentials");
-      });
+      };
     } catch (err) {
       this.toastr.warning(err.message);
     }

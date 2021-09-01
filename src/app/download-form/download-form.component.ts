@@ -9,15 +9,14 @@ import { LeaveFormService } from '../leave-form.service';
 export class DownloadFormComponent implements OnInit {
   serialNo: any;
   leaveForms: any;
-  constructor() {
+  constructor(private leaveFormService : LeaveFormService) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get('val');
     this.serialNo = id;
     console.log("ID : ", id);
-    const serviceObj = new LeaveFormService();
-    serviceObj.listLeave().then(res => {
-      let data = res.data;
+    leaveFormService.listLeave().subscribe((res:any) => {
+      let data = res;
       console.log("response : ", data);
       this.leaveForms = data.rows;
       console.log("response - leave : ", this.leaveForms);
@@ -25,9 +24,8 @@ export class DownloadFormComponent implements OnInit {
       console.log("available list :");
       console.log("success");
       this.download_csv_file(this.leaveForms);
-    }).catch((er) => {
-      console.log(er.data);
-      console.log("failed");
+    }),((er:any) => {
+      console.log(er);
       alert("Error-Unable to retrive");
     });
 

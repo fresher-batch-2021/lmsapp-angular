@@ -10,20 +10,21 @@ import { LeaveFormService } from '../leave-form.service';
 export class HistoryComponent implements OnInit {
     forms: any;
     empId: any;
-    constructor(private toastr: ToastrService) {
+    constructor(private toastr: ToastrService,
+        private leaveFormService: LeaveFormService) {
         let userStr = localStorage.getItem("LOGGED_IN_USER");
         let user = userStr != null ? JSON.parse(userStr) : null;
         this.empId = user[0].empId;
-        const serviceObj = new LeaveFormService();
-        serviceObj.listLeave().then(res => {
-            let data = res.data;
+
+        leaveFormService.listLeave().subscribe((res:any) => {
+            let data = res;
             console.log("response : ", data);
             this.forms = data.rows;
             console.log("table list :", this.forms);
             console.log("available list :");
             console.log("success");
-        }).catch(err => {
-            console.log(err.data);
+        }),((err:any) => {
+            console.log(err);
             alert("Error-Can't Load");
         });
     }
@@ -33,15 +34,17 @@ export class HistoryComponent implements OnInit {
     }
 
     leaveform(id: string, rev: string) {
-        const leaveFormService = new LeaveFormService();
-        leaveFormService.deleteLeave(id, rev).then(res => {
-            console.log(res.data);
-            this.toastr.success("Leave Application Removed");
-            window.location.reload();
-        }).catch(err => {
-            console.log(err.data);
-            this.toastr.error("Failed");
-        })
+        let status = confirm("Are you sure ?");
+        if(status){
+            this.leaveFormService.deleteLeave(id, rev).subscribe((res:any) => {
+                console.log(res);
+                this.toastr.success("Leave Application Removed");
+                window.location.reload();
+            }),((err:any) => {
+                console.log(err.data);
+                this.toastr.error("Failed");
+            })
+        }
     }
     downloadForm(id: string) {
         window.location.href = "/download?val=" + id;
