@@ -250,8 +250,8 @@ export class ValidatorService {
     this.userService.checkAlreadyExists(isExistData).subscribe((res:any) =>{
       length = res.data.docs.length;
       console.log("length : ",res.data.docs.length);
-    }),((err:any) =>{
-      console.log("Check Already Exists-Failed");
+    },(err:any) =>{
+      console.log("Check Already Exists-Failed "+err);
     })
     if(length == 0){
       console.log("length : "+length)

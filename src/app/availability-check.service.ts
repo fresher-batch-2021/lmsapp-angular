@@ -17,10 +17,9 @@ export class AvailabilityCheckService {
     holidayService.listHolidays().subscribe((res:any) => {
       this.holidays = res.rows;
       console.log("holidayList : ",this.holidays);
-    }),((err:any) => {
-      console.log("Can't load LeaveLists");
+    },(err:any) => {
+      console.log("Can't load LeaveLists "+err);
     })
-
   }
 
   isOfficialHolidaysBetweenLeaveDays(fromDate: any,toDate:any, days: any) {
@@ -48,8 +47,8 @@ export class AvailabilityCheckService {
           leavedays--;
         }
       }
-    }),((err:any) =>{
-      console.log("Failed to load Holidays");
+    },(err:any) =>{
+      console.log("Failed to load Holidays :"+ err);
     })
 
     console.log("leavedays : " + leavedays);
@@ -82,8 +81,8 @@ export class AvailabilityCheckService {
       console.log("rows : ", this.forms);
       console.log("doc : "+this.forms.doc);
       console.log("success");
-    }),((err:any) => {
-      console.log("failed");
+    },(err:any) => {
+      console.log("failed :"+err);
       alert("Error-Can't Load");
     });
     let sl;

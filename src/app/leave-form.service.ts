@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { RestService } from './rest.service';
 
 @Injectable({
