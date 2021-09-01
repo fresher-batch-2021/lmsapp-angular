@@ -20,7 +20,7 @@ export class AvailableleaveComponent implements OnInit {
       this.forms = data.rows;
       console.log("table list :", this.forms);
       console.log("success");
-    }),((err:any) => {
+    },(err:any) => {
       console.log("failed");
       alert("Error-Can't Load");
     });

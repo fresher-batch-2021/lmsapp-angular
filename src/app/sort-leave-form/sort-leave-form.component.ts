@@ -17,7 +17,7 @@ export class SortLeaveFormComponent implements OnInit {
       let data = res;
       this.forms = data.rows;
       console.log("success Leave list :", this.forms);
-    }),((err:any) => {
+    },(err:any) => {
       console.log("failed"+err);
       alert("Error-Can't Load");
     });

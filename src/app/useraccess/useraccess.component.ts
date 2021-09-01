@@ -24,7 +24,7 @@ export class UseraccessComponent implements OnInit {
       let request = data.rows;
       this.requests = request.filter((obj: any) => obj.doc.status == 'Waiting');
       console.log("success table list :", this.requests);
-    }),((err:any) => {
+    },(err:any) => {
       console.log("failed : "+err);
       this.toastr.error("Error-Can't Load");
     });
@@ -53,7 +53,7 @@ export class UseraccessComponent implements OnInit {
         console.log("status : " + status)
         this.loadRequests();
       }
-    }),((err:any) => {
+    },(err:any) => {
       console.log("failed"+err);
       this.toastr.error("Error-Can't Load");
     });
@@ -92,7 +92,7 @@ export class UseraccessComponent implements OnInit {
       console.log("response : ", data);
       this.toastr.success("Leave balance added to Account");
       this.loadRequests();
-    }),((err:any) => {
+    },(err:any) => {
       console.log(err);
       this.toastr.error("Error - Leave balance not added");
     });

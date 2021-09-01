@@ -50,7 +50,7 @@ export class HrpageComponent implements OnInit {
       this.forms = data.rows;
       this.searchResults = this.forms;
       console.log("table list :", this.forms);
-    }),((err:any) => {
+    },(err:any) => {
       console.log(err);
       this.toastr.error("Error-Can't Load");
     });
@@ -83,7 +83,7 @@ export class HrpageComponent implements OnInit {
         this.leaveAvailabilityUpdate(availabilityData);
         this.loadForms();
 
-      }),((err:any) => {
+      },(err:any) => {
         console.log(err);
         this.toastr.success("Error-can't Update");
       });
@@ -107,7 +107,7 @@ export class HrpageComponent implements OnInit {
         let data = res;
         this.toastr.success("Updated!!"+data);
         this.loadForms();
-      }),((err:any) => {
+      },(err:any) => {
         console.log(err);
         this.toastr.error("Error-can't Update");
       });
@@ -146,7 +146,7 @@ export class HrpageComponent implements OnInit {
           'leaveType': datas.leaveType
         }
         this.leaveUpdate(leaveUpdateData);
-      }),((err:any) => {
+      },(err:any) => {
         console.log(err);
         alert("Error-Can't Load - get leaveAvailability for Updation");
       });
@@ -180,7 +180,7 @@ export class HrpageComponent implements OnInit {
       let data = res;
       console.log("response : ", data);
       console.log("leaveAvailability Update success");
-    }),((err:any) => {
+    },(err:any) => {
       console.log(err.data);
       alert("Error-Can't Load");
     });

@@ -23,7 +23,7 @@ export class HistoryComponent implements OnInit {
             console.log("table list :", this.forms);
             console.log("available list :");
             console.log("success");
-        }),((err:any) => {
+        },(err:any) => {
             console.log(err);
             alert("Error-Can't Load");
         });
@@ -40,7 +40,7 @@ export class HistoryComponent implements OnInit {
                 console.log(res);
                 this.toastr.success("Leave Application Removed");
                 window.location.reload();
-            }),((err:any) => {
+            },(err:any) => {
                 console.log(err.data);
                 this.toastr.error("Failed");
             })

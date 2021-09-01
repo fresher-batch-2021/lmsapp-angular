@@ -20,7 +20,7 @@ export class UpcomingLeaveComponent implements OnInit {
       this.array = data.rows;
       console.log("Holidays List :" + this.array);
       this.sortArray();
-    }),((err:any) => {
+    },(err:any) => {
       console.error("Failed to load Holidays : "+err);
       toastr.error("can't load Holiday lists");
     })

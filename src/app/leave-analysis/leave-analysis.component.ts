@@ -34,7 +34,7 @@ export class LeaveAnalysisComponent implements OnInit {
       console.log(res);
       this.leaveForms = res.rows;
       this.buildDataSets();
-    }),((err:any) => {
+    },(err:any) => {
       console.log(err);
       console.log("Failed to Load Leave Days");
     })

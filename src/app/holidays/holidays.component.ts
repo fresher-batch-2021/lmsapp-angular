@@ -53,7 +53,7 @@ export class HolidaysComponent implements OnInit {
         console.log("Leave Added : " + res);
         this.toastr.success("Leave Added Successfully");
         window.location.href = "/holidays";
-      }),((err:any) => {
+      },(err:any) => {
         this.toastr.error("Failed to Add");
       })
     } catch (err) {

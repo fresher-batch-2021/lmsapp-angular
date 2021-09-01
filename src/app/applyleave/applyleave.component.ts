@@ -38,32 +38,44 @@ export class ApplyleaveComponent implements OnInit {
       },
       fields: ['total', 'sickLeave', 'casualLeave', 'earnedLeave'],
     };
-    this.leaveAvailabilityService.getOneLeaveAvailability(getData).subscribe((res: any) => {
+    this.leaveAvailabilityService.getOneLeaveAvailability(getData).subscribe(
+      (res: any) => {
         let data = res;
         console.log('response : ', data);
         this.availableLeaveCount = res.docs[0];
         console.log('table list :', this.availableLeaveCount);
-      }),
+      },
       (err: any) => {
         console.log('failed');
         this.toastr.error("Error-Can't Load");
-      };
+      }
+    );
   }
 
   getLeaveAvailability(type: string, days: number) {
     if (type == 'sickLeave') {
       if (this.availableLeaveCount.sickLeave < days) {
-        throw new Error('Available Sick Leave ' + this.availableLeaveCount.sickLeave + ' Days');
+        throw new Error(
+          'Available Sick Leave ' + this.availableLeaveCount.sickLeave + ' Days'
+        );
       }
     }
     if (type == 'casualLeave') {
       if (this.availableLeaveCount.casualLeave < days) {
-        throw new Error('Available Casual Leave ' + this.availableLeaveCount.casualLeave +' Days');
+        throw new Error(
+          'Available Casual Leave ' +
+            this.availableLeaveCount.casualLeave +
+            ' Days'
+        );
       }
     }
     if (type == 'earnedLeave') {
       if (this.availableLeaveCount.earnedLeave < days) {
-        throw new Error('Available Earned Leave ' +this.availableLeaveCount.earnedLeave +' Days');
+        throw new Error(
+          'Available Earned Leave ' +
+            this.availableLeaveCount.earnedLeave +
+            ' Days'
+        );
       }
     }
   }
@@ -84,7 +96,12 @@ export class ApplyleaveComponent implements OnInit {
       let to = new Date(this.toDate);
       let difference = to.getTime() - from.getTime();
       let days = difference / (1000 * 3600 * 24) + 1;
-      let daysTaken = this.isLeaveAvailableService.isOfficialHolidaysBetweenLeaveDays(this.fromDate,this.toDate,days);
+      let daysTaken =
+        this.isLeaveAvailableService.isOfficialHolidaysBetweenLeaveDays(
+          this.fromDate,
+          this.toDate,
+          days
+        );
       this.validatorService.isEmpty(
         this.user[0].empId,
         "Employee ID can't be empty"
@@ -108,17 +125,19 @@ export class ApplyleaveComponent implements OnInit {
         remarks: '',
       };
       console.log(leaveFormObj);
-      this.leaveFormService.applyLeave(leaveFormObj).subscribe((res: any) => {
-        let data = res;
-        console.log('response : ', data);
-        this.toastr.success('Applied Succesfully');
-        console.log('success');
-        window.location.href = '/history';
-      }),
+      this.leaveFormService.applyLeave(leaveFormObj).subscribe(
+        (res: any) => {
+          let data = res;
+          console.log('response : ', data);
+          this.toastr.success('Applied Succesfully');
+          console.log('success');
+          window.location.href = '/history';
+        },
         (err: any) => {
           console.error('failed' + err);
           this.toastr.error('Error -');
-        };
+        }
+      );
     } catch (err) {
       console.log(err.message + err);
       this.toastr.error(err.message);

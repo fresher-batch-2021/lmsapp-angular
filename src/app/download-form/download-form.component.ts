@@ -24,7 +24,7 @@ export class DownloadFormComponent implements OnInit {
       console.log("available list :");
       console.log("success");
       this.download_csv_file(this.leaveForms);
-    }),((er:any) => {
+    },(er:any) => {
       console.log(er);
       alert("Error-Unable to retrive");
     });

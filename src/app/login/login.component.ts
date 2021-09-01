@@ -68,10 +68,10 @@ export class LoginComponent implements OnInit {
         } else {
           this.toastr.warning("Invalid Role defined")
         }
-      }), (err: { data: any; }) => {
+      }, (err: { data: any; }) => {
         console.log(err);
         this.toastr.error("Error - Invalid Credentials");
-      };
+      });
     } catch (err) {
       this.toastr.warning(err.message);
     }

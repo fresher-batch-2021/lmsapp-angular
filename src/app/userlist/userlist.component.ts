@@ -24,11 +24,11 @@ export class UserlistComponent implements OnInit {
       let userList = data.rows;
       this.users = userList.filter((obj: any) => obj.doc.status == 'Accepted');
       console.log('table list :', this.users);
-    }),
+    },
       (err: any) => {
         console.log('failed : ' + err);
         this.toastr.error("Error-Can't Load");
-      };
+      });
   }
 
   deleteOneUser(id: string, rev: string) {
@@ -37,11 +37,11 @@ export class UserlistComponent implements OnInit {
       this.userService.deleteUser(id, rev).subscribe((res: any) => {
         console.log('deleted : ', res);
         this.toastr.success('Deleted Successfully');
-      }),
+      },
         (err: any) => {
           console.log(err);
           this.toastr.error('Failed to Delete');
-        };
+      });
     }
   }
 }
