@@ -5,7 +5,6 @@ import { ApplyleaveComponent } from './applyleave/applyleave.component';
 import { AuthGuard } from './auth.guard';
 import { AvailableleaveComponent } from './availableleave/availableleave.component';
 import { DownloadFormComponent } from './download-form/download-form.component';
-import { EditleaveformComponent } from './editleaveform/editleaveform.component';
 import { HistoryComponent } from './history/history.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { HomeComponent } from './home/home.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
   {path:"status", component:StatusComponent, canActivate:[AuthGuard]},
   {path:"availableLeave", component: AvailableleaveComponent, canActivate:[AuthGuard]},
   {path:"history", component: HistoryComponent, canActivate:[AuthGuard]},
-  {path:"history/editleaveform", component : EditleaveformComponent, canActivate:[AuthGuard]},
   {path:"upcoming", component: UpcomingLeaveComponent},
   {path:"download", component: DownloadFormComponent, canActivate:[AuthGuard]},
   {path:"hrmHome", component: HrmHomeComponent, canActivate:[AdminauthGuard]},
