@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class RestService {
-
   basicAuth:string;
   baseUrl :string;
 
@@ -16,27 +15,27 @@ export class RestService {
   }
 
   save(url:string, formData:any){
-    return this.http.post(this.baseUrl + url, formData, { headers: {'Authorization': this.basicAuth }})
+    return this.http.post(this.baseUrl + url, formData)
   }
 
   select(url:string, formData:any){
-    return this.http.post(this.baseUrl + url, formData, { headers: {'Authorization': this.basicAuth }})
+    return this.http.post(this.baseUrl + url, formData)
   }
 
   getOneData(url:string, formData:any){
-    return this.http.get( this.baseUrl + url + "/" + formData, { headers: {'Authorization': this.basicAuth }})
+    return this.http.get( this.baseUrl + url + "/" + formData)
   }
 
   getAllData(url:string){
-    return this.http.get( this.baseUrl + url, { headers: {'Authorization': this.basicAuth }});
+    return this.http.get( this.baseUrl + url);
   }
 
   updateData(url:string, formData:any){
-    return this.http.put( this.baseUrl + url, formData, { headers: {'Authorization': this.basicAuth }})
+    return this.http.put( this.baseUrl + url, formData)
   }
 
   deleteOneData(url:string){
-    return this.http.delete( this.baseUrl + url, { headers: {'Authorization': this.basicAuth }})
+    return this.http.delete( this.baseUrl + url)
   }
 
 }
