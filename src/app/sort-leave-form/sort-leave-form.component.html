@@ -1,5 +1,6 @@
 <app-hrmheader></app-hrmheader>
 <div class = "sortpage-content">
+    <label for="leaveType">Leave Type</label>
     <select [(ngModel)] = "leaveType" class = "select-box">
         <option value="">--select--</option>
         <option value="allLeave">All Leave</option>
@@ -28,7 +29,7 @@
                 <td>{{leave.toDate | date: "dd-MMM-yyyy"}}</td>
                 <td>{{leave.leaveType}}</td>
                 <td>{{leave.reason}}</td>
-                <td>{{leave.status}}</td>
+                <td><span class = "status-style" [style.background-color]="getStyle(leave.status)">{{leave.status}}</span></td>
             </tr>
         </tbody>
         <tbody *ngIf = "this.array.length == 0">

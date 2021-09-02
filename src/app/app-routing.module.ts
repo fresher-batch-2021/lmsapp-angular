@@ -9,6 +9,7 @@ import { HistoryComponent } from './history/history.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { HomeComponent } from './home/home.component';
 import { HrmHomeComponent } from './hrm-home/hrm-home.component';
+import { HrmheaderComponent } from './hrmheader/hrmheader.component';
 import { HrpageComponent } from './hrpage/hrpage.component';
 import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:"history", component: HistoryComponent, canActivate:[AuthGuard]},
   {path:"upcoming", component: UpcomingLeaveComponent},
   {path:"download", component: DownloadFormComponent, canActivate:[AuthGuard]},
+  {path:"hrmheader", component: HrmheaderComponent},
   {path:"hrmHome", component: HrmHomeComponent, canActivate:[AdminauthGuard]},
   {path:"hrpage", component: HrpageComponent, canActivate:[AdminauthGuard]},
   {path:"userRequest", component:UseraccessComponent, canActivate:[AdminauthGuard]},

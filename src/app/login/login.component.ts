@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../user-service';
 import { ValidatorService } from '../validator.service';
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private userService: UserService,
-    private validatorService: ValidatorService) {
+    private validatorService: ValidatorService,
+    private router: Router) {
     this.loginForm = this.fb.group({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -56,11 +58,11 @@ export class LoginComponent implements OnInit {
         if (data.docs[0].role != "hr" && data.docs[0].status === "Accepted") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           this.toastr.success("Welcome " + data.docs[0].name);
-          window.location.href = "/home";
+          this.router.navigate(["/home"]);
         } else if (data.docs[0].role === "hr" && this.role === "HR") {
           localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
           this.toastr.success("Welcome " + data.docs[0].name);
-          window.location.href = "/hrmHome";
+          this.router.navigate(["/hrmHome"]);
         } else if (data.docs[0].status === "Waiting") {
           this.toastr.info("Your Registration in Progress.. Please Wait");
         } else if (data.docs[0].status === "Declined") {
@@ -77,5 +79,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
-

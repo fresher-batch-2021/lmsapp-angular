@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LeaveFormService } from '../leave-form.service';
 
@@ -11,7 +12,8 @@ export class HistoryComponent implements OnInit {
     forms: any;
     empId: any;
     constructor(private toastr: ToastrService,
-        private leaveFormService: LeaveFormService) {
+        private leaveFormService: LeaveFormService,
+        private router : Router) {
         let userStr = localStorage.getItem("LOGGED_IN_USER");
         let user = userStr != null ? JSON.parse(userStr) : null;
         this.empId = user[0].empId;
@@ -47,7 +49,25 @@ export class HistoryComponent implements OnInit {
         }
     }
     downloadForm(id: string) {
-        window.location.href = "/download?val=" + id;
+        this.router.navigateByUrl("/download?val=" +id);
     }
 
+    getStyle(status :any)
+    {
+        let statusClr;
+        console.log("status", status);
+        if(status == "Declined")
+        {
+            statusClr = "red";
+        }
+        else if(status == "Approved")
+        {
+            statusClr = "Green"
+        }
+        else 
+        {
+            statusClr = "orange";
+        }
+        return statusClr;
+    }
 }

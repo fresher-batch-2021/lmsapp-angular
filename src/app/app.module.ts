@@ -28,6 +28,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot({positionClass: "toast-top-center"})

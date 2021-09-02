@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AvailabilityCheckService } from '../availability-check.service';
 import { HolidayService } from '../holiday.service';
 import { ValidatorService } from '../validator.service';
 
@@ -9,16 +10,19 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./holidays.component.css']
 })
 export class HolidaysComponent implements OnInit {
+  leaveDate: any;
+  leaveDescription: any;
   constructor(private toastr: ToastrService,
     private validatorService: ValidatorService,
-    private holidayService: HolidayService) {
+    private holidayService: HolidayService,
+    private availabityCheckService : AvailabilityCheckService) {
+      this.leaveDate = availabityCheckService.currentDate();
   }
 
   ngOnInit(): void {
     console.log("Holiday");
   }
-  leaveDate: any;
-  leaveDescription: any;
+  
   addLeave() {
     try {
       console.log(this.leaveDate);

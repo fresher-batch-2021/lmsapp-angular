@@ -50,13 +50,12 @@ export class AvailabilityCheckService {
     },(err:any) =>{
       console.log("Failed to load Holidays :"+ err);
     })
-
+    
     console.log("leavedays : " + leavedays);
     return leavedays;
   }
 
   isDateBetweenTwoDates(from: any, to: any, key: any) {
-
     let fromDate = from[1] +'/'+ from[2] + '/' +from[0];
     let toDate = to[1] + '/' + to[2] + '/' + to[0];  
     let keyDate = key[1] + '/' + key[2] + '/' + key[0];
@@ -71,47 +70,9 @@ export class AvailabilityCheckService {
     return false;
   }
 
-  isLeaveAvailable(type: any, days: number) {
-    
-    this.leaveAvailabilityService.getLeaveAvailability().subscribe((res:any) => {
-      let data = res.data;
-      console.log("res : "+res);
-      console.log("response : ", data);
-      this.forms = data.rows;
-      console.log("rows : ", this.forms);
-      console.log("doc : "+this.forms.doc);
-      console.log("success");
-    },(err:any) => {
-      console.log("failed :"+err);
-      alert("Error-Can't Load");
-    });
-    let sl;
-    let cl;
-    let el;
-    let total;
-    for (let form of this.forms) {
-      if (form.doc.email == this.user[0].email) {
-        sl = form.doc.sickLeave;
-        cl = form.doc.casualLeave;
-        el = form.doc.earnedLeave;
-      }
-    }
-    if (type == "sickLeave") {
-      if (sl < days) {
-        throw new Error("Available Sick Leave " + sl + " Days");
-      }
-    }
-    if (type == "casualLeave") {
-      if (cl < days) {
-        throw new Error("Available Sick Leave " + cl + " Days");
-      }
-    }
-    if (type == "earnedLeave") {
-      if (el < days) {
-        throw new Error("Available Sick Leave " + el + " Days");
-      }
-    }
+  currentDate(){
+    let day = new Date();
+    let date = day.getFullYear()+"-"+String(day.getMonth() + 1).padStart(2, '0')+"-"+String(day.getDate()).padStart(2, '0')
+    return date;
   }
-  
-
 }

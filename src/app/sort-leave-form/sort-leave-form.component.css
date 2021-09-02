@@ -19,6 +19,12 @@
     margin-left: 20px;
 }
 
+.status-style{
+    padding: 10px;
+    border-radius: 3px solid white;
+    color: whitesmoke;
+}
+
 .btn-style{
     width: 200px;
     height: 40px;

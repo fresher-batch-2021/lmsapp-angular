@@ -1,3 +1,16 @@
+<!-- <app-hrmheader *ngIf = "user[0].role == 'hr'"></app-hrmheader> -->
 <main>
   <router-outlet></router-outlet>
 </main>
+
+<!-- <main *ngIf = "user[0].role == 'hr'">
+  <router-outlet></router-outlet>
+</main>
+<main class = "row" *ngIfElse = "user[0].role != 'hr'">
+  <div class="col-sm-2"><app-header></app-header></div>
+  <router-outlet class = "col-sm-8"></router-outlet>
+  <div class = "col-sm-2"><app-footer></app-footer></div>
+</main>
+<main>
+  <router-outlet></router-outlet>
+</main> -->

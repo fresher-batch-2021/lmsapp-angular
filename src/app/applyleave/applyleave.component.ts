@@ -17,6 +17,11 @@ export class ApplyleaveComponent implements OnInit {
   eId: any;
   forms: any;
   availableLeaveCount: any;
+  employeeId: any;
+  fromDate: any;
+  toDate: any;
+  type: any;
+  reason: any;
   constructor(
     private toastr: ToastrService,
     private validatorService: ValidatorService,
@@ -24,7 +29,10 @@ export class ApplyleaveComponent implements OnInit {
     private leaveFormService: LeaveFormService,
     private isLeaveAvailableService: AvailabilityCheckService,
     private leaveAvailabilityService: LeaveAvailabilityService
-  ) {}
+  ) {
+    this.fromDate = isLeaveAvailableService.currentDate();
+    this.toDate = isLeaveAvailableService.currentDate();
+  }
 
   ngOnInit(): void {
     this.load();
@@ -80,11 +88,7 @@ export class ApplyleaveComponent implements OnInit {
     }
   }
 
-  employeeId: any;
-  fromDate: any;
-  toDate: any;
-  type: any;
-  reason: any;
+  
 
   leaveForm() {
     let userStr = localStorage.getItem('LOGGED_IN_USER');
