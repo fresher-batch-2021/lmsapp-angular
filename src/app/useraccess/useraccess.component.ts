@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Availableleave } from '../availableleave';
 import { LeaveAvailabilityService } from '../leave-availability.service';
+import { User } from '../user';
 import { UserService } from '../user-service';
 
 @Component({
@@ -41,8 +43,9 @@ export class UseraccessComponent implements OnInit {
       password: request.doc.password,
       status: status
     }
-
-    this.userService.updateUser(request.doc._id, request.doc._rev, updatedUserData).subscribe((res:any) => {
+    const user = new User();
+    user.setData(updatedUserData);
+    this.userService.updateUser(request.doc._id, request.doc._rev, user).subscribe((res:any) => {
       let data = res;
       console.log("response : ", data);
       requestStatus = 1;
@@ -77,17 +80,18 @@ export class UseraccessComponent implements OnInit {
       total = sl + cl + el;
     }
     let postData = {
+      'empId': employeeId,
+      'email': email,
+      'role': role,
       'total': total,
       'sickLeave': sl,
       'casualLeave': cl,
-      'earnedLeave': el,
-      'empId': employeeId,
-      'email': email,
-      'role': role
+      'earnedLeave': el
     }
     console.log("leave date : " + postData);
-    
-    this.leaveAvailabilityService.addLeaveAvailability(postData).subscribe((res:any) => {
+    const availableObj = new Availableleave();
+    availableObj.setData(postData);
+    this.leaveAvailabilityService.addLeaveAvailability(availableObj).subscribe((res:any) => {
       let data = res;
       console.log("response : ", data);
       this.toastr.success("Leave balance added to Account");

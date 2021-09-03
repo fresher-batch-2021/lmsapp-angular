@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AvailabilityCheckService } from '../availability-check.service';
+import { Availableleave } from '../availableleave';
+import { Leave } from '../leave';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
 
@@ -70,7 +72,9 @@ export class HrpageComponent implements OnInit {
         "status": status,
         "remarks" : "Approved"
       }
-      this.leaveFormService.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).subscribe((res:any) => {
+      const leaveObj = new Leave();
+      leaveObj.setData(updatedForm);
+      this.leaveFormService.updateLeaveStatus(leaveObj, form.doc._id, form.doc._rev).subscribe((res:any) => {
         let data = res;
         this.toastr.success("Status Updated!"+data);
         const availabilityData = {
@@ -102,8 +106,9 @@ export class HrpageComponent implements OnInit {
         "status": status,
         "remarks" : reason
       }
-    
-      this.leaveFormService.updateLeaveStatus(updatedForm, form.doc._id, form.doc._rev).subscribe((res:any) => {
+      const leaveObj = new Leave();
+      leaveObj.setData(updatedForm);
+      this.leaveFormService.updateLeaveStatus(leaveObj, form.doc._id, form.doc._rev).subscribe((res:any) => {
         let data = res;
         this.toastr.success("Updated!!"+data);
         this.loadForms();
@@ -175,8 +180,9 @@ export class HrpageComponent implements OnInit {
       "email": datas.email
     }
     console.log("updatedData : " + updateddata.casualLeave, updateddata.sickLeave, updateddata.earnedLeave);
-    
-    this.leaveAvailabilityService.updateLeaveAvailability(updateddata, datas.rev, datas.id).subscribe((res:any) => {
+    const available = new Availableleave();
+    available.setData(updateddata);
+    this.leaveAvailabilityService.updateLeaveAvailability(available, datas.rev, datas.id).subscribe((res:any) => {
       let data = res;
       console.log("response : ", data);
       console.log("leaveAvailability Update success");

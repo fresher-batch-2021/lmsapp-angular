@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Availableleave } from './availableleave';
 import { RestService } from './rest.service';
 
 @Injectable({
@@ -7,8 +8,9 @@ import { RestService } from './rest.service';
 export class LeaveAvailabilityService {
 
   constructor(private restService: RestService){}
-  collectionName:string = "leave-availability";  
-  addLeaveAvailability(data: {total: number; sickLeave: number; casualLeave: number; earnedLeave: number; empId: string; email: string; }){
+  collectionName:string = "leave-availability"; 
+   
+  addLeaveAvailability(data:Availableleave){
     return this.restService.save(this.collectionName, data)
   }
 
@@ -20,7 +22,7 @@ export class LeaveAvailabilityService {
     return this.restService.select(this.collectionName+"/_find", data)
   }
 
-  updateLeaveAvailability(data: { id: any; total: any; sickLeave: any; casualLeave: any; earnedLeave: any; empId: any; email: any; },rev: any,id: any){
+  updateLeaveAvailability(data:Availableleave,rev: any,id: any){
     return this.restService.updateData(this.collectionName+"/"+id+"?rev="+rev, data)
   }
 }

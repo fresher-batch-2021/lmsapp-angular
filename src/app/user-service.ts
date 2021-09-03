@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
-
+import {User} from './user'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,12 +10,16 @@ export class UserService {
   constructor(private restService:RestService){
     
   }
-  registration(formData: { name: string; empId: string; role: string; mobileNumber: string; email: string; password: string; }){
+  //registration(formData: { name: string; empId: string; role: string; mobileNumber: string; email: string; password: string; }){
+    registration(formData:User){
     return this.restService.save(this.collectionName , formData);
   }
 
 
   login(formData: { selector: { email: string; password: string; }; fields: string[]; }){
+    {
+      
+    }
     return this.restService.select(this.collectionName + "/_find", formData)
   }
 
@@ -23,7 +27,7 @@ export class UserService {
     return this.restService.getAllData(this.collectionName+"/_all_docs?include_docs=true");
   }
 
-  updateUser(id: string,rev: string,data: { name: any; empId: any; role: any; mobileNumber: any; email: any; password: any; status: any; }){
+  updateUser(id: string,rev: string,data: User){
     return this.restService.updateData(this.collectionName+"/"+id+"?rev="+rev, data)
   }
 

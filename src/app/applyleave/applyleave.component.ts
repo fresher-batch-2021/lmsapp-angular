@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AvailabilityCheckService } from '../availability-check.service';
+import { Leave } from '../leave';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
 import { UserService } from '../user-service';
@@ -12,6 +13,9 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./applyleave.component.css'],
 })
 export class ApplyleaveComponent implements OnInit {
+
+@ViewChild('id') id!:ElementRef<HTMLInputElement>;
+
   userStr: any = localStorage.getItem('LOGGED_IN_USER');
   user: any = this.userStr != null ? JSON.parse(this.userStr) : null;
   eId: any;
@@ -30,6 +34,8 @@ export class ApplyleaveComponent implements OnInit {
     private isLeaveAvailableService: AvailabilityCheckService,
     private leaveAvailabilityService: LeaveAvailabilityService
   ) {
+
+    console.log("eleref", this.id);
     this.fromDate = isLeaveAvailableService.currentDate();
     this.toDate = isLeaveAvailableService.currentDate();
   }
@@ -128,8 +134,10 @@ export class ApplyleaveComponent implements OnInit {
         status: 'Pending',
         remarks: '',
       };
+      const leaveObject = new Leave();
+      leaveObject.setData(leaveFormObj);
       console.log(leaveFormObj);
-      this.leaveFormService.applyLeave(leaveFormObj).subscribe(
+      this.leaveFormService.applyLeave(leaveObject).subscribe(
         (res: any) => {
           let data = res;
           console.log('response : ', data);

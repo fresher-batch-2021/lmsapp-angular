@@ -1,6 +1,7 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../user';
 import { UserService } from '../user-service';
 import { ValidatorService } from '../validator.service';
 
@@ -68,7 +69,9 @@ export class RegisterComponent implements OnInit {
             password: this.password,
             status: "Waiting"
           }
-          this.userService.registration(formData).subscribe(( res1:any) => {
+          const user = new User();
+          user.setData(formData);
+          this.userService.registration(user).subscribe(( res1:any) => {
             let data = res1;
             console.log("response : ", data);
             this.toastr.success("Registered Successffully... Your Registration in Progress");

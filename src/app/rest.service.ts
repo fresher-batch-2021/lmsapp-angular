@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
 import { environment } from 'src/environments/environment';
+import { Availableleave } from './availableleave';
+import { Leave } from './leave';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +11,12 @@ import { environment } from 'src/environments/environment';
 export class RestService {
   basicAuth:string;
   baseUrl :string;
-
   constructor(private http:HttpClient) { 
     this.basicAuth = "Basic " + btoa(environment.dbUsername + ":" + environment.dbPassword);
     this.baseUrl = environment.baseUrl;
   }
-
-  save(url:string, formData:any){
+ 
+  save(url:string, formData:Availableleave | Leave | User){
     return this.http.post(this.baseUrl + url, formData)
   }
 
@@ -30,7 +32,7 @@ export class RestService {
     return this.http.get( this.baseUrl + url);
   }
 
-  updateData(url:string, formData:any){
+  updateData(url:string, formData:Availableleave | Leave | User){
     return this.http.put( this.baseUrl + url, formData)
   }
 

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Leave } from './leave';
 import { RestService } from './rest.service';
 
 @Injectable({
@@ -8,7 +9,7 @@ export class LeaveFormService {
   collectionName:string = "leaveforms";
   constructor(private restService:RestService){}
 
-  applyLeave(leaveFormObj: { name: any; employeeId: any; role: any; fromDate: any; toDate: any; days: any; leaveType: any; reason: any; status: string; remarks: string; }){
+  applyLeave(leaveFormObj:Leave){
     return this.restService.save(this.collectionName, leaveFormObj)
   }
 
@@ -16,7 +17,7 @@ export class LeaveFormService {
     return this.restService.getAllData(this.collectionName+"/_all_docs?include_docs=true")
   }
 
-  updateLeaveStatus(data: { name: any; employeeId: any; role: any; days: any; fromDate: any; toDate: any; leaveType: any; reason: any; status: any; remarks: string | null; },_id: any,_rev: any){
+  updateLeaveStatus(data:Leave,_id: string,_rev: string){
     return this.restService.updateData(this.collectionName+"/"+_id+"?rev="+_rev, data)
   }
 
