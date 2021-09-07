@@ -1,19 +1,19 @@
 <header>
     <nav class="navbar" style="width: 10%">
-        <img style="height : 80px; width: 100px;" src="assets/images/renlogo.png" alt="company logo">
-        <label style="color:rgb(195,195,195); padding-left:0px;">________________</label>
-        <a class="nav-item" routerLink="/home" style="color: rgb(32, 31, 31);"> Home</a>
-        <label style="color: rgb(195,195,195);">________________</label>
-        <a class="nav-item" routerLink="/applyleave" style="color:rgb(32, 31, 31);"> Apply Leave</a>
-        <label style="color: rgb(195,195,195);">________________</label>
-        <a class="nav-item" routerLink="/status" style="color:rgb(32, 31, 31);"> Available</a>
-        <label style="color: rgb(195,195,195);">________________</label>
-        <a class="nav-item" routerLink="/history" style="color:rgb(32, 31, 31);"> History</a>
-        <label style="color: rgb(195,195,195);">________________</label>
-        <a class="nav-item" routerLink="/upcoming" style="color:rgb(32, 31, 31);"> Holidays</a>
-        <label style="color: rgb(195,195,195);">________________</label>
-        <a class="nav-item" routerLink="/logout" style="color:rgb(32, 31, 31);"> Logout</a>
-        <label style="color: rgb(195,195,195);">________________</label>
+        <img style="height : 80px; width: 100px;" src="assets/images/renlogo.png" alt="company logo"><label style="color:rgb(195,195,195); padding-left:0px;">________________</label>
+        
+        <a class="nav-item" (click)="home()" routerLink="#" style="color: rgb(32, 31, 31);"> Home</a><label style="color: rgb(195,195,195);">________________</label>
+        
+        <a class="nav-item" (click)="applyLeave()" routerLink="#" style="color:rgb(32, 31, 31);"> Apply Leave</a><label style="color: rgb(195,195,195);">________________</label>
+        
+        <a class="nav-item" (click) ="status()" routerLink="#" style="color:rgb(32, 31, 31);"> Available</a><label style="color: rgb(195,195,195);">________________</label>
+        
+        <a class="nav-item" (click) = "history()" routerLink="#" style="color:rgb(32, 31, 31);"> History</a><label style="color: rgb(195,195,195);">________________</label>
+        
+        <a class="nav-item" (click) = "holiday()" routerLink="#" style="color:rgb(32, 31, 31);"> Holidays</a><label style="color: rgb(195,195,195);">________________</label>
+        
+        <a class="nav-item" routerLink="/logout" style="color:rgb(32, 31, 31);"> Logout</a><label style="color: rgb(195,195,195);">________________</label>
+        
         <br/>
     </nav>
     <br/>

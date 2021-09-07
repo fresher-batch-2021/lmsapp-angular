@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-hrmheader',
@@ -8,7 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HrmheaderComponent implements OnInit {
   user:any;
-  constructor(private route : ActivatedRoute) { 
+  constructor(private route : ActivatedRoute,
+    private router: Router) { 
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr):null;
   }
@@ -17,5 +18,25 @@ export class HrmheaderComponent implements OnInit {
     console.log("Header");
     console.log("active route", this.route.snapshot.url[0].path);
   }
-
+  home(){
+    this.router.navigateByUrl("admin");
+  }
+  leavePage(){
+    this.router.navigateByUrl("admin/hrpage");
+  }
+  sortLeave(){
+    this.router.navigateByUrl("admin/sortforms");
+  }
+  userRequest(){
+    this.router.navigateByUrl("admin/userRequest");
+  }
+  users(){
+    this.router.navigateByUrl("admin/users");
+  }
+  holidays(){
+    this.router.navigateByUrl("admin/holidays");
+  }
+  leaveAnalysis(){
+    this.router.navigateByUrl("admin/leaveAnalysis");
+  }
 }

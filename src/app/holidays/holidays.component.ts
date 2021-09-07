@@ -60,7 +60,7 @@ export class HolidaysComponent implements OnInit {
       },(err:any) => {
         this.toastr.error("Failed to Add");
       })
-    } catch (err) {
+    } catch (err:any) {
       this.toastr.warning(err.message);
     }
   }

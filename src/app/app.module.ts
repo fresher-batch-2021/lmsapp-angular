@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,34 +30,40 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { InterceptorsService } from './interceptors.service';
+import { UsermoduleModule } from './usermodule/usermodule.module';
+import { SharedmoduleModule } from './sharedmodule/sharedmodule.module';
+import { AdminmoduleModule } from './adminmodule/adminmodule.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HomeComponent,
+    //HeaderComponent,
+    //HomeComponent,
     LoginComponent,
-    FooterComponent,
-    ApplyleaveComponent,
+    //FooterComponent,
+    //ApplyleaveComponent,
     RegisterComponent,
-    StatusComponent,
-    HistoryComponent,
-    UpcomingLeaveComponent,
-    HrpageComponent,
+    //StatusComponent,
+    //HistoryComponent,
+    //UpcomingLeaveComponent,
+    //HrpageComponent,
     LogoutComponent,
-    HrmheaderComponent,
-    HrmHomeComponent,
-    LeaveAnalysisComponent,
-    DownloadFormComponent,
-    SortLeaveFormComponent,
-    AvailableleaveComponent,
-    UseraccessComponent,
-    HolidaysComponent,
-    UserlistComponent,
-    SearchPipe
+    //HrmheaderComponent,
+    //HrmHomeComponent,
+    //LeaveAnalysisComponent,
+    //DownloadFormComponent,
+    //SortLeaveFormComponent,
+    //AvailableleaveComponent,
+    //UseraccessComponent,
+    //HolidaysComponent,
+    //UserlistComponent,
+    //SearchPipe
   ],
   imports: [
+    AdminmoduleModule,
+    SharedmoduleModule,
+    UsermoduleModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -71,6 +77,7 @@ import { InterceptorsService } from './interceptors.service';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsService, multi: true },
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 }) 
 export class AppModule { }
