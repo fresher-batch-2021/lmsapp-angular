@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Leave } from '../leave';
 import { LeaveFormService } from '../leave-form.service';
 
 @Component({
@@ -7,8 +8,8 @@ import { LeaveFormService } from '../leave-form.service';
   styleUrls: ['./download-form.component.css']
 })
 export class DownloadFormComponent implements OnInit {
-  serialNo: any;
-  leaveForms: any;
+  serialNo!: string | null;
+  leaveForms!: Leave;
   constructor(private leaveFormService : LeaveFormService) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -17,13 +18,10 @@ export class DownloadFormComponent implements OnInit {
     console.log("ID : ", id);
     leaveFormService.listLeave().subscribe((res:any) => {
       let data = res;
-      console.log("response : ", data);
-      this.leaveForms = data.rows;
+      this.leaveForms = data.rows.map((obj:any)=>obj.doc);
       console.log("response - leave : ", this.leaveForms);
-      console.log("table list :", this.leaveForms);
-      console.log("available list :");
       console.log("success");
-      this.download_csv_file(this.leaveForms);
+      this.downloadCsvFile(this.leaveForms);
     },(er:any) => {
       console.log(er);
       alert("Error-Unable to retrive");
@@ -34,24 +32,24 @@ export class DownloadFormComponent implements OnInit {
   ngOnInit(): void {
     console.log("DownloadForm");
   }
-  download_csv_file(leave: any) {
+  downloadCsvFile(leave: any) {
 
     let csv = 'Ren-Sys Corporation\n\n';
     csv += "Leave Application\n\n";
     console.log(leave);
     for (let leaveDetail of leave) {
-      if (this.serialNo == leaveDetail.doc._id) {
-        csv += "EMPID" + ',' + leaveDetail.doc.employeeId;
+      if (this.serialNo == leaveDetail._id) {
+        csv += "EMPID" + ',' + leaveDetail.employeeId;
         csv += "\n";
-        csv += "From Date" + ',' + leaveDetail.doc.fromDate;
+        csv += "From Date" + ',' + leaveDetail.fromDate;
         csv += "\n";
-        csv += "To Date" + ',' + leaveDetail.doc.toDate;
+        csv += "To Date" + ',' + leaveDetail.toDate;
         csv += "\n";
-        csv += "Leave Type" + ',' + leaveDetail.doc.leaveType;
+        csv += "Leave Type" + ',' + leaveDetail.leaveType;
         csv += "\n";
-        csv += "Reason" + ',' + leaveDetail.doc.reason;
+        csv += "Reason" + ',' + leaveDetail.reason;
         csv += "\n";
-        csv += "Status" + ',' + leaveDetail.doc.status;
+        csv += "Status" + ',' + leaveDetail.status;
       }
     }
     console.log("FILE DATA : ", csv);

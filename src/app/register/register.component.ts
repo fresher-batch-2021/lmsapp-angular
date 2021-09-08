@@ -86,7 +86,7 @@ export class RegisterComponent implements OnInit {
           this.toastr.warning("Employee ID already Exists");
         }
       })
-    } catch (error) {
+    } catch (error:any) {
       this.toastr.warning(error.message);
     }
   }

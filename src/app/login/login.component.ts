@@ -13,9 +13,9 @@ import { ValidatorService } from '../validator.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  username: any;
-  password: any;
-  role: any;
+  username!: string;
+  password!: string;
+  role!: string;
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -49,24 +49,27 @@ export class LoginComponent implements OnInit {
           email: this.username,
           password: this.password
         },
-        fields: ["_id", "_rev", "name", "email", "role", "empId", "status"]
       };
 
       this.userService.login(formData).subscribe((res: any) => {
         let data = res;
         console.log(data);
         if (data.docs[0].role != "hr" && data.docs[0].status === "Accepted") {
-          localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
+          localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs[0]));
           this.toastr.success("Welcome " + data.docs[0].name);
           this.router.navigate(["user"]);
+
         } else if (data.docs[0].role === "hr" && this.role === "HR") {
-          localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs));
+          localStorage.setItem("LOGGED_IN_USER", JSON.stringify(data.docs[0]));
           this.toastr.success("Welcome " + data.docs[0].name);
           this.router.navigate(["admin"]);
+
         } else if (data.docs[0].status === "Waiting") {
           this.toastr.info("Your Registration in Progress.. Please Wait");
+
         } else if (data.docs[0].status === "Declined") {
           this.toastr.info("Your Registration was Declined By HR Team ");
+
         } else {
           this.toastr.warning("Invalid Role defined")
         }

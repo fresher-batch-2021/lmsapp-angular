@@ -2,7 +2,7 @@
 <h3>Employee List</h3>
 <div>
     <input name="search" id="search" class = "search-box" placeholder="Ex. ui/ux" type="text" [(ngModel)] = "sort" >
-    <table aria-describedby="mydesc">
+    <table datatable [dtTrigger] = "dtTrigger">
         <thead>
             <tr>
                 <th scope="col">EmployeeID</th>
@@ -13,14 +13,14 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody *ngFor="let user of (users | searchterm : sort);">
-            <tr>
+        <tbody>
+            <tr *ngFor="let user of (users | searchterm : sort);">
                 <td>{{user.doc.empId}}</td>
                 <td>{{user.doc.name}}</td>
                 <td>{{user.doc.role}}</td>
                 <td>{{user.doc.mobileNumber}}</td>
                 <td>{{user.doc.email}}</td>
-                <td><input type = "submit" value="delete"  (click)="deleteOneUser(user.doc._id,user.doc._rev)"></td>
+                <td><input type = "submit" value="Inactive"  (click)="deleteOneUser(user.doc._id,user.doc._rev)"></td>
             </tr>
         </tbody>
     </table>

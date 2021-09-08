@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
       let user = localStorage.getItem("LOGGED_IN_USER");
       let userData = user != null ? JSON.parse(user) : null;
       console.log("AuthGuard :" ,user );
-      if(user != null && userData[0].role != 'hr'){
+      if(user != null){
         return true;
       }
       else{

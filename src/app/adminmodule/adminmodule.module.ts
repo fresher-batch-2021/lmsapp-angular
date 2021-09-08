@@ -14,6 +14,8 @@ import { ChartsModule } from 'ng2-charts';
 import { HolidaysComponent } from '../holidays/holidays.component';
 import { UpcomingLeaveComponent } from '../upcoming-leave/upcoming-leave.component';
 import { SearchPipe } from '../search.pipe';
+import { DataTablesModule } from 'angular-datatables';
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -32,8 +34,11 @@ import { SearchPipe } from '../search.pipe';
     SharedmoduleModule,
     AdminmoduleRoutingModule,
     FormsModule,
+    DataTablesModule,
     ChartsModule,
+    NgxSpinnerModule
   ],
+  exports:[],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AdminmoduleModule { }

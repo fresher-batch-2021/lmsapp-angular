@@ -1,4 +1,6 @@
 export class User {
+    _id!:string;
+    _rev!:string;
     name!:string;
     empId!:string;
     role!:string;

@@ -8,14 +8,15 @@ import { HistoryComponent } from '../history/history.component';
 import { HomeComponent } from '../home/home.component';
 import { StatusComponent } from '../status/status.component';
 import { UpcomingLeaveComponent } from '../upcoming-leave/upcoming-leave.component';
+import { UserGuard } from '../user.guard';
 
 const routes: Routes = [
   {path:"", component : HomeComponent, canActivate:[AuthGuard]},
-  {path:"applyleave", component: ApplyleaveComponent, canActivate:[AuthGuard]},
-  {path:"status", component:StatusComponent, canActivate:[AuthGuard]},
-  {path:"availableLeave", component: AvailableleaveComponent, canActivate:[AuthGuard]},
-  {path:"history", component: HistoryComponent, canActivate:[AuthGuard]},
-  {path:"download", component: DownloadFormComponent, canActivate:[AuthGuard]},
+  {path:"applyleave", component: ApplyleaveComponent, canActivate:[AuthGuard, UserGuard]},
+  {path:"status", component:StatusComponent, canActivate:[AuthGuard, UserGuard]},
+  {path:"availableLeave", component: AvailableleaveComponent, canActivate:[AuthGuard, UserGuard]},
+  {path:"history", component: HistoryComponent, canActivate:[AuthGuard, UserGuard]},
+  {path:"download", component: DownloadFormComponent, canActivate:[AuthGuard, UserGuard]},
   {path:"upcoming", component: UpcomingLeaveComponent},
 ];
 

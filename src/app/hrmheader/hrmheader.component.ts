@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../user';
 
 @Component({
   selector: 'app-hrmheader',
@@ -7,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./hrmheader.component.css']
 })
 export class HrmheaderComponent implements OnInit {
-  user:any;
+  user:User;
   constructor(private route : ActivatedRoute,
     private router: Router) { 
     let userStr = localStorage.getItem("LOGGED_IN_USER");
@@ -16,7 +17,7 @@ export class HrmheaderComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Header");
-    console.log("active route", this.route.snapshot.url[0].path);
+    //console.log("active route", this.route.snapshot.url[0].path);
   }
   home(){
     this.router.navigateByUrl("admin");

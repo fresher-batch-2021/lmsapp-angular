@@ -2,11 +2,11 @@
 <div class = "useraccess-content">
     <div class = "row">
         <div *ngFor = "let request of this.requests">
-            <div class = "col-sm-4 useraccess-forms" style="width: 100%;" *ngIf = "request.doc.status == 'Waiting'">
-                <label>Name : {{request.doc.name}}</label>
-                <label>Employee ID : {{request.doc.empId}}</label>
-                <label>Team : {{request.doc.role}}</label>
-                <label>Email ID : {{request.doc.email}}</label>
+            <div class = "col-sm-4 useraccess-forms" style="width: 100%;" *ngIf = "request.status == 'Waiting'">
+                <label>Name : {{request.name}}</label>
+                <label>Employee ID : {{request.empId}}</label>
+                <label>Team : {{request.role}}</label>
+                <label>Email ID : {{request.email}}</label>
                 <input type="submit" class = "accept-btn _btn" (click) = "acceptanceStatus(request,'Accepted')" value="Accept">
                 <input type="submit" class = "reject-btn _btn" (click) = "acceptanceStatus(request,'Declined')" value="Decline">
             </div>

@@ -1,4 +1,6 @@
 export class Availableleave {
+    _id!:string;
+    _rev!:string;
     empId!:string;
     email!:string;
     role!:string;

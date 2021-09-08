@@ -13,20 +13,20 @@
                 <div class="application-form">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label>Name : {{form.doc.name}}-{{form.doc.employeeId}}</label><br />
-                            <label>Role : {{form.doc.role}} </label><br />
-                            <label>From date : {{form.doc.fromDate | date: "dd-MMM-yyyy"}}</label><br />
+                            <label>Name : {{form.name}}-{{form.employeeId}}</label><br />
+                            <label>Role : {{form.role}} </label><br />
+                            <label>From date : {{form.fromDate | date: "dd-MMM-yyyy"}}</label><br />
                         </div>
                         <div class="col-sm-4">
-                            <label>To date : {{form.doc.toDate | date: "dd-MMM-yyyy"}}</label><br />
-                            <label>Leave Type : {{form.doc.leaveType}}</label><br />
-                            <label>Reason : {{form.doc.reason}}</label><br />
+                            <label>To date : {{form.toDate | date: "dd-MMM-yyyy"}}</label><br />
+                            <label>Leave Type : {{form.leaveType}}</label><br />
+                            <label>Reason : {{form.reason}}</label><br />
                         </div>
                         <div class="col-sm-4" style="text-align: center;">
-                            <input type="submit" class="btn1-style" *ngIf="form.doc.status == 'Pending'"
+                            <input type="submit" class="btn1-style" *ngIf="form.status == 'Pending'"
                                 (click)="statusUpdate(form,'Approved')"
                                 value="Approve"><br />
-                            <input type="submit" class="btn2-style" *ngIf="form.doc.status == 'Pending'"
+                            <input type="submit" class="btn2-style" *ngIf="form.status == 'Pending'"
                                 (click)="statusUpdate(form,'Declined')"
                                 value="Decline">
                         </div>
@@ -39,3 +39,11 @@
         </div>
     </main>
 </div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

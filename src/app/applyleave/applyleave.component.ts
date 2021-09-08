@@ -4,6 +4,7 @@ import { AvailabilityCheckService } from '../availability-check.service';
 import { Leave } from '../leave';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
+import { User } from '../user';
 import { UserService } from '../user-service';
 import { ValidatorService } from '../validator.service';
 
@@ -16,16 +17,16 @@ export class ApplyleaveComponent implements OnInit {
 
 @ViewChild('id') id!:ElementRef<HTMLInputElement>;
 
-  userStr: any = localStorage.getItem('LOGGED_IN_USER');
-  user: any = this.userStr != null ? JSON.parse(this.userStr) : null;
-  eId: any;
+  userStr = localStorage.getItem('LOGGED_IN_USER');
+  user: User = this.userStr != null ? JSON.parse(this.userStr) : null;
+  eId!: string;
   forms: any;
   availableLeaveCount: any;
-  employeeId: any;
-  fromDate: any;
-  toDate: any;
-  type: any;
-  reason: any;
+  employeeId!: string;
+  fromDate!: string;
+  toDate!: string;
+  type!: string;
+  reason!: string;
   constructor(
     private toastr: ToastrService,
     private validatorService: ValidatorService,
@@ -35,7 +36,6 @@ export class ApplyleaveComponent implements OnInit {
     private leaveAvailabilityService: LeaveAvailabilityService
   ) {
 
-    console.log("eleref", this.id);
     this.fromDate = isLeaveAvailableService.currentDate();
     this.toDate = isLeaveAvailableService.currentDate();
   }
@@ -45,7 +45,7 @@ export class ApplyleaveComponent implements OnInit {
   }
 
   load() {
-    this.eId = this.user[0].empId;
+    this.eId = this.user.empId;
     const getData = {
       selector: {
         empId: this.eId,
@@ -97,9 +97,6 @@ export class ApplyleaveComponent implements OnInit {
   
 
   leaveForm() {
-    let userStr = localStorage.getItem('LOGGED_IN_USER');
-    let user = userStr != null ? JSON.parse(userStr) : null;
-    console.log('Name : ', user);
 
     try {
       let from = new Date(this.fromDate);
@@ -113,7 +110,7 @@ export class ApplyleaveComponent implements OnInit {
           days
         );
       this.validatorService.isEmpty(
-        this.user[0].empId,
+        this.user.empId,
         "Employee ID can't be empty"
       );
       this.validatorService.isEmpty(this.fromDate, "From Date can't be empty");
@@ -123,9 +120,9 @@ export class ApplyleaveComponent implements OnInit {
       this.validatorService.isValidLeaveDays(this.fromDate, this.toDate);
       this.getLeaveAvailability(this.type, daysTaken);
       const leaveFormObj = {
-        name: user[0].name,
-        employeeId: user[0].empId,
-        role: user[0].role,
+        name: this.user.name,
+        employeeId: this.user.empId,
+        role: this.user.role,
         fromDate: this.fromDate,
         toDate: this.toDate,
         days: daysTaken,
@@ -150,7 +147,7 @@ export class ApplyleaveComponent implements OnInit {
           this.toastr.error('Error -');
         }
       );
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.message + err);
       this.toastr.error(err.message);
     }

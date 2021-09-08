@@ -5,6 +5,8 @@ import { Availableleave } from '../availableleave';
 import { Leave } from '../leave';
 import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
+import { User } from '../user';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-hrpage',
@@ -12,34 +14,38 @@ import { LeaveFormService } from '../leave-form.service';
   styleUrls: ['./hrpage.component.css']
 })
 export class HrpageComponent implements OnInit {
-  forms: any;
-  userName: any;
-  user: any;
-  searchResults: any;
-  option: any = 'all';
+  forms!: Leave[];
+  userName!: string;
+  user: User;
+  searchResults!: Leave[];
+  option: string = 'all';
   constructor(private toastr: ToastrService,
     private leaveFormService: LeaveFormService,
     private availabilityCheckService: AvailabilityCheckService,
-    private leaveAvailabilityService: LeaveAvailabilityService) {
+    private leaveAvailabilityService: LeaveAvailabilityService,
+    private ngxspinner : NgxSpinnerService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
-    this.userName = this.user[0].name;
+    this.userName = this.user.name;
     this.loadForms();
   }
 
   ngOnInit(): void {
+    this.ngxspinner.show();
+    setTimeout(()=>{this.ngxspinner.hide()},2000)
     this.sortForms('all');
+
   }
 
   sortForms(choice: any) {
     this.option = choice;
     console.log(this.option);
     if (this.option == "Pending") {
-      this.searchResults = this.forms.filter((obj: any) => obj.doc.status == 'Pending');
+      this.searchResults = this.forms.filter((obj: any) => obj.status == 'Pending');
     } else if (this.option == "Approved") {
-      this.searchResults = this.forms.filter((obj: any) => obj.doc.status == 'Approved');
+      this.searchResults = this.forms.filter((obj: any) => obj.status == 'Approved');
     } else if (this.option == "Declined") {
-      this.searchResults = this.forms.filter((obj: any) => obj.doc.status == 'Declined');
+      this.searchResults = this.forms.filter((obj: any) => obj.status == 'Declined');
     } else {
       this.searchResults = this.forms;
     }
@@ -49,7 +55,7 @@ export class HrpageComponent implements OnInit {
   loadForms() {
     this.leaveFormService.listLeave().subscribe((res:any) => {
       let data = res;
-      this.forms = data.rows;
+      this.forms = data.rows.map((obj:any)=>obj.doc);
       this.searchResults = this.forms;
       console.log("table list :", this.forms);
     },(err:any) => {
@@ -61,28 +67,28 @@ export class HrpageComponent implements OnInit {
   statusUpdate(form: any, status: any) {
     if (status == "Approved") {
       const updatedForm = {
-        "name": form.doc.name,
-        "employeeId": form.doc.employeeId,
-        "role": form.doc.role,
-        "days": form.doc.days,
-        "fromDate": form.doc.fromDate,
-        "toDate": form.doc.toDate,
-        "leaveType": form.doc.leaveType,
-        "reason": form.doc.reason,
+        "name": form.name,
+        "employeeId": form.employeeId,
+        "role": form.role,
+        "days": form.days,
+        "fromDate": form.fromDate,
+        "toDate": form.toDate,
+        "leaveType": form.leaveType,
+        "reason": form.reason,
         "status": status,
         "remarks" : "Approved"
       }
       const leaveObj = new Leave();
       leaveObj.setData(updatedForm);
-      this.leaveFormService.updateLeaveStatus(leaveObj, form.doc._id, form.doc._rev).subscribe((res:any) => {
+      this.leaveFormService.updateLeaveStatus(leaveObj, form._id, form._rev).subscribe((res:any) => {
         let data = res;
         this.toastr.success("Status Updated!"+data);
         const availabilityData = {
-          'from_Date': form.doc.fromDate,
-          'to_Date': form.doc.toDate,
-          'leaveType': form.doc.leaveType,
+          'from_Date': form.fromDate,
+          'to_Date': form.toDate,
+          'leaveType': form.leaveType,
           'status': status,
-          'empId': form.doc.empId
+          'empId': form.empId
         }
         this.leaveAvailabilityUpdate(availabilityData);
         this.loadForms();
@@ -95,20 +101,20 @@ export class HrpageComponent implements OnInit {
       let reason = prompt("Enter Reason");
       console.log(reason);
       const updatedForm = {
-        "name": form.doc.name,
-        "employeeId": form.doc.employeeId,
-        "role": form.doc.role,
-        "days": form.doc.days,
-        "fromDate": form.doc.fromDate,
-        "toDate": form.doc.toDate,
-        "leaveType": form.doc.leaveType,
-        "reason": form.doc.reason,
+        "name": form.name,
+        "employeeId": form.employeeId,
+        "role": form.role,
+        "days": form.days,
+        "fromDate": form.fromDate,
+        "toDate": form.toDate,
+        "leaveType": form.leaveType,
+        "reason": form.reason,
         "status": status,
         "remarks" : reason
       }
       const leaveObj = new Leave();
       leaveObj.setData(updatedForm);
-      this.leaveFormService.updateLeaveStatus(leaveObj, form.doc._id, form.doc._rev).subscribe((res:any) => {
+      this.leaveFormService.updateLeaveStatus(leaveObj, form._id, form._rev).subscribe((res:any) => {
         let data = res;
         this.toastr.success("Updated!!"+data);
         this.loadForms();
@@ -133,20 +139,20 @@ export class HrpageComponent implements OnInit {
         fields: ["_id", "_rev", "total", "sickLeave", "casualLeave", "earnedLeave", "empId", "email"]
       }
       let leaveCount;
-      console.log("data : " + this.user[0].email, this.user[0].empId);
+      console.log("data : " + this.user.email, this.user.empId);
       this.leaveAvailabilityService.getOneLeaveAvailability(getData).subscribe((res:any) => {
         let data = res;
-        leaveCount = data.docs;
+        leaveCount = data.docs[0];
         console.log("Leave Availability list :", leaveCount);
         const leaveUpdateData = {
-          'id': data.docs[0]._id,
-          'rev': data.docs[0]._rev,
-          'total': data.docs[0].total,
-          'sickLeave': data.docs[0].sickLeave,
-          'casualLeave': data.docs[0].casualLeave,
-          'earnedLeave': data.docs[0].earnedLeave,
-          'empId': data.docs[0].empId,
-          'email': data.docs[0].email,
+          'id': leaveCount._id,
+          'rev': leaveCount._rev,
+          'total': leaveCount.total,
+          'sickLeave': leaveCount.sickLeave,
+          'casualLeave': leaveCount.casualLeave,
+          'earnedLeave': leaveCount.earnedLeave,
+          'empId': leaveCount.empId,
+          'email': leaveCount.email,
           'daysTaken': daysTaken,
           'leaveType': datas.leaveType
         }

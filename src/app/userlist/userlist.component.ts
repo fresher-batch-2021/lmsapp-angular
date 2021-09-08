@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { User } from '../user';
 import { UserService } from '../user-service';
 
 @Component({
@@ -8,8 +10,10 @@ import { UserService } from '../user-service';
   styleUrls: ['./userlist.component.css'],
 })
 export class UserlistComponent implements OnInit {
-  sort: any;
-  users: any;
+  users!: User[];
+  sort:string = "";
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> =new Subject<any>();
   constructor(
     private userService: UserService,
     private toastr: ToastrService
@@ -24,6 +28,7 @@ export class UserlistComponent implements OnInit {
       let userList = data.rows;
       this.users = userList.filter((obj: any) => obj.doc.status == 'Accepted');
       console.log('table list :', this.users);
+      this.dtTrigger.next();
     },
       (err: any) => {
         console.log('failed : ' + err);

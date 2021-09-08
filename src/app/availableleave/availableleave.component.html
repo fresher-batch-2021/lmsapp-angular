@@ -1,15 +1,15 @@
 <div class="status-content pre-scrollable1">
     <br />
     <div id="availableLeaves" *ngFor="let counts of forms">
-        <div *ngIf="counts.doc.email == this.user[0].email">
+        <div *ngIf="counts.email == this.user.email">
             <div class="content">
-                Available Sick Leave : {{counts.doc.sickLeave}} days
+                Available Sick Leave : {{counts.sickLeave}} days
             </div>
             <div class="content">
-                Available Casual Leave : {{counts.doc.casualLeave}} days
+                Available Casual Leave : {{counts.casualLeave}} days
             </div>
             <div class="content">
-                Available Earned Leave : {{counts.doc.earnedLeave}} days
+                Available Earned Leave : {{counts.earnedLeave}} days
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
 import { environment } from 'src/environments/environment';
 import { Availableleave } from './availableleave';
+import { Holiday } from './holiday';
 import { Leave } from './leave';
 import { User } from './user';
 
@@ -16,7 +17,7 @@ export class RestService {
     this.baseUrl = environment.baseUrl;
   }
  
-  save(url:string, formData:Availableleave | Leave | User){
+  save(url:string, formData:Availableleave | Leave | User | Holiday){
     return this.http.post(this.baseUrl + url, formData)
   }
 
@@ -24,7 +25,7 @@ export class RestService {
     return this.http.post(this.baseUrl + url, formData)
   }
 
-  getOneData(url:string, formData:any){
+  getOneData(url:string, formData:string){
     return this.http.get( this.baseUrl + url + "/" + formData)
   }
 
@@ -32,7 +33,7 @@ export class RestService {
     return this.http.get( this.baseUrl + url);
   }
 
-  updateData(url:string, formData:Availableleave | Leave | User){
+  updateData(url:string, formData:Availableleave | Leave | User | Holiday){
     return this.http.put( this.baseUrl + url, formData)
   }
 

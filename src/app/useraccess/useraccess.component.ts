@@ -11,7 +11,7 @@ import { UserService } from '../user-service';
   styleUrls: ['./useraccess.component.css']
 })
 export class UseraccessComponent implements OnInit {
-  requests: any;
+  requests!: User[];
   constructor(private toastr:ToastrService,
     private userService: UserService,
     private leaveAvailabilityService: LeaveAvailabilityService){}
@@ -23,8 +23,8 @@ export class UseraccessComponent implements OnInit {
     
     this.userService.listUsers().subscribe((res:any) => {
       let data = res;
-      let request = data.rows;
-      this.requests = request.filter((obj: any) => obj.doc.status == 'Waiting');
+      let request = data.rows.map((obj:any)=> obj.doc);
+      this.requests = request.filter((obj: any) => obj.status == 'Waiting');
       console.log("success table list :", this.requests);
     },(err:any) => {
       console.log("failed : "+err);
@@ -35,23 +35,23 @@ export class UseraccessComponent implements OnInit {
   acceptanceStatus(request: any,status: any) {
     let requestStatus = 0;
     const updatedUserData = {
-      name: request.doc.name,
-      empId: request.doc.empId,
-      role: request.doc.role,
-      mobileNumber: request.doc.mobileNumber,
-      email: request.doc.email,
-      password: request.doc.password,
+      name: request.name,
+      empId: request.empId,
+      role: request.role,
+      mobileNumber: request.mobileNumber,
+      email: request.email,
+      password: request.password,
       status: status
     }
     const user = new User();
     user.setData(updatedUserData);
-    this.userService.updateUser(request.doc._id, request.doc._rev, user).subscribe((res:any) => {
+    this.userService.updateUser(request._id, request._rev, user).subscribe((res:any) => {
       let data = res;
       console.log("response : ", data);
       requestStatus = 1;
       console.log("success");
       if (requestStatus == 1 && status == "Accepted") {
-        this.leaveCountUpdation(request.doc.empId, request.doc.email, request.doc.role);
+        this.leaveCountUpdation(request.empId, request.email, request.role);
       } else {
         console.log("status : " + status)
         this.loadRequests();

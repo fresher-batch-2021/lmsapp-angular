@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Data } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AvailabilityCheckService } from '../availability-check.service';
+import { Holiday } from '../holiday';
 import { HolidayService } from '../holiday.service';
 import { ValidatorService } from '../validator.service';
 
@@ -10,8 +12,8 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./holidays.component.css']
 })
 export class HolidaysComponent implements OnInit {
-  leaveDate: any;
-  leaveDescription: any;
+  leaveDate!: string;
+  leaveDescription!: string;
   constructor(private toastr: ToastrService,
     private validatorService: ValidatorService,
     private holidayService: HolidayService,
@@ -52,12 +54,14 @@ export class HolidaysComponent implements OnInit {
         'day': day,
         'status': this.leaveDescription
       }
-  
-      this.holidayService.addHoliday(leaveData).subscribe((res:any) => {
+      const holiday = new Holiday();
+      holiday.setData(leaveData);
+      this.holidayService.addHoliday(holiday).subscribe((res:any) => {
         console.log("Leave Added : " + res);
         this.toastr.success("Leave Added Successfully");
         window.location.href = "/holidays";
       },(err:any) => {
+        console.log("Failed to add : "+err);
         this.toastr.error("Failed to Add");
       })
     } catch (err:any) {

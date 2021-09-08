@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { Leave } from '../leave';
 import { LeaveFormService } from '../leave-form.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class LeaveAnalysisComponent implements OnInit {
     { data: [] }
   ];
 
-  leaveForms: any;
+  leaveForms!: Leave[];
 
   ngOnInit(): void {
     this.loadDatas();
@@ -32,7 +33,7 @@ export class LeaveAnalysisComponent implements OnInit {
     
     this.leaveFormService.listLeave().subscribe((res:any) => {
       console.log(res);
-      this.leaveForms = res.rows;
+      this.leaveForms = res.rows.map((obj:any)=> obj.doc);
       this.buildDataSets();
     },(err:any) => {
       console.log(err);
@@ -48,16 +49,16 @@ export class LeaveAnalysisComponent implements OnInit {
     let adminTeam = 0;
 
     for (let forms of this.leaveForms) {
-      if (forms.doc.role == "UI/UX" && forms.doc.status == "Approved") {
-        uxTeam+=parseInt(forms.doc.days);
-      } else if (forms.doc.role == "Backend Dev" && forms.doc.status == "Approved") {
-        beTeam+=parseInt(forms.doc.days);
-      } else if (forms.doc.role == "FullStack Dev" && forms.doc.status == "Approved") {
-        fsTeam+=parseInt(forms.doc.days);
-      } else if (forms.doc.role == "Data Administration" && forms.doc.status == "Approved") {
-        dbTeam+=parseInt(forms.doc.days);
-      } else if (forms.doc.role == "Admin" && forms.doc.status == "Approved") {
-        adminTeam+=parseInt(forms.doc.days);
+      if (forms.role == "UI/UX" && forms.status == "Approved") {
+        uxTeam+=forms.days;
+      } else if (forms.role == "Backend Dev" && forms.status == "Approved") {
+        beTeam+=forms.days;
+      } else if (forms.role == "FullStack Dev" && forms.status == "Approved") {
+        fsTeam+=forms.days;
+      } else if (forms.role == "Data Administration" && forms.status == "Approved") {
+        dbTeam+=forms.days;
+      } else if (forms.role == "Admin" && forms.status == "Approved") {
+        adminTeam+=forms.days;
       }
     }
     console.log("UI/UX : " + uxTeam);

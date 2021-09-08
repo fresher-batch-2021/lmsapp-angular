@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-sm-2" *ngIf="user[0].role != 'hr'">
+    <div class="col-sm-2" *ngIf="user.role != 'hr'">
         <app-header></app-header>
     </div>
-    <div class="col-sm-8" *ngIf="user[0].role != 'hr'">
+    <div class="col-sm-8" *ngIf="user.role != 'hr'">
         <div class="upcoming-title">
             <br />
             <h2>Upcoming Holidays</h2>
@@ -30,27 +30,27 @@
                     <th scope="col">DAY</th>
                     <th scope="col">DESCRIPTION</th>
                 </tr>
-                <tbody *ngFor="let leave of array">
-                    <tr *ngIf="this.month == leave.doc.date.split('-')[1]">
-                        <td>{{leave.doc.date | date: "dd-MMM-YYYY"}}</td>
-                        <td>{{leave.doc.day}}</td>
-                        <td>{{leave.doc.status}}</td>
+                <tbody *ngFor="let leave of holidayList">
+                    <tr *ngIf="this.month == leave.date.split('-')[1]">
+                        <td>{{leave.date | date: "dd-MMM-YYYY"}}</td>
+                        <td>{{leave.day}}</td>
+                        <td>{{leave.status}}</td>
                     </tr>
                 </tbody>
-                <tbody *ngFor="let leave of array">
+                <tbody *ngFor="let leave of holidayList">
                     <tr *ngIf="this.month == null || this.month == ''">
-                        <td>{{leave.doc.date | date: "dd-MMM-YYYY"}}</td>
-                        <td>{{leave.doc.day}}</td>
-                        <td>{{leave.doc.status}}</td>
+                        <td>{{leave.date | date: "dd-MMM-YYYY"}}</td>
+                        <td>{{leave.day}}</td>
+                        <td>{{leave.status}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="col-sm-2" *ngIf="user[0].role != 'hr'">
+    <div class="col-sm-2" *ngIf="user.role != 'hr'">
         <app-footer></app-footer>
     </div>
-    <div class="upcoming-content" *ngIf="user[0].role == 'hr'"> 
+    <div class="upcoming-content" *ngIf="user.role == 'hr'"> 
         <select class="select-style" [(ngModel)]="month">
             <option value="">--select--</option>
             <option value="01">JAN</option>
@@ -72,18 +72,18 @@
                 <th scope="col">DAY</th>
                 <th scope="col">DESCRIPTION</th>
             </tr>
-            <tbody *ngFor="let leave of array">
-                <tr *ngIf="this.month == leave.doc.date.split('-')[1]">
-                    <td>{{leave.doc.date | date: "dd-MMM-yyyy"}}</td>
-                    <td>{{leave.doc.day}}</td>
-                    <td>{{leave.doc.status}}</td>
+            <tbody *ngFor="let leave of holidayList">
+                <tr *ngIf="this.month == leave.date.split('-')[1]">
+                    <td>{{leave.date | date: "dd-MMM-yyyy"}}</td>
+                    <td>{{leave.day}}</td>
+                    <td>{{leave.status}}</td>
                 </tr>
             </tbody>
-            <tbody *ngFor="let leave of array">
+            <tbody *ngFor="let leave of holidayList">
                 <tr *ngIf="this.month == null || this.month == ''">
-                    <td>{{leave.doc.date | date: "dd-MMM-YYYY"}}</td>
-                    <td>{{leave.doc.day}}</td>
-                    <td>{{leave.doc.status}}</td>
+                    <td>{{leave.date | date: "dd-MMM-YYYY"}}</td>
+                    <td>{{leave.day}}</td>
+                    <td>{{leave.status}}</td>
                 </tr>
             </tbody>
         </table>

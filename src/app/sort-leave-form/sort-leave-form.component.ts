@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { setClassMetadata } from '@angular/core/src/r3_symbols';
 import { ToastrService } from 'ngx-toastr';
 import { AvailabilityCheckService } from '../availability-check.service';
+import { Leave } from '../leave';
 import { LeaveFormService } from '../leave-form.service';
 import { ValidatorService } from '../validator.service';
 
@@ -10,10 +12,10 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./sort-leave-form.component.css']
 })
 export class SortLeaveFormComponent implements OnInit {
-  array: any;
-  forms: any;
-  leaveType: any;
-  date: any
+  array!: any[];
+  forms!: Leave[];
+  leaveType!: string;
+  date!: string;
   constructor(private leaveFormService: LeaveFormService,
     private availabilityCheckService: AvailabilityCheckService,
     private validatorService: ValidatorService,
@@ -21,7 +23,7 @@ export class SortLeaveFormComponent implements OnInit {
     this.date = availabilityCheckService.currentDate();
     this.leaveFormService.listLeave().subscribe((res: any) => {
       let data = res;
-      this.forms = data.rows;
+      this.forms = data.rows.map((obj:any)=>obj.doc);
       console.log("success Leave list :", this.forms);
     }, (err: any) => {
       console.log("failed" + err);
@@ -55,27 +57,32 @@ export class SortLeaveFormComponent implements OnInit {
       this.array = [];
       for (let form of this.forms) {
         console.log(form);
-        if (form.doc.leaveType == this.leaveType || this.leaveType == "allLeave") {
-          console.log("form : " + form.doc.fromDate);
-          let fromDateArray = form.doc.fromDate.split('-');
-          let toDateArray = form.doc.toDate.split('-');
+        if (form.leaveType == this.leaveType || this.leaveType == "allLeave") {
+          console.log("form : " + form.fromDate);
+          let fromDateArray = form.fromDate.split('-');
+          let toDateArray = form.toDate.split('-');
           let todayArray = this.date.split('-');
 
           if (this.availabilityCheckService.isDateBetweenTwoDates(fromDateArray, toDateArray, todayArray)) {
             const result = {
-              name: form.doc.name,
-              employeeId: form.doc.employeeId,
-              fromDate: form.doc.fromDate,
-              toDate: form.doc.toDate,
-              leaveType: form.doc.leaveType,
-              reason: form.doc.reason,
-              status: form.doc.status
+              _id: form._id,
+              _rev: form._rev,
+              name: form.name,
+              employeeId: form.employeeId,
+              fromDate: form.fromDate,
+              toDate: form.toDate,
+              leaveType: form.leaveType,
+              reason: form.reason,
+              status: form.status,
+              role: form.role,
+              days: form.days,
+              remarks: form.remarks
             }
             this.array.push(result);
           }
         }
       }
-    }catch(err){
+    }catch(err:any){
       this.toastr.error(err.message);
     }   
   }

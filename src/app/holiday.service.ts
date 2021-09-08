@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Holiday } from './holiday';
 import { RestService } from './rest.service';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class HolidayService {
     return this.restService.getAllData(this.collectionName+"/_all_docs?include_docs=true")
   }
 
-  addHoliday(data: any){
+  addHoliday(data:Holiday){
     return this.restService.save(this.collectionName, data);
   }
 }

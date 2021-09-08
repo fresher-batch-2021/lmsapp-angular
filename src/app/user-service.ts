@@ -16,10 +16,7 @@ export class UserService {
   }
 
 
-  login(formData: { selector: { email: string; password: string; }; fields: string[]; }){
-    {
-      
-    }
+  login(formData: { selector: { email: string; password: string; }; }){
     return this.restService.select(this.collectionName + "/_find", formData)
   }
 

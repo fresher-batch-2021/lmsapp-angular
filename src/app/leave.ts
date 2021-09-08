@@ -1,9 +1,11 @@
 export class Leave {
+    _id!:string;
+    _rev!:string;
     name!:string;
     employeeId!:string;
     role!:string;
-    fromDate!:Date;
-    toDate!:Date;
+    fromDate!:string;
+    toDate!:string;
     days!:number;
     leaveType!:string;
     reason!:string;

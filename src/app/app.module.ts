@@ -2,63 +2,29 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { FooterComponent } from './footer/footer.component';
-import { ApplyleaveComponent } from './applyleave/applyleave.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StatusComponent } from './status/status.component';
-import { HistoryComponent } from './history/history.component';
-import { UpcomingLeaveComponent } from './upcoming-leave/upcoming-leave.component';
-import { HrpageComponent } from './hrpage/hrpage.component';
 import { LogoutComponent } from './logout/logout.component';
-import { HrmheaderComponent } from './hrmheader/hrmheader.component';
-import { HrmHomeComponent } from './hrm-home/hrm-home.component';
-import { LeaveAnalysisComponent } from './leave-analysis/leave-analysis.component';
-import { DownloadFormComponent } from './download-form/download-form.component';
-import { SortLeaveFormComponent } from './sort-leave-form/sort-leave-form.component';
-import { AvailableleaveComponent } from './availableleave/availableleave.component';
-import { UseraccessComponent } from './useraccess/useraccess.component';
-import { HolidaysComponent } from './holidays/holidays.component';
-import { UserlistComponent } from './userlist/userlist.component';
-import { SearchPipe } from './search.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { InterceptorsService } from './interceptors.service';
 import { UsermoduleModule } from './usermodule/usermodule.module';
 import { SharedmoduleModule } from './sharedmodule/sharedmodule.module';
 import { AdminmoduleModule } from './adminmodule/adminmodule.module';
+import { DataTablesModule } from 'angular-datatables';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    //HeaderComponent,
-    //HomeComponent,
     LoginComponent,
-    //FooterComponent,
-    //ApplyleaveComponent,
     RegisterComponent,
-    //StatusComponent,
-    //HistoryComponent,
-    //UpcomingLeaveComponent,
-    //HrpageComponent,
     LogoutComponent,
-    //HrmheaderComponent,
-    //HrmHomeComponent,
-    //LeaveAnalysisComponent,
-    //DownloadFormComponent,
-    //SortLeaveFormComponent,
-    //AvailableleaveComponent,
-    //UseraccessComponent,
-    //HolidaysComponent,
-    //UserlistComponent,
-    //SearchPipe
   ],
   imports: [
     AdminmoduleModule,
@@ -72,8 +38,11 @@ import { AdminmoduleModule } from './adminmodule/adminmodule.module';
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    DataTablesModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot({positionClass: "toast-top-center"})
   ],
+  exports :[],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsService, multi: true },
   ],

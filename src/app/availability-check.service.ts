@@ -13,7 +13,7 @@ export class AvailabilityCheckService {
     private leaveAvailabilityService: LeaveAvailabilityService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
-    console.log("Name : ", this.user[0]._id);
+    console.log("Name : ", this.user._id);
     holidayService.listHolidays().subscribe((res:any) => {
       this.holidays = res.rows;
       console.log("holidayList : ",this.holidays);
