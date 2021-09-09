@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
             window.location.href = "/login";
           },err => {
             console.log(err.data);
-            alert("Error - unable to Register");
+            this.toastr.error("Error - unable to Register");
           });
         } else if(JSON.stringify(response).includes('"email":"'+this.emailAddress+'"')){
           this.toastr.warning("Email Already Exists");

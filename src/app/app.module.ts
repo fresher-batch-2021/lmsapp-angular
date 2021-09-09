@@ -17,6 +17,8 @@ import { SharedmoduleModule } from './sharedmodule/sharedmodule.module';
 import { AdminmoduleModule } from './adminmodule/adminmodule.module';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ErrorInterceptor } from './error.interceptor';
+import { UserpageComponent } from './userpage/userpage.component';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   exports :[],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorsService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

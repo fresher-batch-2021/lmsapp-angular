@@ -11,6 +11,7 @@ import { DownloadFormComponent } from '../download-form/download-form.component'
 import { SharedmoduleModule } from '../sharedmodule/sharedmodule.module';
 import { FormsModule } from '@angular/forms';
 import { UpcomingLeaveComponent } from '../upcoming-leave/upcoming-leave.component';
+import { UserpageComponent } from '../userpage/userpage.component';
 
 
 
@@ -22,6 +23,7 @@ import { UpcomingLeaveComponent } from '../upcoming-leave/upcoming-leave.compone
     StatusComponent,
     HistoryComponent,
     DownloadFormComponent,
+    UserpageComponent
   ],
   imports: [
     CommonModule,

@@ -17,7 +17,11 @@
         },
         "@schematics/angular:service": {
           "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
         }
+        
       },
       "root": "",
       "sourceRoot": "src",

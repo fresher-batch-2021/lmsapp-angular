@@ -7,6 +7,8 @@ import { LeaveAvailabilityService } from '../leave-availability.service';
 import { LeaveFormService } from '../leave-form.service';
 import { User } from '../user';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
+import { PendingleaveService } from '../pendingleave.service';
 
 @Component({
   selector: 'app-hrpage',
@@ -14,6 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./hrpage.component.css']
 })
 export class HrpageComponent implements OnInit {
+  cartCount = new BehaviorSubject<any>(this.loadForms());
   forms!: Leave[];
   userName!: string;
   user: User;
@@ -23,7 +26,8 @@ export class HrpageComponent implements OnInit {
     private leaveFormService: LeaveFormService,
     private availabilityCheckService: AvailabilityCheckService,
     private leaveAvailabilityService: LeaveAvailabilityService,
-    private ngxspinner : NgxSpinnerService) {
+    private ngxspinner : NgxSpinnerService,
+    private pendingLeaveService : PendingleaveService) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
     this.userName = this.user.name;
@@ -32,9 +36,8 @@ export class HrpageComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngxspinner.show();
-    setTimeout(()=>{this.ngxspinner.hide()},2000)
+    setTimeout(()=>{this.ngxspinner.hide()},1000)
     this.sortForms('all');
-
   }
 
   sortForms(choice: any) {
@@ -58,12 +61,19 @@ export class HrpageComponent implements OnInit {
       this.forms = data.rows.map((obj:any)=>obj.doc);
       this.searchResults = this.forms;
       console.log("table list :", this.forms);
+      this.getPending();
     },(err:any) => {
       console.log(err);
       this.toastr.error("Error-Can't Load");
     });
   }
 
+  getPending(){
+    let searchResult = this.forms.filter((obj: any) => obj.status == 'Pending');
+    console.log("length : "+searchResult.length)
+    localStorage.setItem("PENDING_LEAVE",JSON.stringify(searchResult))
+    this.pendingLeaveService.pendingLeave();
+  }
   statusUpdate(form: any, status: any) {
     if (status == "Approved") {
       const updatedForm = {
@@ -82,7 +92,7 @@ export class HrpageComponent implements OnInit {
       leaveObj.setData(updatedForm);
       this.leaveFormService.updateLeaveStatus(leaveObj, form._id, form._rev).subscribe((res:any) => {
         let data = res;
-        this.toastr.success("Status Updated!"+data);
+        this.toastr.success("Status Updated!");
         const availabilityData = {
           'from_Date': form.fromDate,
           'to_Date': form.toDate,
