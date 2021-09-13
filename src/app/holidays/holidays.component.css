@@ -16,10 +16,16 @@ label{
     margin-bottom: 10px;
 }
 
+.box-width{
+    width: 250px;
+}
+
+
 .btn-style{
     height: 30px;
     margin-top: 10px;
     margin-left: 30px;
     background-color: rgb(142, 26, 224);
     border-radius: 5px;
+    color: whitesmoke;
 }

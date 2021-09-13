@@ -18,8 +18,6 @@ import { AdminmoduleModule } from './adminmodule/adminmodule.module';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorInterceptor } from './error.interceptor';
-import { UserpageComponent } from './userpage/userpage.component';
-
 
 @NgModule({
   declarations: [
@@ -29,20 +27,20 @@ import { UserpageComponent } from './userpage/userpage.component';
     LogoutComponent,
   ],
   imports: [
-    AdminmoduleModule,
-    SharedmoduleModule,
-    UsermoduleModule,
+
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
+    // AdminmoduleModule,
+    SharedmoduleModule,
+    // UsermoduleModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule,
-    RouterModule,
-    BrowserAnimationsModule,
+    ChartsModule,    
     HttpClientModule,
     DataTablesModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot({positionClass: "toast-top-center"})
+    ToastrModule.forRoot({positionClass: "toast-top-center"}),
+    AppRoutingModule,
   ],
   exports :[],
   providers: [

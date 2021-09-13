@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { AvailabilityCheckService } from '../availability-check.service';
 import { Holiday } from '../holiday';
@@ -14,13 +15,36 @@ import { ValidatorService } from '../validator.service';
 export class HolidaysComponent implements OnInit {
   leaveDate!: string;
   leaveDescription!: string;
+  roomsFilter: any;
   constructor(private toastr: ToastrService,
     private validatorService: ValidatorService,
     private holidayService: HolidayService,
     private availabityCheckService : AvailabilityCheckService) {
-      this.leaveDate = availabityCheckService.currentDate();
+      //this.leaveDate = availabityCheckService.currentDate();
+  }
+  inputEventDate(event: any){
+    console.log(event.value);
+    this.getDate(event.value);
+  }
+  changeEventDate(event: any){
+    console.log(event.value);
+    this.getDate(event.value);
+  }
+  inputEventDesc(event: any){
+    console.log(event.value);
+    this.leaveDescription = event.target.value
+  }
+  changeEventDesc(event: any){
+    console.log(event.value);
+    this.leaveDescription = event.target.value
   }
 
+  getDate(leave: { getDate: () => any; getMonth: () => number; getFullYear: () => any; }){
+    let dd = String(leave.getDate()).padStart(2, '0');
+    let mo = String(leave.getMonth() + 1).padStart(2, '0');
+    let yyyy = leave.getFullYear();
+    this.leaveDate = yyyy + "-" + mo + "-" + dd;
+  }
   ngOnInit(): void {
     console.log("Holiday");
   }

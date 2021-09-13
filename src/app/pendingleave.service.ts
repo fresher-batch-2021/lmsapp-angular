@@ -1,9 +1,7 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Leave } from './leave';
 import { LeaveFormService } from './leave-form.service';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +13,6 @@ export class PendingleaveService {
     let pendingObject =  pendingLeaveStr != null ? JSON.parse(pendingLeaveStr) : [];
     return pendingObject
   }
-
   pendingLeave(){
     console.log("Called");
     this.pendingLeaveCount.next(this.getPendingLeave());

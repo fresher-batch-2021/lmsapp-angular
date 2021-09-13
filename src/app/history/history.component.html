@@ -17,17 +17,17 @@
                     <th scope="col">Options</th>
                 </tr>
                 <tbody id="history-details" *ngFor="let history of leaveHistory">
-                        <tr *ngIf="history.employeeId  == this.empId">
-                            <td>{{history.employeeId}}</td>
-                            <td>{{history.fromDate | date: "dd-MMM-yyyy"}}</td>
-                            <td>{{history.toDate | date: "dd-MMM-yyyy"}}</td>
-                            <td>{{history.leaveType}}</td>
-                            <td>{{history.reason}}</td>
-                            <td><span class = "status-style" [style.background-color]="getStyle(history.status)">{{history.status}}</span></td>
-                            <td>{{history.remarks}}</td>
-                            <td *ngIf = "history.status == 'Pending'"><a (click)="leaveform(history._id,history._rev)">Cancel</a></td>
-                            <td *ngIf = "history.status != 'Pending'"><a (click)="downloadForm(history._id)">Download</a></td>
-                        </tr>
+                    <tr *ngIf="history.employeeId  == this.empId">
+                        <td>{{history.employeeId}}</td>
+                        <td>{{history.fromDate | date: "dd-MMM-yyyy"}}</td>
+                        <td>{{history.toDate | date: "dd-MMM-yyyy"}}</td>
+                        <td>{{history.leaveType}}</td>
+                        <td>{{history.reason}}</td>
+                        <td><span class = "status-style" [style.background-color]="getStyle(history.status)">{{history.status}}</span></td>
+                        <td>{{history.remarks}}</td>
+                        <td *ngIf = "history.status == 'Pending'"><a href="#" (click)="leaveform(history._id,history._rev)">Cancel</a></td>
+                        <td *ngIf = "history.status != 'Pending'"><a href="#" (click)="downloadForm(history._id)">Download</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

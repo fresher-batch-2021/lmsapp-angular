@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Leave } from '../leave';
 import { LeaveFormService } from '../leave-form.service';
 
@@ -10,10 +11,12 @@ import { LeaveFormService } from '../leave-form.service';
 export class DownloadFormComponent implements OnInit {
   serialNo!: string | null;
   leaveForms!: Leave;
-  constructor(private leaveFormService : LeaveFormService) {
+  constructor(private leaveFormService : LeaveFormService,
+    private route: ActivatedRoute) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get('val');
+
+    const id = this.route.parent?.snapshot.params["id"];;
     this.serialNo = id;
     console.log("ID : ", id);
     leaveFormService.listLeave().subscribe((res:any) => {

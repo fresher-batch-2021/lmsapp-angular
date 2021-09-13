@@ -16,8 +16,14 @@ const routes: Routes = [
   {path:"status", component:StatusComponent, canActivate:[AuthGuard, UserGuard]},
   {path:"availableLeave", component: AvailableleaveComponent, canActivate:[AuthGuard, UserGuard]},
   {path:"history", component: HistoryComponent, canActivate:[AuthGuard, UserGuard]},
-  {path:"download", component: DownloadFormComponent, canActivate:[AuthGuard, UserGuard]},
+  //{path:"download", component: DownloadFormComponent, canActivate:[AuthGuard, UserGuard]},
   {path:"upcoming", component: UpcomingLeaveComponent},
+  {
+    path:":id",
+    children : [
+      {path: "download", component: DownloadFormComponent, canActivate:[AuthGuard, UserGuard]}
+    ]
+  }
 ];
 
 @NgModule({

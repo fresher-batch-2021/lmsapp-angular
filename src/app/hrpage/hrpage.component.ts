@@ -43,7 +43,7 @@ export class HrpageComponent implements OnInit {
   sortForms(choice: any) {
     this.option = choice;
     console.log(this.option);
-    if (this.option == "Pending") {
+    if (this.option == "Pending") { 
       this.searchResults = this.forms.filter((obj: any) => obj.status == 'Pending');
     } else if (this.option == "Approved") {
       this.searchResults = this.forms.filter((obj: any) => obj.status == 'Approved');

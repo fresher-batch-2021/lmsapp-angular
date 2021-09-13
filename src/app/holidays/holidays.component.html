@@ -7,15 +7,26 @@
         <h3>Add Leaves</h3>
         <form (ngSubmit)="addLeave()">
             <div>
-                <label for="date">Leave Date</label>
-                <input type="date" class="box-style" [(ngModel)] = "leaveDate" name="leaveDate" id="leaveDate">
+                <mat-form-field class = "box-width" appearance="fill">
+                <!-- <label for="date">Leave Date</label>
+                <input type="date" class="box-style" [(ngModel)] = "leaveDate" name="leaveDate" id="leaveDate"> -->
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" (dateInput)="inputEventDate($event)" (dateChange)="changeEventDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
             </div>
             <div>
-                <label for="Day">Leave Day</label>
-                <input type="text" class="box-style" [(ngModel)] = "leaveDescription" name="leaveDay" id="leaveDay">
+                <mat-form-field class = "box-width" appearance="fill">
+                    <mat-label>Enter Leave Description</mat-label>
+                    <input matInput [(ngModel)]="leaveDescription" (change)="changeEventDesc($event)">
+                </mat-form-field>
+                <!-- <label for="Day">Leave Day</label>
+                <input type="text" class="box-style" [(ngModel)] = "leaveDescription" name="leaveDay" id="leaveDay"> -->
             </div>
             <div>
-                <input type="submit" class="btn-style" value="Add To Holidays">
+                <!-- <input type="submit" class="btn-style" value="Add To Holidays"> -->
+                <button mat-button class="btn-style" color="primary">Add To Holidays</button>
             </div>
         </form>
     </div>

@@ -49,7 +49,7 @@ export class HistoryComponent implements OnInit {
         }
     }
     downloadForm(id: string) {
-        this.router.navigateByUrl("/download?val=" +id);
+        this.router.navigateByUrl(id+"/download");
     }
 
     getStyle(status :any)

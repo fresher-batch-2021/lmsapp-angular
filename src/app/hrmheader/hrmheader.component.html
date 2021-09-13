@@ -1,6 +1,6 @@
 <header>
     <a class="hrm-nav-item" (click) = "home()" routerLink="#">HRM</a>
-    <a class="hrm-nav-item" (click) = "leavePage()" routerLink="#">Leave Applications<sup *ngIf="( pendingCount | async) let leave;">{{leave.length}}</sup></a>
+    <a class="hrm-nav-item" (click) = "leavePage()" routerLink="#"><sup *ngIf="( pendingCount | async) let leave;">{{leave.length}}</sup><span matBadge="4" matBadgeOverlap="false">Request</span></a>
     <a class="hrm-nav-item" (click) = "sortLeave()" routerLink="#">Sort Applications</a>
     <a class="hrm-nav-item" (click) = "userRequest()" routerLink="#">User Request</a>
     <a class="hrm-nav-item" (click) = "users()" routerLink="#">Users</a>

@@ -1,4 +1,4 @@
-.div{
+.page-content{
     background-image: url(/assets/images/login.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,7 +8,7 @@
     padding-bottom: 65px;
     width: 95%;    
 }
-.div1{
+.form-content{
     background-color:rgb(15,23,42);
     padding-left: 30px;
     padding-top: 50px;

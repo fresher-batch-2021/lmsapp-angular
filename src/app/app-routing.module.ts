@@ -21,10 +21,22 @@ const routes: Routes = [
   // {path:"sortforms", component: SortLeaveFormComponent, canActivate:[AdminauthGuard]},
   // {path:"leaveAnalysis", component: LeaveAnalysisComponent, canActivate:[AdminauthGuard]},
   // {path:"users", component: UserlistComponent, canActivate:[AdminauthGuard]},
-  {path:"logout", component: LogoutComponent},
-  {path:'', redirectTo:'login', pathMatch:'full'},
-  {path:'user', loadChildren: ()=>import("./usermodule/usermodule.module").then(m => m.UsermoduleModule)},
-  {path:'admin', loadChildren: () => import("./adminmodule/adminmodule.module").then(m => m.AdminmoduleModule)}
+  {
+    path:"logout", 
+    component: LogoutComponent
+  },
+  {
+    path:'', 
+    redirectTo:'login', pathMatch:'full'
+  },
+  {
+    path:'user', 
+    loadChildren: ()=>import("./usermodule/usermodule.module").then(m => m.UsermoduleModule)
+  },
+  {
+    path:'admin', 
+    loadChildren: () => import("./adminmodule/adminmodule.module").then(m => m.AdminmoduleModule)
+  }
 ];
 
 @NgModule({

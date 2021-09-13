@@ -1,23 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminmoduleRoutingModule } from './adminmodule-routing.module';
-import { HrmHomeComponent } from '../hrm-home/hrm-home.component';
-import { HrpageComponent } from '../hrpage/hrpage.component';
-import { SortLeaveFormComponent } from '../sort-leave-form/sort-leave-form.component';
-import { UseraccessComponent } from '../useraccess/useraccess.component';
-import { UserlistComponent } from '../userlist/userlist.component';
-import { LeaveAnalysisComponent } from '../leave-analysis/leave-analysis.component';
-import { SharedmoduleModule } from '../sharedmodule/sharedmodule.module';
-import { FormsModule } from '@angular/forms';
-import { HrmheaderComponent } from '../hrmheader/hrmheader.component';
-import { ChartsModule } from 'ng2-charts';
-import { HolidaysComponent } from '../holidays/holidays.component';
-import { UpcomingLeaveComponent } from '../upcoming-leave/upcoming-leave.component';
-import { SearchPipe } from '../search.pipe';
-import { DataTablesModule } from 'angular-datatables';
-import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
-import { MaterialsModule } from '../materials/materials.module';
-
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -61,27 +43,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+
+
 @NgModule({
-  declarations: [
-    HrmheaderComponent,
-    HrmHomeComponent,
-    HrpageComponent,
-    SortLeaveFormComponent,
-    UseraccessComponent,
-    UserlistComponent,
-    LeaveAnalysisComponent,
-    HolidaysComponent,
-    SearchPipe
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    SharedmoduleModule,
-    AdminmoduleRoutingModule,
-    FormsModule,
-    DataTablesModule,
-    ChartsModule,
-    NgxSpinnerModule,
-
     A11yModule,
     ClipboardModule,
     CdkStepperModule,
@@ -126,53 +93,6 @@ import {OverlayModule} from '@angular/cdk/overlay';
     OverlayModule,
     PortalModule,
     ScrollingModule,
-  ],
-  exports:[
-    A11yModule,
-    ClipboardModule,
-    CdkStepperModule,
-    CdkTableModule,
-    CdkTreeModule,
-    DragDropModule,
-    MatAutocompleteModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatTreeModule,
-    OverlayModule,
-    PortalModule,
-    ScrollingModule,
-  ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  ]
 })
-export class AdminmoduleModule { }
+export class MaterialsModule { }

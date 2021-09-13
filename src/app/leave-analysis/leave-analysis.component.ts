@@ -20,7 +20,7 @@ export class LeaveAnalysisComponent implements OnInit {
   barChartPlugins = [];
 
   public barChartData: any = [
-    { data: [] }
+    { data: [ ] }
   ];
 
   leaveForms!: Leave[];
