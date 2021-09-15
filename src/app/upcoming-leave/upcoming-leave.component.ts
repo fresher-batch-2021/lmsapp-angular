@@ -63,6 +63,6 @@ export class UpcomingLeaveComponent implements OnInit {
   }
   
   viewPopUp(leaveStatus: any, leaveDate: any) {
-    this.dialog.open(EditpopupComponent, {data: {name : 'renis', day : leaveDate, desc: leaveStatus}})
+    this.dialog.open(EditpopupComponent, {data: {day : leaveDate, desc: leaveStatus}})
   }
 }

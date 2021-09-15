@@ -79,7 +79,7 @@
                     <td>{{leave.date | date: "dd-MMM-yyyy"}}</td>
                     <td>{{leave.day}}</td>
                     <td>{{leave.status}}</td>
-                    <td><button (click) = "viewPopUp(leave.status, leave.day)">Edit</button></td>
+                    <td><button (click) = "viewPopUp(leave.date, leave.status)">Edit</button></td>
                 </tr>
             </tbody>
             <tbody *ngFor="let leave of holidayList">
@@ -87,7 +87,7 @@
                     <td>{{leave.date | date: "dd-MMM-YYYY"}}</td>
                     <td>{{leave.day}}</td>
                     <td>{{leave.status}}</td>
-                    <td><button (click) = "viewPopUp(leave.status, leave.day)">Edit</button></td>
+                    <td><button (click) = "viewPopUp(leave.date, leave.status)">Edit</button></td>
                 </tr>
             </tbody>
         </table>
