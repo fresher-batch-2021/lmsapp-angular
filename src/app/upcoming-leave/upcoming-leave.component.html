@@ -29,6 +29,7 @@
                     <th scope="col">DATE</th>
                     <th scope="col">DAY</th>
                     <th scope="col">DESCRIPTION</th>
+                    
                 </tr>
                 <tbody *ngFor="let leave of holidayList">
                     <tr *ngIf="this.month == leave.date.split('-')[1]">
@@ -71,12 +72,14 @@
                 <th scope="col">DATE</th>
                 <th scope="col">DAY</th>
                 <th scope="col">DESCRIPTION</th>
+                <th scope="col">OPTION</th>
             </tr>
             <tbody *ngFor="let leave of holidayList">
                 <tr *ngIf="this.month == leave.date.split('-')[1]">
                     <td>{{leave.date | date: "dd-MMM-yyyy"}}</td>
                     <td>{{leave.day}}</td>
                     <td>{{leave.status}}</td>
+                    <td><button (click) = "viewPopUp(leave.status, leave.day)">Edit</button></td>
                 </tr>
             </tbody>
             <tbody *ngFor="let leave of holidayList">
@@ -84,6 +87,7 @@
                     <td>{{leave.date | date: "dd-MMM-YYYY"}}</td>
                     <td>{{leave.day}}</td>
                     <td>{{leave.status}}</td>
+                    <td><button (click) = "viewPopUp(leave.status, leave.day)">Edit</button></td>
                 </tr>
             </tbody>
         </table>

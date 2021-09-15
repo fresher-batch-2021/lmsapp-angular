@@ -1,8 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Holiday } from '../holiday';
 import { HolidayService } from '../holiday.service';
 import { User } from '../user';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+import { EditpopupComponent } from '../editpopup/editpopup.component';
+
+export interface DialogData {
+  name: string
+  day:string
+  desc:string
+}
 
 @Component({
   selector: 'app-upcoming-leave',
@@ -13,7 +25,8 @@ export class UpcomingLeaveComponent implements OnInit {
   holidayList!: Holiday[];
   user: User;
   constructor(private holidayService: HolidayService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private dialog: MatDialog) {
     let userStr = localStorage.getItem("LOGGED_IN_USER");
     this.user = userStr != null ? JSON.parse(userStr) : null;
     holidayService.listHolidays().subscribe((res:any) => {
@@ -47,5 +60,9 @@ export class UpcomingLeaveComponent implements OnInit {
         }
       }
     }
+  }
+  
+  viewPopUp(leaveStatus: any, leaveDate: any) {
+    this.dialog.open(EditpopupComponent, {data: {name : 'renis', day : leaveDate, desc: leaveStatus}})
   }
 }

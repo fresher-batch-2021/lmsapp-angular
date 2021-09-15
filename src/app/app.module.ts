@@ -18,6 +18,8 @@ import { AdminmoduleModule } from './adminmodule/adminmodule.module';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorInterceptor } from './error.interceptor';
+import { EditpopupComponent } from './editpopup/editpopup.component';
+import { DirectivesDirective } from './directives.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ErrorInterceptor } from './error.interceptor';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
+    EditpopupComponent,
+    DirectivesDirective,
   ],
   imports: [
 
